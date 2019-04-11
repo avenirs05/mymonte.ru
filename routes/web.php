@@ -11,8 +11,6 @@
 |
 */
 
-//Route::get('/test', "TestController");
-
 /**
  * Определение языка и установка его в сессию
  */
@@ -46,6 +44,9 @@ Route::get('/js/language/{locale}.js', function () {
 
 
 
+//Auth::routes();
+Auth::routes(['register' => false]);
+
 Route::get('/', 'IndexController')->name('mainPage');
 
 Route::get('/villas', 'RealtiesController');
@@ -63,13 +64,9 @@ Route::get('/realties-data', 'RealtiesDataController');
 Route::get('/feedbacks-data', 'FeedbacksDataController');
 
 
+Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function() {
+	Route::get('/', 'IndexController@index');	
+});
 
 
 
-
-
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

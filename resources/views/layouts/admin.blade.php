@@ -6,12 +6,10 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta name="yandex-verification" content="30abed22f0fc9acb" />
 
-		<title>{{ $title }}</title>
+		<title>Админпанель — mybudva.ru</title>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
-
 
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="/images/fav.ico" type="image/png">
@@ -31,7 +29,7 @@
 			@yield('content')			
 		</div>		
 		
-		<script src="{{ asset('js/app.js') }}"></script>
+		<script src="{{ asset('js/admin.js') }}"></script>
 	</body>
 </html>
 
