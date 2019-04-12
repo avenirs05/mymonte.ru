@@ -40,15 +40,10 @@ import 'vuetify/dist/vuetify.min.css';
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('toolbar', require('./components/Toolbar.vue').default);
-Vue.component('drawer', require('./components/Drawer.vue').default);
-Vue.component('lang', require('./components/Lang.vue').default);
-Vue.component('content-main', require('./components/content/ContentMain.vue').default);
-Vue.component('content-realties', require('./components/content/ContentRealties.vue').default);
-Vue.component('content-feedbacks', require('./components/content/ContentFeedbacks.vue').default);
-Vue.component('content-contact', require('./components/content/ContentContact.vue').default);
-Vue.component('content-realty', require('./components/content/ContentRealty.vue').default);
-Vue.component('footer-component', require('./components/FooterComponent.vue').default);
+Vue.component('toolbar', require('./components/admin/Toolbar.vue').default);
+Vue.component('content-main', require('./components/admin/ContentMain.vue').default);
+Vue.component('realties', require('./components/admin/Realties.vue').default);
+Vue.component('content-to-edit', require('./components/admin/ContentToEdit.vue').default);
 
 
 
@@ -63,7 +58,15 @@ Vue.prototype.trans = string => _.get(window.i18n, string);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const routes = [];
+const routes = [
+    { 
+      path: '', 
+      component: require('./components/admin/Realties.vue').default 
+    },
+    { path: '/content-to-edit', 
+      component: require('./components/admin/ContentToEdit.vue').default 
+    }
+];
 
 const router = new VueRouter({
     routes
@@ -71,19 +74,8 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
-    //router,
+    router,
     data: {},
-    computed: {
-        columnOrRow() {
-            const binding = {}
-
-            if (this.$vuetify.breakpoint.smAndDown) {
-                binding.column = true;
-            }
-
-            return binding;
-        }
-    }
 }).$mount('#app');
 
 

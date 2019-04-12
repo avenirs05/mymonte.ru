@@ -21,7 +21,6 @@
     import MainScreen from '../MainScreen.vue';
     
     export default { 
-//        mounted() { console.log(this.phoneMain)},   
         props: [
             'locale', 
             'headerMainScreen',
