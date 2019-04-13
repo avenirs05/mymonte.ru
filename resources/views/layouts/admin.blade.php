@@ -24,12 +24,11 @@
 	
 	<style>
 		#logout-form {
-			position: absolute;
-			z-index: 10000;
+			font-family: 'Open Sans';	
+			padding: 12px;
+			text-align: center;
+			background: black;
 			color: white;
-			top: 24px;
-			right: 24px;
-			font-family: 'Open Sans';			
 		}
 		#logout-form button:hover {
 			color: yellow;
@@ -43,14 +42,16 @@
 		<!-- Ziggy -->
 		@routes
 		
-		<form id="logout-form" action="{{ route('logout') }}" method="POST">
-			<button type="submit">Выход</button>
-			@csrf
-		</form>		
+	
 		
 		<div id="app">	
 			@yield('content')			
-		</div>		
+		</div>	
+		
+		<form id="logout-form" action="{{ route('logout') }}" method="POST">
+			<button type="submit">Выход</button>
+			@csrf
+		</form>	
 		
 		<script src="{{ asset('js/admin.js') }}"></script>
 	</body>

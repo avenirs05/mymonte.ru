@@ -10,13 +10,12 @@
                         <v-btn color="primary" dark class="mb-2" v-on="on">Добавить объект</v-btn>
                     </template>
                     <v-card>
-                        <v-card-title>
-                            <span class="headline">{{ formTitle }}</span>
-                        </v-card-title>
-
                         <v-card-text>
                             <v-container grid-list-md>
                                 <v-layout wrap>
+                                    <v-flex xs12 class="mb-3">
+                                        <span class="headline">{{ formTitle }}</span>
+                                    </v-flex>
                                     <v-flex xs12>
                                         <v-text-field v-model="editedItem.name" label="Название"></v-text-field>
                                     </v-flex>
@@ -28,21 +27,54 @@
                                     </v-flex>
                                     <v-flex xs12>
                                         <v-text-field v-model="editedItem.visibility" label="Видимость"></v-text-field>
-                                    </v-flex>                                    
+                                    </v-flex>     
+                                    
+                                    <v-flex xs12>
+                                        <v-text-field v-model="editedItem.name" label="Название"></v-text-field>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-text-field v-model="editedItem.type" label="Тип"></v-text-field>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-text-field v-model="editedItem.price" label="Цена"></v-text-field>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-text-field v-model="editedItem.visibility" label="Видимость"></v-text-field>
+                                    </v-flex> 
+                                    
+                                    <v-flex xs12>
+                                        <v-text-field v-model="editedItem.name" label="Название"></v-text-field>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-text-field v-model="editedItem.type" label="Тип"></v-text-field>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-text-field v-model="editedItem.price" label="Цена"></v-text-field>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-text-field v-model="editedItem.visibility" label="Видимость"></v-text-field>
+                                    </v-flex> 
                                 </v-layout>
                             </v-container>
-                        </v-card-text>
-
+                        </v-card-text>                        
+                       
                         <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn color="blue darken-1" flat @click="close">Отмена</v-btn>
-                            <v-btn color="blue darken-1" flat @click="save">Сохранить</v-btn>
+                            <v-container :style="{ padding: 0 }">
+                                <v-layout justify-end row>
+                                    <v-flex xs4 class="text-xs-right" :style="{ paddingRight: '30px' }">                                        
+                                        <v-btn color="blue darken-1" flat @click="close">Отмена</v-btn>
+                                        <v-btn color="blue darken-1" flat @click="save" class="save-btn">Сохранить</v-btn>
+                                    </v-flex>
+                                </v-layout>  
+                            </v-container>        
                         </v-card-actions>
+                       
                     </v-card>
                 </v-dialog>
                 
             </v-toolbar>
             <v-data-table
+                :loading="loading"
                 :headers="headers"
                 :items="realties"
                 :total-items="total"
@@ -72,7 +104,7 @@
                     </td>
                 </template>
                 <template v-slot:no-data>
-                    <v-btn color="primary" @click="getRealties">Reset</v-btn>
+                    <v-btn color="primary" @click="getRealties"></v-btn>
                 </template>
             </v-data-table>
         </div>        
@@ -85,8 +117,7 @@
         mounted() {
             this.getRealties()
         },
-        data: () => ({
-            dialog: false,
+        data: () => ({            
             headers: [
                 {
                     text: 'Название',
@@ -114,6 +145,8 @@
                     sortable: false
                 }
             ],
+            dialog: false,
+            loading: false,
             realties: [],
             editedIndex: -1,
             editedItem: {
@@ -153,6 +186,8 @@
 
         methods: {
             getRealties() {
+                this.loading = true;
+                
                 axios.get(route("admin.realty.index"), { 
                             params: {
                                 page: this.pagination.page,
@@ -164,6 +199,8 @@
                        //console.log(response)
                        this.realties = response.data.data;
                        this.total = response.data.total;    
+                }).finally(() => {
+                    this.loading = false;
                 })
             },
 
@@ -199,6 +236,10 @@
 </script>
 
 
-<style>
+<style scoped>
+    .v-btn.theme--light {
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
 
 </style>

@@ -60,7 +60,7 @@
     }
     
     .v-toolbar__items {
-        margin-right: 100px;
+        //margin-right: 100px;
     }
  
 </style>
