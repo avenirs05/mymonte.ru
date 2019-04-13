@@ -18,7 +18,6 @@ class ContentsTableSeeder extends Seeder
 				'lang' => 'ru', 
 				'header_main_screen' => 'Аренда вилл и апартаментов в Черногории без посредников',	
 				'header_main_content' => 'Отдых в Черногории в 2019 году. Часто задаваемые вопросы.',
-				'phone_main' => '+382 68 089 888',
 				
 				'areas' => '
 					<v-container grid-list-xl> 
@@ -304,7 +303,6 @@ class ContentsTableSeeder extends Seeder
 				'lang' => 'en',
 				'header_main_screen' => 'en_Аренда вилл и апартаментов в Черногории без посредников',
 				'header_main_content' => 'en_Отдых в Черногории в 2019 году. Часто задаваемые вопросы.',
-				'phone_main' => '+382 68 089 888',
 				'areas' => '
 					<v-container grid-list-xl> 
 						<h3 class="text-xs-center mt-2 mb-4 blue--text">en_КУРОРТЫ И ГОРОДА В ЧЕРНОГОРИИ: КУДА ЛУЧШЕ ПОЕХАТЬ?</h3>

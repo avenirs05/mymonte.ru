@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContentsTable extends Migration
+class CreateParametersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,13 @@ class CreateContentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contents', function (Blueprint $table) {
+        Schema::create('parameters', function (Blueprint $table) {
             $table->increments('id');
 			
-			$table->string('lang', 10);	
-			$table->string('header_main_screen');
-			$table->string('header_main_content');
-			$table->text('areas');
-			$table->text('questions');
-			$table->text('products');
-			$table->text('contact_page');
-			$table->timestamps();
+			$table->string('param');
+			$table->string('value');
+			
+            $table->timestamps();
         });
     }
 
@@ -34,6 +30,6 @@ class CreateContentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contents');
+        Schema::dropIfExists('parameters');
     }
 }

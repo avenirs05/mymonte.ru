@@ -2665,9 +2665,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {//this.load()
-  },
+  mounted: function mounted() {},
   data: function data() {
     return {
       headers: [{
@@ -2693,31 +2695,26 @@ __webpack_require__.r(__webpack_exports__);
       }],
       dialog: false,
       loading: false,
-      realties: [],
       editedIndex: -1,
-      enums: {
-        type: ['villa', 'apartment'],
-        visibility: ['опубликовано', 'скрыто']
-      },
-      editedItem: {
-        name: '',
-        type: '',
-        price: 0,
-        visibility: '',
-        city: ''
-      },
-      defaultItem: {
-        name: '',
-        type: '',
-        price: 0,
-        visibility: '',
-        city: ''
-      },
+      editedItem: {},
+      defaultItem: {},
+      realties: [],
       pagination: {
         rowsPerPage: 5
       },
       total: 0,
-      rowsPerPageItems: [5, 10, 20, 50, 100]
+      rowsPerPageItems: [5, 10, 20, 50, 100],
+      enums: {
+        type: ['villa', 'apartment'],
+        visibility: ['опубликовано', 'скрыто']
+      },
+      locales: [{
+        code: 'ru',
+        text: 'Русский'
+      }, {
+        code: 'en',
+        text: 'English'
+      }]
     };
   },
   computed: {
@@ -2748,19 +2745,16 @@ __webpack_require__.r(__webpack_exports__);
         params: params
       }).then(function (response) {
         _this.realties = response.data.data;
-        _this.total = response.data.total;
+        _this.total = response.data.total; //console.log(this.realties)
       }).finally(function () {
         _this.loading = false;
       });
     },
     updateInDb: function updateInDb() {
-      var data = {
-        name: this.editedItem.name
-      };
       axios.put(route("admin.realty.update", {
         id: this.editedItem.id
-      }), data).then(function (response) {
-        console.log(response);
+      }), this.editedItem).catch(function (error) {
+        console.log(error);
       });
     },
     editItem: function editItem(item) {
@@ -2782,6 +2776,9 @@ __webpack_require__.r(__webpack_exports__);
       }, 300);
     },
     save: function save() {
+      /**
+       * Сохраняем в базе данных
+       */
       this.updateInDb();
 
       if (this.editedIndex > -1) {
@@ -2790,7 +2787,7 @@ __webpack_require__.r(__webpack_exports__);
         this.realties.push(this.editedItem);
       }
 
-      this.close(); //console.log(this.editedItem)
+      this.close();
     }
   }
 });
@@ -40819,7 +40816,11 @@ var render = function() {
                                   { attrs: { xs12: "" } },
                                   [
                                     _c("v-text-field", {
-                                      attrs: { label: "Цена", name: "price" },
+                                      attrs: {
+                                        type: "number",
+                                        label: "Цена",
+                                        name: "price"
+                                      },
                                       model: {
                                         value: _vm.editedItem.price,
                                         callback: function($$v) {
@@ -40858,25 +40859,38 @@ var render = function() {
                                   1
                                 ),
                                 _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: { label: "Город", name: "city" },
-                                      model: {
-                                        value: _vm.editedItem.city,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.editedItem, "city", $$v)
+                                _vm._l(_vm.locales, function(locale) {
+                                  return _c(
+                                    "v-flex",
+                                    { key: locale.code, attrs: { xs12: "" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Город — " + locale.text,
+                                          name: "city_" + locale.code
                                         },
-                                        expression: "editedItem.city"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
+                                        model: {
+                                          value:
+                                            _vm.editedItem[
+                                              "city_" + locale.code
+                                            ],
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.editedItem,
+                                              "city_" + locale.code,
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "editedItem[`city_${locale.code}`]"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                })
                               ],
-                              1
+                              2
                             )
                           ],
                           1

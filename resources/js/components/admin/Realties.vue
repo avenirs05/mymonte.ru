@@ -16,9 +16,12 @@
                                     <v-flex xs12 class="mb-3"><span class="headline">{{ formTitle }}</span></v-flex>                                   
                                     <v-flex xs12><v-text-field v-model="editedItem.name" label="Название" name="name"></v-text-field></v-flex>
                                     <v-flex xs12><v-select v-model="editedItem.type" :items="enums.type" label="Тип" name="type"></v-select></v-flex>    
-                                    <v-flex xs12><v-text-field v-model="editedItem.price" label="Цена" name="price"></v-text-field></v-flex>
+                                    <v-flex xs12><v-text-field v-model="editedItem.price" type="number" label="Цена" name="price"></v-text-field></v-flex>
                                     <v-flex xs12><v-select v-model="editedItem.visibility" :items="enums.visibility" label="Видимость" name="visibility"></v-select></v-flex>  
-                                    <v-flex xs12><v-text-field v-model="editedItem.city" label="Город" name="city"></v-text-field></v-flex>                        
+                                   
+                                    <v-flex v-for="locale in locales" :key="locale.code" xs12>
+                                        <v-text-field v-model="editedItem[`city_${locale.code}`]" :label="`Город — ${locale.text}`" :name="`city_${locale.code}`"></v-text-field>
+                                    </v-flex>
                                
                                 </v-layout>
                             </v-container>
@@ -69,7 +72,7 @@
 <script>
     export default {
         mounted() {
-            //this.load()
+            
         },
         data: () => ({            
             headers: [
@@ -100,39 +103,31 @@
                 }
             ],
             dialog: false,
-            loading: false,
-            realties: [],
+            loading: false,            
             editedIndex: -1,
-            enums: {
-                type: ['villa', 'apartment'],
-                visibility: ['опубликовано', 'скрыто']
-            },
-            editedItem: {
-                name: '',
-                type: '',
-                price: 0,
-                visibility: '',
-                city: ''
-            },
-            defaultItem: {
-                name: '',
-                type: '',
-                price: 0,
-                visibility: '',
-                city: ''
-            },            
+            editedItem: { },
+            defaultItem: { },   
+            
+            realties: [],
             pagination: {
                 rowsPerPage: 5,
             },
             total: 0,
-            rowsPerPageItems: [5, 10, 20, 50, 100]
-            
+            rowsPerPageItems: [5, 10, 20, 50, 100],
+            enums: {
+                type: ['villa', 'apartment'],
+                visibility: ['опубликовано', 'скрыто']
+            },
+            locales: [
+                { code: 'ru', text: 'Русский' },
+                { code: 'en', text: 'English' }
+            ]            
         }),
 
         computed: {
             formTitle() {
                 return this.editedIndex === -1 ? 'Новый объект' : 'Редактировать объект'
-            }
+            },
         },
 
         watch: {
@@ -140,7 +135,7 @@
                 val || this.close()
             },
             pagination() {
-                this.load()
+                this.load()                
             }
         },
 
@@ -159,21 +154,18 @@
                             params: params                            
                 }).then(response => {
                        this.realties = response.data.data;
-                       this.total = response.data.total;    
+                       this.total = response.data.total;   
+                       //console.log(this.realties)
                 }).finally(() => {
                     this.loading = false;
                 })
             },
             
-            updateInDb() {
-                let data = {
-                    name: this.editedItem.name,
-                }
-                
-                axios.put(route("admin.realty.update", { id: this.editedItem.id }), data)
-                    .then(response => {
-                        console.log(response) 
-                })
+            updateInDb() {                
+                axios.put(route("admin.realty.update", { id: this.editedItem.id }), this.editedItem)
+                      .catch(function (error) {
+                          console.log(error);
+                      })
             },
 
             editItem(item) {
@@ -196,15 +188,17 @@
             },
 
             save() {
+                /**
+                 * Сохраняем в базе данных
+                 */
                 this.updateInDb()
+                
                 if (this.editedIndex > -1) {
                     Object.assign(this.realties[this.editedIndex], this.editedItem)
                 } else {
                     this.realties.push(this.editedItem)
                 }
-                this.close()
-                
-                //console.log(this.editedItem)
+                this.close()              
             }
         }
     } 

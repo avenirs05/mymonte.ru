@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Lang;
-use App\Content;
 use App\Realty;
+use App\Parameter;
 use Illuminate\Http\Request;
 
 
@@ -12,9 +12,11 @@ class RealtiesController extends Controller
 {
     public function __invoke(Request $request) 
 	{
+		
 		$per_page = 2;
 		$locale = app()->getLocale();
-		$content = Content::select('phone_main')->where('lang', $locale)->get()->toArray()[0];
+		
+		$phone_main = Parameter::where('param', 'phone_main')->get()->toArray()[0]['value'];
 		
 		$realty_type = self::realtyType($request);
 		
@@ -30,7 +32,7 @@ class RealtiesController extends Controller
 		
 		$data = [
 			'title' => $title,
-			'phone_main' => $content['phone_main'],
+			'phone_main' => $phone_main,
 			'realties' => $realties->toJson(),
 		];
 		

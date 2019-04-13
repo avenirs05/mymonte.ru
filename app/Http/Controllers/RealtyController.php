@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request;
-use App\Content;
+use App\Parameter;
 use App\Realty;
 use App\Feedback;
 
@@ -12,12 +12,9 @@ class RealtyController extends Controller
 {
 	public function __invoke($id) 
 	{
-		$locale = app()->getLocale();
-		
-		$content = Content::select('phone_main')
-					->where('lang', $locale)
-					->get()
-					->toArray()[0];		
+		$locale = app()->getLocale();		
+	
+		$phone_main = Parameter::where('param', 'phone_main')->get()->toArray()[0]['value'];
 	
 		$realty = Realty::with('images')->where('id', $id)->first();					
 
@@ -31,7 +28,7 @@ class RealtyController extends Controller
 		
 		$data = [
 			'title'      => $title,
-			'phone_main' => $content['phone_main'],
+			'phone_main' => $phone_main,
 			'realty'     => $realty->toJson(),
 			'feedbacks'  => $feedbacks->toJson()
 		];			

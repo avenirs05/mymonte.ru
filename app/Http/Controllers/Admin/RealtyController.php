@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Input;
 use App\Http\Controllers\Controller;
 use App\Realty;
 
@@ -26,7 +25,7 @@ class RealtyController extends Controller
 		}
 		
 		$realties = $query
-		    ->with('images')
+//		    ->with('images')
 			->paginate($request->per_page, ['*'], 'page', $request->page)
 			->toJson();
 
@@ -86,7 +85,18 @@ class RealtyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request->name;
+		
+		$realty = Realty::find($id);
+		
+		$requestArr = $request->toArray();
+		
+		foreach($requestArr as $key => $value) {
+			if (isset($realty->$key)) {
+				$realty->$key = $value;
+			}
+		}
+
+		$realty->save();		
     }
 
     /**
