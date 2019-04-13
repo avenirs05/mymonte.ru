@@ -66,7 +66,8 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 	Route::get('/', 'IndexController@index');	
 	Route::resource('realties', 'RealtyController')->names(
 			[
-				"index"     => "admin.realty.index",
+				"index"  => "admin.realty.index",
+				"update" => "admin.realty.update"
 			]);
 });
 

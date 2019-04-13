@@ -13,47 +13,13 @@
                         <v-card-text>
                             <v-container grid-list-md>
                                 <v-layout wrap>
-                                    <v-flex xs12 class="mb-3">
-                                        <span class="headline">{{ formTitle }}</span>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-text-field v-model="editedItem.name" label="Название"></v-text-field>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-text-field v-model="editedItem.type" label="Тип"></v-text-field>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-text-field v-model="editedItem.price" label="Цена"></v-text-field>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-text-field v-model="editedItem.visibility" label="Видимость"></v-text-field>
-                                    </v-flex>     
-                                    
-                                    <v-flex xs12>
-                                        <v-text-field v-model="editedItem.name" label="Название"></v-text-field>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-text-field v-model="editedItem.type" label="Тип"></v-text-field>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-text-field v-model="editedItem.price" label="Цена"></v-text-field>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-text-field v-model="editedItem.visibility" label="Видимость"></v-text-field>
-                                    </v-flex> 
-                                    
-                                    <v-flex xs12>
-                                        <v-text-field v-model="editedItem.name" label="Название"></v-text-field>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-text-field v-model="editedItem.type" label="Тип"></v-text-field>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-text-field v-model="editedItem.price" label="Цена"></v-text-field>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-text-field v-model="editedItem.visibility" label="Видимость"></v-text-field>
-                                    </v-flex> 
+                                    <v-flex xs12 class="mb-3"><span class="headline">{{ formTitle }}</span></v-flex>                                   
+                                    <v-flex xs12><v-text-field v-model="editedItem.name" label="Название" name="name"></v-text-field></v-flex>
+                                    <v-flex xs12><v-select v-model="editedItem.type" :items="enums.type" label="Тип" name="type"></v-select></v-flex>    
+                                    <v-flex xs12><v-text-field v-model="editedItem.price" label="Цена" name="price"></v-text-field></v-flex>
+                                    <v-flex xs12><v-select v-model="editedItem.visibility" :items="enums.visibility" label="Видимость" name="visibility"></v-select></v-flex>  
+                                    <v-flex xs12><v-text-field v-model="editedItem.city" label="Город" name="city"></v-text-field></v-flex>                        
+                               
                                 </v-layout>
                             </v-container>
                         </v-card-text>                        
@@ -67,8 +33,7 @@
                                     </v-flex>
                                 </v-layout>  
                             </v-container>        
-                        </v-card-actions>
-                       
+                        </v-card-actions>                       
                     </v-card>
                 </v-dialog>
                 
@@ -88,23 +53,12 @@
                     <td class="text-xs-left">{{ props.item.price }}</td>
                     <td class="text-xs-left">{{ props.item.visibility }}</td>
                     <td class="justify-center layout px-0">
-                    <v-icon
-                        small
-                        class="mr-2"
-                        @click="editItem(props.item)"
-                        >
-                        edit
-                    </v-icon>
-                    <v-icon
-                        small
-                        @click="deleteItem(props.item)"
-                        >
-                        delete
-                    </v-icon>
+                        <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
+                        <v-icon small @click="deleteItem(props.item)">delete</v-icon>
                     </td>
                 </template>
                 <template v-slot:no-data>
-                    <v-btn color="primary" @click="getRealties"></v-btn>
+                    <v-btn color="primary" @click="load"></v-btn>
                 </template>
             </v-data-table>
         </div>        
@@ -115,7 +69,7 @@
 <script>
     export default {
         mounted() {
-            this.getRealties()
+            //this.load()
         },
         data: () => ({            
             headers: [
@@ -149,17 +103,23 @@
             loading: false,
             realties: [],
             editedIndex: -1,
+            enums: {
+                type: ['villa', 'apartment'],
+                visibility: ['опубликовано', 'скрыто']
+            },
             editedItem: {
                 name: '',
                 type: '',
                 price: 0,
-                visibility: ''
+                visibility: '',
+                city: ''
             },
             defaultItem: {
                 name: '',
                 type: '',
                 price: 0,
-                visibility: ''
+                visibility: '',
+                city: ''
             },            
             pagination: {
                 rowsPerPage: 5,
@@ -180,27 +140,39 @@
                 val || this.close()
             },
             pagination() {
-                this.getRealties()
+                this.load()
             }
         },
 
         methods: {
-            getRealties() {
+            load() {
                 this.loading = true;
                 
+                let params = {
+                    page: this.pagination.page,
+                    per_page: this.pagination.rowsPerPage,
+                    sort_by: this.pagination.sortBy,
+                    descending: this.pagination.descending
+                }            
+                
                 axios.get(route("admin.realty.index"), { 
-                            params: {
-                                page: this.pagination.page,
-                                per_page: this.pagination.rowsPerPage,
-                                sort_by: this.pagination.sortBy,
-                                descending: this.pagination.descending
-                            }                             
+                            params: params                            
                 }).then(response => {
-                       //console.log(response)
                        this.realties = response.data.data;
                        this.total = response.data.total;    
                 }).finally(() => {
                     this.loading = false;
+                })
+            },
+            
+            updateInDb() {
+                let data = {
+                    name: this.editedItem.name,
+                }
+                
+                axios.put(route("admin.realty.update", { id: this.editedItem.id }), data)
+                    .then(response => {
+                        console.log(response) 
                 })
             },
 
@@ -224,12 +196,15 @@
             },
 
             save() {
+                this.updateInDb()
                 if (this.editedIndex > -1) {
                     Object.assign(this.realties[this.editedIndex], this.editedItem)
                 } else {
                     this.realties.push(this.editedItem)
                 }
                 this.close()
+                
+                //console.log(this.editedItem)
             }
         }
     } 

@@ -2665,55 +2665,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    this.getRealties();
+  mounted: function mounted() {//this.load()
   },
   data: function data() {
     return {
@@ -2742,17 +2695,23 @@ __webpack_require__.r(__webpack_exports__);
       loading: false,
       realties: [],
       editedIndex: -1,
+      enums: {
+        type: ['villa', 'apartment'],
+        visibility: ['опубликовано', 'скрыто']
+      },
       editedItem: {
         name: '',
         type: '',
         price: 0,
-        visibility: ''
+        visibility: '',
+        city: ''
       },
       defaultItem: {
         name: '',
         type: '',
         price: 0,
-        visibility: ''
+        visibility: '',
+        city: ''
       },
       pagination: {
         rowsPerPage: 5
@@ -2771,27 +2730,37 @@ __webpack_require__.r(__webpack_exports__);
       val || this.close();
     },
     pagination: function pagination() {
-      this.getRealties();
+      this.load();
     }
   },
   methods: {
-    getRealties: function getRealties() {
+    load: function load() {
       var _this = this;
 
       this.loading = true;
+      var params = {
+        page: this.pagination.page,
+        per_page: this.pagination.rowsPerPage,
+        sort_by: this.pagination.sortBy,
+        descending: this.pagination.descending
+      };
       axios.get(route("admin.realty.index"), {
-        params: {
-          page: this.pagination.page,
-          per_page: this.pagination.rowsPerPage,
-          sort_by: this.pagination.sortBy,
-          descending: this.pagination.descending
-        }
+        params: params
       }).then(function (response) {
-        //console.log(response)
         _this.realties = response.data.data;
         _this.total = response.data.total;
       }).finally(function () {
         _this.loading = false;
+      });
+    },
+    updateInDb: function updateInDb() {
+      var data = {
+        name: this.editedItem.name
+      };
+      axios.put(route("admin.realty.update", {
+        id: this.editedItem.id
+      }), data).then(function (response) {
+        console.log(response);
       });
     },
     editItem: function editItem(item) {
@@ -2813,13 +2782,15 @@ __webpack_require__.r(__webpack_exports__);
       }, 300);
     },
     save: function save() {
+      this.updateInDb();
+
       if (this.editedIndex > -1) {
         Object.assign(this.realties[this.editedIndex], this.editedItem);
       } else {
         this.realties.push(this.editedItem);
       }
 
-      this.close();
+      this.close(); //console.log(this.editedItem)
     }
   }
 });
@@ -40805,7 +40776,10 @@ var render = function() {
                                   { attrs: { xs12: "" } },
                                   [
                                     _c("v-text-field", {
-                                      attrs: { label: "Название" },
+                                      attrs: {
+                                        label: "Название",
+                                        name: "name"
+                                      },
                                       model: {
                                         value: _vm.editedItem.name,
                                         callback: function($$v) {
@@ -40822,8 +40796,12 @@ var render = function() {
                                   "v-flex",
                                   { attrs: { xs12: "" } },
                                   [
-                                    _c("v-text-field", {
-                                      attrs: { label: "Тип" },
+                                    _c("v-select", {
+                                      attrs: {
+                                        items: _vm.enums.type,
+                                        label: "Тип",
+                                        name: "type"
+                                      },
                                       model: {
                                         value: _vm.editedItem.type,
                                         callback: function($$v) {
@@ -40841,7 +40819,7 @@ var render = function() {
                                   { attrs: { xs12: "" } },
                                   [
                                     _c("v-text-field", {
-                                      attrs: { label: "Цена" },
+                                      attrs: { label: "Цена", name: "price" },
                                       model: {
                                         value: _vm.editedItem.price,
                                         callback: function($$v) {
@@ -40858,8 +40836,12 @@ var render = function() {
                                   "v-flex",
                                   { attrs: { xs12: "" } },
                                   [
-                                    _c("v-text-field", {
-                                      attrs: { label: "Видимость" },
+                                    _c("v-select", {
+                                      attrs: {
+                                        items: _vm.enums.visibility,
+                                        label: "Видимость",
+                                        name: "visibility"
+                                      },
                                       model: {
                                         value: _vm.editedItem.visibility,
                                         callback: function($$v) {
@@ -40881,147 +40863,13 @@ var render = function() {
                                   { attrs: { xs12: "" } },
                                   [
                                     _c("v-text-field", {
-                                      attrs: { label: "Название" },
+                                      attrs: { label: "Город", name: "city" },
                                       model: {
-                                        value: _vm.editedItem.name,
+                                        value: _vm.editedItem.city,
                                         callback: function($$v) {
-                                          _vm.$set(_vm.editedItem, "name", $$v)
+                                          _vm.$set(_vm.editedItem, "city", $$v)
                                         },
-                                        expression: "editedItem.name"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: { label: "Тип" },
-                                      model: {
-                                        value: _vm.editedItem.type,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.editedItem, "type", $$v)
-                                        },
-                                        expression: "editedItem.type"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: { label: "Цена" },
-                                      model: {
-                                        value: _vm.editedItem.price,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.editedItem, "price", $$v)
-                                        },
-                                        expression: "editedItem.price"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: { label: "Видимость" },
-                                      model: {
-                                        value: _vm.editedItem.visibility,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.editedItem,
-                                            "visibility",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "editedItem.visibility"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: { label: "Название" },
-                                      model: {
-                                        value: _vm.editedItem.name,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.editedItem, "name", $$v)
-                                        },
-                                        expression: "editedItem.name"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: { label: "Тип" },
-                                      model: {
-                                        value: _vm.editedItem.type,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.editedItem, "type", $$v)
-                                        },
-                                        expression: "editedItem.type"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: { label: "Цена" },
-                                      model: {
-                                        value: _vm.editedItem.price,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.editedItem, "price", $$v)
-                                        },
-                                        expression: "editedItem.price"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: { label: "Видимость" },
-                                      model: {
-                                        value: _vm.editedItem.visibility,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.editedItem,
-                                            "visibility",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "editedItem.visibility"
+                                        expression: "editedItem.city"
                                       }
                                     })
                                   ],
@@ -41153,7 +41001,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("\n                    edit\n                ")]
+                        [_vm._v("edit")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -41166,11 +41014,7 @@ var render = function() {
                             }
                           }
                         },
-                        [
-                          _vm._v(
-                            "\n                    delete\n                "
-                          )
-                        ]
+                        [_vm._v("delete")]
                       )
                     ],
                     1
@@ -41184,7 +41028,7 @@ var render = function() {
                 return [
                   _c("v-btn", {
                     attrs: { color: "primary" },
-                    on: { click: _vm.getRealties }
+                    on: { click: _vm.load }
                   })
                 ]
               },
