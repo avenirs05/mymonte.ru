@@ -6,7 +6,7 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta name="yandex-verification" content="30abed22f0fc9acb" />
 
-		<title>Админпанель — mybudva.ru</title>
+		<title>Админ — MyBudva.ru</title>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -26,13 +26,16 @@
 		#logout-form {
 			position: absolute;
 			z-index: 10000;
-			color: antiquewhite;
+			color: white;
 			top: 24px;
 			right: 24px;
-			font-family: 'Open Sans'
+			font-family: 'Open Sans';			
 		}
 		#logout-form button:hover {
 			color: yellow;
+		}
+		#logout-form button {
+			outline: none;
 		}
 	</style>
 

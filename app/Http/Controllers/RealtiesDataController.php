@@ -20,8 +20,10 @@ class RealtiesDataController extends Controller
         $locale = app()->getLocale();		
 
 		$realties = Realty::with(array('images' => function($query) {
-						$query->where('type', 'primary');}))
+						$query->where('type', 'primary');
+		}))
 			->where('type', $request->type_of_realty)
+			->where('visibility', 'опубликовано')					
 			->paginate($request->per_page, ['*'], 'page', $request->page)->toJson();
 						
 		

@@ -23,15 +23,17 @@ class RealtiesController extends Controller
 		$realties = Realty::with(array(
 						'images' => function($query) {
 							$query->where('type', 'primary');
-						}))
-						->where('type', $realty_type)						
-						->paginate($per_page);	
+		}))
+			->where('type', $realty_type)
+			->where('visibility', 'опубликовано')
+			->paginate($per_page);	
 		
 		$data = [
 			'title' => $title,
 			'phone_main' => $content['phone_main'],
 			'realties' => $realties->toJson(),
 		];
+		
 		
 		return view('realties', $data);
 	}

@@ -404,6 +404,7 @@ class RealtiesTableSeeder extends Seeder
 					'price_oct_apr_ru' => '80 €',
 					'price_oct_apr_en' => '80 €',
 //			'discount' => '',
+					'visibility' => 'скрыто'
 		]);
 		
 		Realty::create(

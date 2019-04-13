@@ -22,19 +22,19 @@ class CreateRealtiesTable extends Migration
 			$table->enum('type_ru', ['вилла', 'апартамент'])->default('апартамент');
 			$table->enum('type_en', ['villa', 'apartment'])->default('apartment');
 			
-			$table->string('subname_ru');
-			$table->string('subname_en');
+			$table->string('subname_ru')->nullable();
+			$table->string('subname_en')->nullable();
 			
-			$table->integer('square');
+			$table->integer('square')->nullable();
 			
 			$table->enum('view_ru', ['на море', 'на море и горы', 'на горы', 'на окрестности и горы'])->default('на море');
 			$table->enum('view_en', ['sea', 'sea and mountains', 'mountains', 'surroundings and mountains'])->default('sea');
 			
-			$table->tinyInteger('bedrooms');
-			$table->tinyInteger('capacity');
-			$table->integer('dist_sea');
-			$table->integer('dist_tivat');
-			$table->integer('dist_podg');
+			$table->tinyInteger('bedrooms')->nullable();
+			$table->tinyInteger('capacity')->nullable();
+			$table->integer('dist_sea')->nullable();
+			$table->integer('dist_tivat')->nullable();
+			$table->integer('dist_podg')->nullable();
 			
 			$table->enum('transfer_ru', ['платный', 'бесплатный'])->default('платный');
 			$table->enum('transfer_en', ['paid', 'free'])->default('paid');		
@@ -47,8 +47,8 @@ class CreateRealtiesTable extends Migration
 			
 			$table->float('booking_mark', 2, 1)->default(0.0);
 			
-			$table->text('description_ru');
-			$table->text('description_en');
+			$table->text('description_ru')->nullable();
+			$table->text('description_en')->nullable();
 			
 			$table->string('country_ru', 100)->default('Черногория');
 			$table->string('country_en', 100)->default('Montenegro');
@@ -68,27 +68,29 @@ class CreateRealtiesTable extends Migration
 			$table->string('city_ru', 100)->default('Будва');
 			$table->string('city_en', 100)->default('Budva');
 			
-			$table->text('map_html');
+			$table->text('map_html')->nullable();
 
-			$table->integer('price');			
-			$table->integer('price_jan');
-			$table->integer('price_feb');
-			$table->integer('price_mar');
-			$table->integer('price_apr');
-			$table->integer('price_may');
-			$table->integer('price_jun');
-			$table->integer('price_jul');
-			$table->integer('price_aug');
-			$table->integer('price_sep');
-			$table->integer('price_oct');
-			$table->integer('price_nov');
-			$table->integer('price_dec');
-			$table->string('price_oct_apr_ru');
-			$table->string('price_oct_apr_en');
+			$table->integer('price')->nullable();			
+			$table->integer('price_jan')->nullable();
+			$table->integer('price_feb')->nullable();
+			$table->integer('price_mar')->nullable();
+			$table->integer('price_apr')->nullable();
+			$table->integer('price_may')->nullable();
+			$table->integer('price_jun')->nullable();
+			$table->integer('price_jul')->nullable();
+			$table->integer('price_aug')->nullable();
+			$table->integer('price_sep')->nullable();
+			$table->integer('price_oct')->nullable();
+			$table->integer('price_nov')->nullable();
+			$table->integer('price_dec')->nullable();
+			$table->string('price_oct_apr_ru')->nullable();
+			$table->string('price_oct_apr_en')->nullable();
 			
 			
-			$table->integer('price_line_through');
+			$table->integer('price_line_through')->nullable();
 			$table->integer('discount')->default(0);
+			
+			$table->enum('visibility', ['опубликовано', 'скрыто'])->default('опубликовано');
 
 			$table->timestamps();
         });

@@ -2,16 +2,12 @@
     <v-content>    
         <div>
             <v-toolbar flat color="white">
-                <v-toolbar-title>My CRUD</v-toolbar-title>
-                <v-divider
-                    class="mx-2"
-                    inset
-                    vertical
-                    ></v-divider>
+                <v-toolbar-title>Объекты</v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-dialog v-model="dialog" max-width="500px">
+                
+                <v-dialog v-model="dialog" fullscreen scrollable>
                     <template v-slot:activator="{ on }">
-                        <v-btn color="primary" dark class="mb-2" v-on="on">New Item</v-btn>
+                        <v-btn color="primary" dark class="mb-2" v-on="on">Добавить объект</v-btn>
                     </template>
                     <v-card>
                         <v-card-title>
@@ -21,44 +17,44 @@
                         <v-card-text>
                             <v-container grid-list-md>
                                 <v-layout wrap>
-                                    <v-flex xs12 sm6 md4>
-                                        <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
+                                    <v-flex xs12>
+                                        <v-text-field v-model="editedItem.name" label="Название"></v-text-field>
                                     </v-flex>
-                                    <v-flex xs12 sm6 md4>
-                                        <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
+                                    <v-flex xs12>
+                                        <v-text-field v-model="editedItem.type" label="Тип"></v-text-field>
                                     </v-flex>
-                                    <v-flex xs12 sm6 md4>
-                                        <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
+                                    <v-flex xs12>
+                                        <v-text-field v-model="editedItem.price" label="Цена"></v-text-field>
                                     </v-flex>
-                                    <v-flex xs12 sm6 md4>
-                                        <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
-                                    </v-flex>
-                                    <v-flex xs12 sm6 md4>
-                                        <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
-                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-text-field v-model="editedItem.visibility" label="Видимость"></v-text-field>
+                                    </v-flex>                                    
                                 </v-layout>
                             </v-container>
                         </v-card-text>
 
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="blue darken-1" flat @click="close">Cancel</v-btn>
-                            <v-btn color="blue darken-1" flat @click="save">Save</v-btn>
+                            <v-btn color="blue darken-1" flat @click="close">Отмена</v-btn>
+                            <v-btn color="blue darken-1" flat @click="save">Сохранить</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-dialog>
+                
             </v-toolbar>
             <v-data-table
                 :headers="headers"
-                :items="desserts"
+                :items="realties"
+                :total-items="total"
+                :rows-per-page-items="rowsPerPageItems"
+                :pagination.sync="pagination"
                 class="elevation-1"
                 >
                 <template v-slot:items="props">
-                    <td>{{ props.item.name }}</td>
-                    <td class="text-xs-left">{{ props.item.calories }}</td>
-                    <td class="text-xs-left">{{ props.item.fat }}</td>
-                    <td class="text-xs-left">{{ props.item.carbs }}</td>
-                    <td class="text-xs-left">{{ props.item.protein }}</td>
+                    <td class="text-xs-left">{{ props.item.name }}</td>
+                    <td class="text-xs-left">{{ props.item.type }}</td>
+                    <td class="text-xs-left">{{ props.item.price }}</td>
+                    <td class="text-xs-left">{{ props.item.visibility }}</td>
                     <td class="justify-center layout px-0">
                     <v-icon
                         small
@@ -76,7 +72,7 @@
                     </td>
                 </template>
                 <template v-slot:no-data>
-                    <v-btn color="primary" @click="initialize">Reset</v-btn>
+                    <v-btn color="primary" @click="getRealties">Reset</v-btn>
                 </template>
             </v-data-table>
         </div>        
@@ -86,29 +82,31 @@
 
 <script>
     export default {
+        mounted() {
+            this.getRealties()
+        },
         data: () => ({
             dialog: false,
-            headers: [{
-                    text: 'Dessert (100g serving)',
-                    align: 'left',
-                    sortable: false,
-                    value: 'name'
+            headers: [
+                {
+                    text: 'Название',
+                    value: 'name',
+                    sortable: true
                 },
                 {
-                    text: 'Calories',
-                    value: 'calories'
+                    text: 'Тип',
+                    value: 'type',
+                    sortable: true
                 },
                 {
-                    text: 'Fat (g)',
-                    value: 'fat'
+                    text: 'Цена, €',
+                    value: 'price',
+                    sortable: true
                 },
                 {
-                    text: 'Carbs (g)',
-                    value: 'carbs'
-                },
-                {
-                    text: 'Protein (g)',
-                    value: 'protein'
+                    text: 'Видимость',
+                    value: 'visibility',
+                    sortable: true
                 },
                 {
                     text: '',
@@ -116,124 +114,68 @@
                     sortable: false
                 }
             ],
-            desserts: [],
+            realties: [],
             editedIndex: -1,
             editedItem: {
                 name: '',
-                calories: 0,
-                fat: 0,
-                carbs: 0,
-                protein: 0
+                type: '',
+                price: 0,
+                visibility: ''
             },
             defaultItem: {
                 name: '',
-                calories: 0,
-                fat: 0,
-                carbs: 0,
-                protein: 0
-            }
+                type: '',
+                price: 0,
+                visibility: ''
+            },            
+            pagination: {
+                rowsPerPage: 5,
+            },
+            total: 0,
+            rowsPerPageItems: [5, 10, 20, 50, 100]
+            
         }),
 
         computed: {
             formTitle() {
-                return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+                return this.editedIndex === -1 ? 'Новый объект' : 'Редактировать объект'
             }
         },
 
         watch: {
             dialog(val) {
                 val || this.close()
+            },
+            pagination() {
+                this.getRealties()
             }
         },
 
-        created() {
-            this.initialize()
-        },
-
         methods: {
-            initialize() {
-                this.desserts = [{
-                        name: 'Frozen Yogurt',
-                        calories: 159,
-                        fat: 6.0,
-                        carbs: 24,
-                        protein: 4.0
-                    },
-                    {
-                        name: 'Ice cream sandwich',
-                        calories: 237,
-                        fat: 9.0,
-                        carbs: 37,
-                        protein: 4.3
-                    },
-                    {
-                        name: 'Eclair',
-                        calories: 262,
-                        fat: 16.0,
-                        carbs: 23,
-                        protein: 6.0
-                    },
-                    {
-                        name: 'Cupcake',
-                        calories: 305,
-                        fat: 3.7,
-                        carbs: 67,
-                        protein: 4.3
-                    },
-                    {
-                        name: 'Gingerbread',
-                        calories: 356,
-                        fat: 16.0,
-                        carbs: 49,
-                        protein: 3.9
-                    },
-                    {
-                        name: 'Jelly bean',
-                        calories: 375,
-                        fat: 0.0,
-                        carbs: 94,
-                        protein: 0.0
-                    },
-                    {
-                        name: 'Lollipop',
-                        calories: 392,
-                        fat: 0.2,
-                        carbs: 98,
-                        protein: 0
-                    },
-                    {
-                        name: 'Honeycomb',
-                        calories: 408,
-                        fat: 3.2,
-                        carbs: 87,
-                        protein: 6.5
-                    },
-                    {
-                        name: 'Donut',
-                        calories: 452,
-                        fat: 25.0,
-                        carbs: 51,
-                        protein: 4.9
-                    },
-                    {
-                        name: 'KitKat',
-                        calories: 518,
-                        fat: 26.0,
-                        carbs: 65,
-                        protein: 7
-                    }
-                ]
+            getRealties() {
+                axios.get(route("admin.realty.index"), { 
+                            params: {
+                                page: this.pagination.page,
+                                per_page: this.pagination.rowsPerPage,
+                                sort_by: this.pagination.sortBy,
+                                descending: this.pagination.descending
+                            }                             
+                }).then(response => {
+                       //console.log(response)
+                       this.realties = response.data.data;
+                       this.total = response.data.total;    
+                })
             },
 
             editItem(item) {
-                this.editedIndex = this.desserts.indexOf(item)
+                this.editedIndex = this.realties.indexOf(item)
                 this.editedItem = Object.assign({}, item)
                 this.dialog = true
             },
 
             deleteItem(item) {
-                const index = this.desserts.indexOf(item)
-                confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
+                const index = this.realties.indexOf(item)
+                confirm('Вы уверены, что хотите удалить этот объект?') && this.realties.splice(index, 1)
             },
 
             close() {
@@ -246,9 +188,9 @@
 
             save() {
                 if (this.editedIndex > -1) {
-                    Object.assign(this.desserts[this.editedIndex], this.editedItem)
+                    Object.assign(this.realties[this.editedIndex], this.editedItem)
                 } else {
-                    this.desserts.push(this.editedItem)
+                    this.realties.push(this.editedItem)
                 }
                 this.close()
             }

@@ -2679,154 +2679,108 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.getRealties();
+  },
   data: function data() {
     return {
       dialog: false,
       headers: [{
-        text: 'Dessert (100g serving)',
-        align: 'left',
-        sortable: false,
-        value: 'name'
+        text: 'Название',
+        value: 'name',
+        sortable: true
       }, {
-        text: 'Calories',
-        value: 'calories'
+        text: 'Тип',
+        value: 'type',
+        sortable: true
       }, {
-        text: 'Fat (g)',
-        value: 'fat'
+        text: 'Цена, €',
+        value: 'price',
+        sortable: true
       }, {
-        text: 'Carbs (g)',
-        value: 'carbs'
-      }, {
-        text: 'Protein (g)',
-        value: 'protein'
+        text: 'Видимость',
+        value: 'visibility',
+        sortable: true
       }, {
         text: '',
         value: 'name',
         sortable: false
       }],
-      desserts: [],
+      realties: [],
       editedIndex: -1,
       editedItem: {
         name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0
+        type: '',
+        price: 0,
+        visibility: ''
       },
       defaultItem: {
         name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0
-      }
+        type: '',
+        price: 0,
+        visibility: ''
+      },
+      pagination: {
+        rowsPerPage: 5
+      },
+      total: 0,
+      rowsPerPageItems: [5, 10, 20, 50, 100]
     };
   },
   computed: {
     formTitle: function formTitle() {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item';
+      return this.editedIndex === -1 ? 'Новый объект' : 'Редактировать объект';
     }
   },
   watch: {
     dialog: function dialog(val) {
       val || this.close();
+    },
+    pagination: function pagination() {
+      this.getRealties();
     }
   },
-  created: function created() {
-    this.initialize();
-  },
   methods: {
-    initialize: function initialize() {
-      this.desserts = [{
-        name: 'Frozen Yogurt',
-        calories: 159,
-        fat: 6.0,
-        carbs: 24,
-        protein: 4.0
-      }, {
-        name: 'Ice cream sandwich',
-        calories: 237,
-        fat: 9.0,
-        carbs: 37,
-        protein: 4.3
-      }, {
-        name: 'Eclair',
-        calories: 262,
-        fat: 16.0,
-        carbs: 23,
-        protein: 6.0
-      }, {
-        name: 'Cupcake',
-        calories: 305,
-        fat: 3.7,
-        carbs: 67,
-        protein: 4.3
-      }, {
-        name: 'Gingerbread',
-        calories: 356,
-        fat: 16.0,
-        carbs: 49,
-        protein: 3.9
-      }, {
-        name: 'Jelly bean',
-        calories: 375,
-        fat: 0.0,
-        carbs: 94,
-        protein: 0.0
-      }, {
-        name: 'Lollipop',
-        calories: 392,
-        fat: 0.2,
-        carbs: 98,
-        protein: 0
-      }, {
-        name: 'Honeycomb',
-        calories: 408,
-        fat: 3.2,
-        carbs: 87,
-        protein: 6.5
-      }, {
-        name: 'Donut',
-        calories: 452,
-        fat: 25.0,
-        carbs: 51,
-        protein: 4.9
-      }, {
-        name: 'KitKat',
-        calories: 518,
-        fat: 26.0,
-        carbs: 65,
-        protein: 7
-      }];
+    getRealties: function getRealties() {
+      var _this = this;
+
+      axios.get(route("admin.realty.index"), {
+        params: {
+          page: this.pagination.page,
+          per_page: this.pagination.rowsPerPage,
+          sort_by: this.pagination.sortBy,
+          descending: this.pagination.descending
+        }
+      }).then(function (response) {
+        //console.log(response)
+        _this.realties = response.data.data;
+        _this.total = response.data.total;
+      });
     },
     editItem: function editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
+      this.editedIndex = this.realties.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
     deleteItem: function deleteItem(item) {
-      var index = this.desserts.indexOf(item);
-      confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1);
+      var index = this.realties.indexOf(item);
+      confirm('Вы уверены, что хотите удалить этот объект?') && this.realties.splice(index, 1);
     },
     close: function close() {
-      var _this = this;
+      var _this2 = this;
 
       this.dialog = false;
       setTimeout(function () {
-        _this.editedItem = Object.assign({}, _this.defaultItem);
-        _this.editedIndex = -1;
+        _this2.editedItem = Object.assign({}, _this2.defaultItem);
+        _this2.editedIndex = -1;
       }, 300);
     },
     save: function save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+        Object.assign(this.realties[this.editedIndex], this.editedItem);
       } else {
-        this.desserts.push(this.editedItem);
+        this.realties.push(this.editedItem);
       }
 
       this.close();
@@ -40702,19 +40656,14 @@ var render = function() {
           "v-toolbar",
           { attrs: { flat: "", color: "white" } },
           [
-            _c("v-toolbar-title", [_vm._v("My CRUD")]),
-            _vm._v(" "),
-            _c("v-divider", {
-              staticClass: "mx-2",
-              attrs: { inset: "", vertical: "" }
-            }),
+            _c("v-toolbar-title", [_vm._v("Объекты")]),
             _vm._v(" "),
             _c("v-spacer"),
             _vm._v(" "),
             _c(
               "v-dialog",
               {
-                attrs: { "max-width": "500px" },
+                attrs: { fullscreen: "", scrollable: "" },
                 scopedSlots: _vm._u([
                   {
                     key: "activator",
@@ -40730,7 +40679,7 @@ var render = function() {
                             },
                             on
                           ),
-                          [_vm._v("New Item")]
+                          [_vm._v("Добавить объект")]
                         )
                       ]
                     }
@@ -40768,10 +40717,10 @@ var render = function() {
                               [
                                 _c(
                                   "v-flex",
-                                  { attrs: { xs12: "", sm6: "", md4: "" } },
+                                  { attrs: { xs12: "" } },
                                   [
                                     _c("v-text-field", {
-                                      attrs: { label: "Dessert name" },
+                                      attrs: { label: "Название" },
                                       model: {
                                         value: _vm.editedItem.name,
                                         callback: function($$v) {
@@ -40786,78 +40735,56 @@ var render = function() {
                                 _vm._v(" "),
                                 _c(
                                   "v-flex",
-                                  { attrs: { xs12: "", sm6: "", md4: "" } },
+                                  { attrs: { xs12: "" } },
                                   [
                                     _c("v-text-field", {
-                                      attrs: { label: "Calories" },
+                                      attrs: { label: "Тип" },
                                       model: {
-                                        value: _vm.editedItem.calories,
+                                        value: _vm.editedItem.type,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.editedItem, "type", $$v)
+                                        },
+                                        expression: "editedItem.type"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: { label: "Цена" },
+                                      model: {
+                                        value: _vm.editedItem.price,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.editedItem, "price", $$v)
+                                        },
+                                        expression: "editedItem.price"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: { label: "Видимость" },
+                                      model: {
+                                        value: _vm.editedItem.visibility,
                                         callback: function($$v) {
                                           _vm.$set(
                                             _vm.editedItem,
-                                            "calories",
+                                            "visibility",
                                             $$v
                                           )
                                         },
-                                        expression: "editedItem.calories"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "", sm6: "", md4: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: { label: "Fat (g)" },
-                                      model: {
-                                        value: _vm.editedItem.fat,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.editedItem, "fat", $$v)
-                                        },
-                                        expression: "editedItem.fat"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "", sm6: "", md4: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: { label: "Carbs (g)" },
-                                      model: {
-                                        value: _vm.editedItem.carbs,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.editedItem, "carbs", $$v)
-                                        },
-                                        expression: "editedItem.carbs"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "", sm6: "", md4: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: { label: "Protein (g)" },
-                                      model: {
-                                        value: _vm.editedItem.protein,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.editedItem,
-                                            "protein",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "editedItem.protein"
+                                        expression: "editedItem.visibility"
                                       }
                                     })
                                   ],
@@ -40884,7 +40811,7 @@ var render = function() {
                             attrs: { color: "blue darken-1", flat: "" },
                             on: { click: _vm.close }
                           },
-                          [_vm._v("Cancel")]
+                          [_vm._v("Отмена")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -40893,7 +40820,7 @@ var render = function() {
                             attrs: { color: "blue darken-1", flat: "" },
                             on: { click: _vm.save }
                           },
-                          [_vm._v("Save")]
+                          [_vm._v("Сохранить")]
                         )
                       ],
                       1
@@ -40910,28 +40837,37 @@ var render = function() {
         _vm._v(" "),
         _c("v-data-table", {
           staticClass: "elevation-1",
-          attrs: { headers: _vm.headers, items: _vm.desserts },
+          attrs: {
+            headers: _vm.headers,
+            items: _vm.realties,
+            "total-items": _vm.total,
+            "rows-per-page-items": _vm.rowsPerPageItems,
+            pagination: _vm.pagination
+          },
+          on: {
+            "update:pagination": function($event) {
+              _vm.pagination = $event
+            }
+          },
           scopedSlots: _vm._u([
             {
               key: "items",
               fn: function(props) {
                 return [
-                  _c("td", [_vm._v(_vm._s(props.item.name))]),
-                  _vm._v(" "),
                   _c("td", { staticClass: "text-xs-left" }, [
-                    _vm._v(_vm._s(props.item.calories))
+                    _vm._v(_vm._s(props.item.name))
                   ]),
                   _vm._v(" "),
                   _c("td", { staticClass: "text-xs-left" }, [
-                    _vm._v(_vm._s(props.item.fat))
+                    _vm._v(_vm._s(props.item.type))
                   ]),
                   _vm._v(" "),
                   _c("td", { staticClass: "text-xs-left" }, [
-                    _vm._v(_vm._s(props.item.carbs))
+                    _vm._v(_vm._s(props.item.price))
                   ]),
                   _vm._v(" "),
                   _c("td", { staticClass: "text-xs-left" }, [
-                    _vm._v(_vm._s(props.item.protein))
+                    _vm._v(_vm._s(props.item.visibility))
                   ]),
                   _vm._v(" "),
                   _c(
@@ -40982,7 +40918,7 @@ var render = function() {
                     "v-btn",
                     {
                       attrs: { color: "primary" },
-                      on: { click: _vm.initialize }
+                      on: { click: _vm.getRealties }
                     },
                     [_vm._v("Reset")]
                   )
@@ -82029,14 +81965,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************!*\
   !*** ./resources/js/components/admin/Realties.vue ***!
   \****************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Realties_vue_vue_type_template_id_3d13cdec___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Realties.vue?vue&type=template&id=3d13cdec& */ "./resources/js/components/admin/Realties.vue?vue&type=template&id=3d13cdec&");
 /* harmony import */ var _Realties_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Realties.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/Realties.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Realties_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Realties_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -82066,7 +82003,7 @@ component.options.__file = "resources/js/components/admin/Realties.vue"
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/admin/Realties.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

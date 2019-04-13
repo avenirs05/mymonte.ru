@@ -43,9 +43,7 @@ Route::get('/js/language/{locale}.js', function () {
 })->name('assets.lang');
 
 
-
-//Auth::routes();
-Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::get('/', 'IndexController')->name('mainPage');
 
@@ -66,6 +64,10 @@ Route::get('/feedbacks-data', 'FeedbacksDataController');
 
 Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function() {
 	Route::get('/', 'IndexController@index');	
+	Route::resource('realties', 'RealtyController')->names(
+			[
+				"index"     => "admin.realty.index",
+			]);
 });
 
 
