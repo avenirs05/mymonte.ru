@@ -3,11 +3,6 @@
 namespace App\Http\Controllers;
 
 use Lang;
-use App\City;
-use App\Country;
-use App\Feedback;
-use App\Img;
-use App\Realty;
 use App\Content;
 use App\Parameter;
 

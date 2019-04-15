@@ -2899,6 +2899,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
   data: function data() {
@@ -2935,6 +2964,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       total: 0,
       rowsPerPageItems: [50, 100],
+      primaryImgPath: '',
+      secondaryImgPath: '',
       enums: {
         type: ['villa', 'apartment'],
         type_ru: ['вилла', 'апартамент'],
@@ -2967,6 +2998,14 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     formTitle: function formTitle() {
       return this.editedIndex === -1 ? 'Новый объект' : 'Редактировать объект';
+    },
+    isEditAction: function isEditAction() {
+      return this.editedIndex !== -1 ? true : false;
+    },
+    primaryImages: function primaryImages() {
+      return this.editedItem.images.filter(function (image) {
+        return image.type === 'primary';
+      });
     }
   },
   watch: {
@@ -2978,6 +3017,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    delPrimaryImg: function delPrimaryImg(editedItem) {
+      console.log(this.editedItem);
+    },
     load: function load() {
       var _this = this;
 
@@ -2992,7 +3034,7 @@ __webpack_require__.r(__webpack_exports__);
         params: params
       }).then(function (response) {
         _this.realties = response.data.data;
-        _this.total = response.data.total;
+        _this.total = response.data.total; //console.log(this.realties)
       }).finally(function () {
         _this.loading = false;
       });
@@ -3000,6 +3042,7 @@ __webpack_require__.r(__webpack_exports__);
     updateInDb: function updateInDb() {
       var _this2 = this;
 
+      //console.log(this.editedItem);
       axios.put(route("admin.realty.update", {
         id: this.editedItem.id
       }), this.editedItem).then(function (response) {
@@ -3027,6 +3070,7 @@ __webpack_require__.r(__webpack_exports__);
     editItem: function editItem(item) {
       this.editedIndex = this.realties.indexOf(item);
       this.editedItem = Object.assign({}, item);
+      this.getPrimaryImgPath(this.editedItem);
       this.dialog = true;
     },
     deleteItem: function deleteItem(item) {
@@ -3040,7 +3084,7 @@ __webpack_require__.r(__webpack_exports__);
       setTimeout(function () {
         _this4.editedItem = Object.assign({}, _this4.defaultItem);
         _this4.editedIndex = -1;
-      }, 20);
+      }, 300);
     },
     save: function save() {
       /**
@@ -12116,7 +12160,7 @@ exports.push([module.i, "/*!\n* Vuetify v1.5.5\n* Forged by John Leider\n* Relea
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.v-btn.theme--light[data-v-3d13cdec] {\n    font-weight: bold;\n    letter-spacing: 1px;\n}\n", ""]);
+exports.push([module.i, "\n.v-btn.theme--light[data-v-3d13cdec] {\n    font-weight: bold;\n    letter-spacing: 1px;\n}\n.del-img-icon[data-v-3d13cdec] {\n    color: white;\n    font-weight: bold;\n    font-size: 18px;\n    cursor: pointer;\n}\n.del-img-icon[data-v-3d13cdec]:hover {\n    color: antiquewhite;\n}\n.img-gallery[data-v-3d13cdec],\n.img-primary[data-v-3d13cdec] {\n    text-align: right;\n}\n", ""]);
 
 
 
@@ -41996,7 +42040,135 @@ var render = function() {
                                     })
                                   ],
                                   1
-                                )
+                                ),
+                                _vm._v(" "),
+                                _vm.isEditAction
+                                  ? _c(
+                                      "div",
+                                      [
+                                        _vm._l(_vm.primaryImages, function(
+                                          image,
+                                          index
+                                        ) {
+                                          return _c(
+                                            "v-flex",
+                                            {
+                                              key: image.index,
+                                              staticClass: "mb-3",
+                                              attrs: { xs12: "" }
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "mb-1" },
+                                                [
+                                                  _c("b", [
+                                                    _vm._v(
+                                                      "Основное изображение"
+                                                    )
+                                                  ])
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-img",
+                                                {
+                                                  staticClass: "img-primary",
+                                                  attrs: {
+                                                    src: image.path,
+                                                    width: 350
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "i",
+                                                    {
+                                                      staticClass:
+                                                        "material-icons del-img-icon",
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.delPrimaryImg(
+                                                            _vm.editedItem
+                                                          )
+                                                        }
+                                                      }
+                                                    },
+                                                    [_vm._v("close")]
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-flex",
+                                          { attrs: { xs12: "" } },
+                                          [
+                                            _c("div", { staticClass: "mb-1" }, [
+                                              _c("b", [
+                                                _vm._v("Изображения галереи")
+                                              ])
+                                            ]),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-layout",
+                                              {
+                                                attrs: {
+                                                  row: "",
+                                                  wrap: "",
+                                                  "justify-left": ""
+                                                }
+                                              },
+                                              _vm._l(
+                                                _vm.editedItem.images,
+                                                function(image, index) {
+                                                  return _c(
+                                                    "v-flex",
+                                                    {
+                                                      key: image.index,
+                                                      style: { padding: "1px" },
+                                                      attrs: { shrink: "" }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "v-img",
+                                                        {
+                                                          staticClass:
+                                                            "img-gallery",
+                                                          attrs: {
+                                                            src: image.path,
+                                                            width: 100
+                                                          }
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "i",
+                                                            {
+                                                              staticClass:
+                                                                "material-icons del-img-icon"
+                                                            },
+                                                            [_vm._v("close")]
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                }
+                                              ),
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      2
+                                    )
+                                  : _vm._e()
                               ],
                               2
                             )

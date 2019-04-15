@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Realty;
 
@@ -28,12 +28,6 @@ class IndexController extends Controller
 
 	public function getRealtyIdByName($name) {
 		return Realty::where('name', $name)->first()->id;
-		
-		//dd($realty);
-		
-		
-		//return $realty->id;
-		//dd($name);
 	}
 	
 }

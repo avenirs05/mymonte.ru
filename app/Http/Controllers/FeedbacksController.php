@@ -7,6 +7,7 @@ use App\Content;
 use App\Feedback;
 
 //use Illuminate\Http\Request;
+use App\Parameter;
 
 class FeedbacksController extends Controller
 {
@@ -15,15 +16,13 @@ class FeedbacksController extends Controller
 		$per_page = 2;
 		$locale = app()->getLocale();
 		$title = Lang::get('text.menu.feedbacks');
-		$content = Content::where('lang', $locale)->get()->toArray()[0];
+		$phone_main = Parameter::where('param', 'phone_main')->get()->toArray()[0]['value'];
 		
 		$feedbacks = Feedback::with('realty')->paginate($per_page);		
-		
-		
-		
+				
 		$data = [
 			'title' => $title,
-			'phone_main' => $content['phone_main'],
+			'phone_main' => $phone_main,
 			'feedbacks' => $feedbacks->toJson(),
 		];		
 		

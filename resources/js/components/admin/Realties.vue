@@ -253,8 +253,37 @@
                                             v-model="editedItem.map_html"
                                             name="map_html"
                                         ></v-textarea>                                          
-                                    </v-flex>                                    
-                                
+                                    </v-flex>     
+                                    
+                                    <!-- Картинки при редактировании -->         
+                                    <div v-if="isEditAction">
+                                        <v-flex 
+                                            v-for="(image, index) in primaryImages"
+                                            :key="image.index"
+                                            class="mb-3" 
+                                            xs12 
+                                            >                                         
+                                            <div class="mb-1"><b>Основное изображение</b></div>
+                                            <v-img :src="image.path" :width="350" class="img-primary">
+                                                <i @click="delPrimaryImg(editedItem)" class="material-icons del-img-icon">close</i>
+                                            </v-img>
+                                        </v-flex>                                    
+                                        <v-flex xs12>  
+                                            <div class="mb-1"><b>Изображения галереи</b></div>
+                                            <v-layout row wrap justify-left>
+                                                <v-flex 
+                                                    v-for="(image, index) in editedItem.images" 
+                                                    :key="image.index"
+                                                    :style="{ padding: '1px' }" 
+                                                    shrink                                                     
+                                                    >
+                                                    <v-img :src="image.path" :width="100" class="img-gallery">
+                                                        <i class="material-icons del-img-icon">close</i>
+                                                    </v-img>                                                
+                                                </v-flex>
+                                            </v-layout>
+                                        </v-flex> 
+                                    </div>
                                 </v-layout>
                             </v-container>
                         </v-card-text>                        
@@ -325,6 +354,10 @@
             },
             total: 0,
             rowsPerPageItems: [50, 100],
+            
+            primaryImgPath: '',
+            secondaryImgPath: '',            
+            
             enums: {
                 type: ['villa', 'apartment'],
                 type_ru: ['вилла', 'апартамент'],
@@ -352,7 +385,15 @@
         }),
 
         computed: {
-            formTitle() { return this.editedIndex === -1 ? 'Новый объект' : 'Редактировать объект' }
+            formTitle() { 
+                return this.editedIndex === -1 ? 'Новый объект' : 'Редактировать объект' 
+            },
+            isEditAction() {
+                return this.editedIndex !== -1 ? true : false 
+            },
+            primaryImages() {
+                return this.editedItem.images.filter(image => image.type === 'primary');
+            }
         },
 
         watch: {
@@ -361,6 +402,10 @@
         },
 
         methods: {
+            delPrimaryImg(editedItem) {
+                console.log(this.editedItem);
+            },        
+     
             load() {
                 this.loading = true;                
                 let params = {
@@ -373,16 +418,18 @@
                 axios.get(route("admin.realty.index"), { params: params })
                      .then(response => {
                            this.realties = response.data.data;
-                           this.total = response.data.total; })
-                     .finally(() => {
+                           this.total = response.data.total; 
+                           //console.log(this.realties)
+                     }).finally(() => {
                            this.loading = false;
                      })
             },
             
             updateInDb() {             
+                //console.log(this.editedItem);
                 axios.put(route("admin.realty.update", { id: this.editedItem.id }), this.editedItem)
                       .then(response => {
-                          Object.assign(this.realties[this.editedIndex], this.editedItem)
+                          Object.assign(this.realties[this.editedIndex], this.editedItem)                          
                           this.close()
                       })
                       .catch(function (error) { console.log(error); })
@@ -400,8 +447,11 @@
             },
             
             editItem(item) {
+                
                 this.editedIndex = this.realties.indexOf(item)
-                this.editedItem = Object.assign({}, item)                
+                this.editedItem = Object.assign({}, item)   
+                
+                this.getPrimaryImgPath(this.editedItem)
                 this.dialog = true
             },
 
@@ -415,7 +465,7 @@
                 setTimeout(() => {
                     this.editedItem = Object.assign({}, this.defaultItem)
                     this.editedIndex = -1
-                }, 20)
+                }, 300)
             },
 
             save() {   
@@ -423,10 +473,10 @@
                  * В зависимости от того, добавляем объект или обновляем,
                  * вызываем нужную функцию
                  */
-                this.editedIndex > -1 ? this.updateInDb() : this.addRealtyInDb()    
-                
+                this.editedIndex > -1 ? this.updateInDb() : this.addRealtyInDb()  
             }
-        }
+        },
+        
     } 
 </script>
 
@@ -435,5 +485,18 @@
     .v-btn.theme--light {
         font-weight: bold;
         letter-spacing: 1px;
+    }
+    .del-img-icon {
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .del-img-icon:hover {
+        color: antiquewhite;
+    }
+    .img-gallery,
+    .img-primary {
+        text-align: right;
     }
 </style>
