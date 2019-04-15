@@ -2668,6 +2668,237 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
   data: function data() {
@@ -2690,7 +2921,7 @@ __webpack_require__.r(__webpack_exports__);
         sortable: true
       }, {
         text: '',
-        value: 'name',
+        value: '',
         sortable: false
       }],
       dialog: false,
@@ -2700,13 +2931,29 @@ __webpack_require__.r(__webpack_exports__);
       defaultItem: {},
       realties: [],
       pagination: {
-        rowsPerPage: 5
+        rowsPerPage: 50
       },
       total: 0,
-      rowsPerPageItems: [5, 10, 20, 50, 100],
+      rowsPerPageItems: [50, 100],
       enums: {
         type: ['villa', 'apartment'],
-        visibility: ['опубликовано', 'скрыто']
+        type_ru: ['вилла', 'апартамент'],
+        type_en: ['villa', 'apartment'],
+        visibility: ['опубликовано', 'скрыто'],
+        view_ru: ['на море', 'на море и горы', 'на горы', 'на окрестности и горы'],
+        view_en: ['sea', 'sea and mountains', 'mountains', 'surroundings and mountains'],
+        transfer_ru: ['платный', 'бесплатный'],
+        transfer_en: ['paid', 'free'],
+        internet_ru: ['wi-fi'],
+        internet_en: ['wi-fi'],
+        parking_ru: ['платный', 'платный (частный)', 'платный (общественный)'],
+        parking_en: ['paid', 'paid (private)', 'paid (public)'],
+        country_ru: ['Черногория'],
+        country_en: ['Montenegro'],
+        city_ru: ['Будва', 'Кумбор'],
+        city_en: ['Budva', 'Kumbor'],
+        area_ru: ['Будванская ривьера', 'Бока-Которский залив', 'Барская ривьера'],
+        area_en: ['Budva Riviera', 'Boka Kotorska Bay', 'Bar Riviera']
       },
       locales: [{
         code: 'ru',
@@ -2745,15 +2992,35 @@ __webpack_require__.r(__webpack_exports__);
         params: params
       }).then(function (response) {
         _this.realties = response.data.data;
-        _this.total = response.data.total; //console.log(this.realties)
+        _this.total = response.data.total;
       }).finally(function () {
         _this.loading = false;
       });
     },
     updateInDb: function updateInDb() {
+      var _this2 = this;
+
       axios.put(route("admin.realty.update", {
         id: this.editedItem.id
-      }), this.editedItem).catch(function (error) {
+      }), this.editedItem).then(function (response) {
+        Object.assign(_this2.realties[_this2.editedIndex], _this2.editedItem);
+
+        _this2.close();
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    addRealtyInDb: function addRealtyInDb() {
+      var _this3 = this;
+
+      var newRealty = this.editedItem;
+      axios.post(route("admin.realty.store"), newRealty).then(function (response) {
+        _this3.editedItem.id = response.data.id;
+
+        _this3.realties.push(_this3.editedItem);
+
+        _this3.close();
+      }).catch(function (error) {
         console.log(error);
       });
     },
@@ -2767,27 +3034,20 @@ __webpack_require__.r(__webpack_exports__);
       confirm('Вы уверены, что хотите удалить этот объект?') && this.realties.splice(index, 1);
     },
     close: function close() {
-      var _this2 = this;
+      var _this4 = this;
 
       this.dialog = false;
       setTimeout(function () {
-        _this2.editedItem = Object.assign({}, _this2.defaultItem);
-        _this2.editedIndex = -1;
-      }, 300);
+        _this4.editedItem = Object.assign({}, _this4.defaultItem);
+        _this4.editedIndex = -1;
+      }, 20);
     },
     save: function save() {
       /**
-       * Сохраняем в базе данных
-       */
-      this.updateInDb();
-
-      if (this.editedIndex > -1) {
-        Object.assign(this.realties[this.editedIndex], this.editedItem);
-      } else {
-        this.realties.push(this.editedItem);
-      }
-
-      this.close();
+      * В зависимости от того, добавляем объект или обновляем,
+      * вызываем нужную функцию
+      */
+      this.editedIndex > -1 ? this.updateInDb() : this.addRealtyInDb();
     }
   }
 });
@@ -11856,7 +12116,7 @@ exports.push([module.i, "/*!\n* Vuetify v1.5.5\n* Forged by John Leider\n* Relea
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.v-btn.theme--light[data-v-3d13cdec] {\n    font-weight: bold;\n    letter-spacing: 1px;\n}\n\n", ""]);
+exports.push([module.i, "\n.v-btn.theme--light[data-v-3d13cdec] {\n    font-weight: bold;\n    letter-spacing: 1px;\n}\n", ""]);
 
 
 
@@ -40789,49 +41049,38 @@ var render = function() {
                                   1
                                 ),
                                 _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-select", {
-                                      attrs: {
-                                        items: _vm.enums.type,
-                                        label: "Тип",
-                                        name: "type"
-                                      },
-                                      model: {
-                                        value: _vm.editedItem.type,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.editedItem, "type", $$v)
+                                _vm._l(_vm.locales, function(locale, index) {
+                                  return _c(
+                                    "v-flex",
+                                    { key: locale.index, attrs: { xs12: "" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label:
+                                            "Название подробнее — " +
+                                            locale.text,
+                                          name: "subname_" + locale.code
                                         },
-                                        expression: "editedItem.type"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        type: "number",
-                                        label: "Цена",
-                                        name: "price"
-                                      },
-                                      model: {
-                                        value: _vm.editedItem.price,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.editedItem, "price", $$v)
-                                        },
-                                        expression: "editedItem.price"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
+                                        model: {
+                                          value:
+                                            _vm.editedItem[
+                                              "subname_" + locale.code
+                                            ],
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.editedItem,
+                                              "subname_" + locale.code,
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "editedItem[`subname_${locale.code}`]"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                }),
                                 _vm._v(" "),
                                 _c(
                                   "v-flex",
@@ -40839,8 +41088,8 @@ var render = function() {
                                   [
                                     _c("v-select", {
                                       attrs: {
-                                        items: _vm.enums.visibility,
                                         label: "Видимость",
+                                        items: _vm.enums.visibility,
                                         name: "visibility"
                                       },
                                       model: {
@@ -40859,14 +41108,104 @@ var render = function() {
                                   1
                                 ),
                                 _vm._v(" "),
-                                _vm._l(_vm.locales, function(locale) {
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-select", {
+                                      attrs: {
+                                        label: "Тип",
+                                        items: _vm.enums.type,
+                                        name: "type"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.type,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.editedItem, "type", $$v)
+                                        },
+                                        expression: "editedItem.type"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _vm._l(_vm.locales, function(locale, index) {
                                   return _c(
                                     "v-flex",
-                                    { key: locale.code, attrs: { xs12: "" } },
+                                    { key: locale.index, attrs: { xs12: "" } },
                                     [
-                                      _c("v-text-field", {
+                                      _c("v-select", {
+                                        attrs: {
+                                          label: "Тип — " + locale.text,
+                                          items:
+                                            _vm.enums["type_" + locale.code],
+                                          name: "type_" + locale.code
+                                        },
+                                        model: {
+                                          value:
+                                            _vm.editedItem[
+                                              "type_" + locale.code
+                                            ],
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.editedItem,
+                                              "type_" + locale.code,
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "editedItem[`type_${locale.code}`]"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _vm._l(_vm.locales, function(locale, index) {
+                                  return _c(
+                                    "v-flex",
+                                    { key: locale.index, attrs: { xs12: "" } },
+                                    [
+                                      _c("v-select", {
+                                        attrs: {
+                                          label: "Район — " + locale.text,
+                                          items:
+                                            _vm.enums["area_" + locale.code],
+                                          name: "area_" + locale.code
+                                        },
+                                        model: {
+                                          value:
+                                            _vm.editedItem[
+                                              "area_" + locale.code
+                                            ],
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.editedItem,
+                                              "area_" + locale.code,
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "editedItem[`area_${locale.code}`]"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _vm._l(_vm.locales, function(locale, index) {
+                                  return _c(
+                                    "v-flex",
+                                    { key: locale.index, attrs: { xs12: "" } },
+                                    [
+                                      _c("v-select", {
                                         attrs: {
                                           label: "Город — " + locale.text,
+                                          items:
+                                            _vm.enums["city_" + locale.code],
                                           name: "city_" + locale.code
                                         },
                                         model: {
@@ -40888,7 +41227,776 @@ var render = function() {
                                     ],
                                     1
                                   )
-                                })
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Цена",
+                                        type: "number",
+                                        name: "price"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.price,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.editedItem, "price", $$v)
+                                        },
+                                        expression: "editedItem.price"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Цена перечеркнутая",
+                                        type: "number",
+                                        name: "price_line_through"
+                                      },
+                                      model: {
+                                        value:
+                                          _vm.editedItem.price_line_through,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "price_line_through",
+                                            $$v
+                                          )
+                                        },
+                                        expression:
+                                          "editedItem.price_line_through"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Оценка booking",
+                                        type: "number",
+                                        name: "booking_mark"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.booking_mark,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "booking_mark",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.booking_mark"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Площадь",
+                                        type: "number",
+                                        name: "square"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.square,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "square",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.square"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _vm._l(_vm.locales, function(locale, index) {
+                                  return _c(
+                                    "v-flex",
+                                    { key: locale.index, attrs: { xs12: "" } },
+                                    [
+                                      _c("v-select", {
+                                        attrs: {
+                                          label: "Вид — " + locale.text,
+                                          items:
+                                            _vm.enums["view_" + locale.code],
+                                          name: "view_" + locale.code
+                                        },
+                                        model: {
+                                          value:
+                                            _vm.editedItem[
+                                              "view_" + locale.code
+                                            ],
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.editedItem,
+                                              "view_" + locale.code,
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "editedItem[`view_${locale.code}`]"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Вместимость, человек",
+                                        type: "number",
+                                        name: "capacity"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.capacity,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "capacity",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.capacity"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "До моря, м",
+                                        type: "number",
+                                        name: "dist_sea"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.dist_sea,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "dist_sea",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.dist_sea"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "До аэропорта Тиват, км",
+                                        type: "number",
+                                        name: "dist_tivat"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.dist_tivat,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "dist_tivat",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.dist_tivat"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "До аэропорта Подгорица, км",
+                                        type: "number",
+                                        name: "dist_podg"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.dist_podg,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "dist_podg",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.dist_podg"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _vm._l(_vm.locales, function(locale, index) {
+                                  return _c(
+                                    "v-flex",
+                                    { key: locale.index, attrs: { xs12: "" } },
+                                    [
+                                      _c("v-select", {
+                                        attrs: {
+                                          label: "Трансфер — " + locale.text,
+                                          items:
+                                            _vm.enums[
+                                              "transfer_" + locale.code
+                                            ],
+                                          name: "transfer_" + locale.code
+                                        },
+                                        model: {
+                                          value:
+                                            _vm.editedItem[
+                                              "transfer_" + locale.code
+                                            ],
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.editedItem,
+                                              "transfer_" + locale.code,
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "editedItem[`transfer_${locale.code}`]"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _vm._l(_vm.locales, function(locale, index) {
+                                  return _c(
+                                    "v-flex",
+                                    { key: locale.index, attrs: { xs12: "" } },
+                                    [
+                                      _c("v-select", {
+                                        attrs: {
+                                          label: "Интернет — " + locale.text,
+                                          items:
+                                            _vm.enums[
+                                              "internet_" + locale.code
+                                            ],
+                                          name: "internet_" + locale.code
+                                        },
+                                        model: {
+                                          value:
+                                            _vm.editedItem[
+                                              "internet_" + locale.code
+                                            ],
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.editedItem,
+                                              "internet_" + locale.code,
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "editedItem[`internet_${locale.code}`]"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _vm._l(_vm.locales, function(locale, index) {
+                                  return _c(
+                                    "v-flex",
+                                    { key: locale.index, attrs: { xs12: "" } },
+                                    [
+                                      _c("v-select", {
+                                        attrs: {
+                                          label: "Паркинг — " + locale.text,
+                                          items:
+                                            _vm.enums["parking_" + locale.code],
+                                          name: "parking_" + locale.code
+                                        },
+                                        model: {
+                                          value:
+                                            _vm.editedItem[
+                                              "parking_" + locale.code
+                                            ],
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.editedItem,
+                                              "parking_" + locale.code,
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "editedItem[`parking_${locale.code}`]"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Цена — Январь",
+                                        type: "number",
+                                        name: "price_jan"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.price_jan,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "price_jan",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.price_jan"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Цена — Февраль",
+                                        type: "number",
+                                        name: "price_feb"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.price_feb,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "price_feb",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.price_feb"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Цена — Март",
+                                        type: "number",
+                                        name: "price_mar"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.price_mar,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "price_mar",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.price_mar"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Цена — Апрель",
+                                        type: "number",
+                                        name: "price_apr"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.price_apr,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "price_apr",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.price_apr"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Цена — Май",
+                                        type: "number",
+                                        name: "price_may"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.price_may,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "price_may",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.price_may"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Цена — Июнь",
+                                        type: "number",
+                                        name: "price_jun"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.price_jun,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "price_jun",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.price_jun"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Цена — Июль",
+                                        type: "number",
+                                        name: "price_jul"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.price_jul,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "price_jul",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.price_jul"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Цена — Август",
+                                        type: "number",
+                                        name: "price_aug"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.price_aug,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "price_aug",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.price_aug"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Цена — Сентябрь",
+                                        type: "number",
+                                        name: "price_sep"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.price_sep,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "price_sep",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.price_sep"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Цена — Октябрь",
+                                        type: "number",
+                                        name: "price_oct"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.price_oct,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "price_oct",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.price_oct"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Цена — Ноябрь",
+                                        type: "number",
+                                        name: "price_nov"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.price_nov,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "price_nov",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.price_nov"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Цена — Декабрь",
+                                        type: "number",
+                                        name: "price_dec"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.price_dec,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "price_dec",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.price_dec"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Скидка",
+                                        type: "number",
+                                        name: "discount"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.discount,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "discount",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.discount"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _vm._l(_vm.locales, function(locale, index) {
+                                  return _c(
+                                    "v-flex",
+                                    { key: locale.index, attrs: { xs12: "" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label:
+                                            "Цена — Октябрь-Апрель — " +
+                                            locale.text,
+                                          name: "price_oct_apr_" + locale.code
+                                        },
+                                        model: {
+                                          value:
+                                            _vm.editedItem[
+                                              "price_oct_apr_" + locale.code
+                                            ],
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.editedItem,
+                                              "price_oct_apr_" + locale.code,
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "editedItem[`price_oct_apr_${locale.code}`]"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _vm._l(_vm.locales, function(locale, index) {
+                                  return _c(
+                                    "v-flex",
+                                    { key: locale.index, attrs: { xs12: "" } },
+                                    [
+                                      _c("v-textarea", {
+                                        attrs: {
+                                          label: "Описание — " + locale.text,
+                                          name: "description_" + locale.code
+                                        },
+                                        model: {
+                                          value:
+                                            _vm.editedItem[
+                                              "description_" + locale.code
+                                            ],
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.editedItem,
+                                              "description_" + locale.code,
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "editedItem[`description_${locale.code}`]"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-textarea", {
+                                      attrs: {
+                                        label: "Карта код",
+                                        name: "map_html"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.map_html,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "map_html",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.map_html"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
                               ],
                               2
                             )
@@ -41039,12 +42147,7 @@ var render = function() {
             {
               key: "no-data",
               fn: function() {
-                return [
-                  _c("v-btn", {
-                    attrs: { color: "primary" },
-                    on: { click: _vm.load }
-                  })
-                ]
+                return undefined
               },
               proxy: true
             }

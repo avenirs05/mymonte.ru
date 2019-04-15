@@ -50,8 +50,8 @@ class CreateRealtiesTable extends Migration
 			$table->text('description_ru')->nullable();
 			$table->text('description_en')->nullable();
 			
-			$table->string('country_ru', 100)->default('Черногория');
-			$table->string('country_en', 100)->default('Montenegro');
+			$table->enum('country_ru', ['Черногория'])->default('Черногория');
+			$table->enum('country_en', ['Montenegro'])->default('Montenegro');
 			
 			$table->enum('area_ru', [
 				'Будванская ривьера', 
@@ -65,8 +65,8 @@ class CreateRealtiesTable extends Migration
 				'Bar Riviera'
 			])->default('Budva Riviera');
 			
-			$table->string('city_ru', 100)->default('Будва');
-			$table->string('city_en', 100)->default('Budva');
+			$table->enum('city_ru', ['Будва', 'Кумбор'])->default('Будва');
+			$table->enum('city_en', ['Budva', 'Kumbor'])->default('Budva');
 			
 			$table->text('map_html')->nullable();
 

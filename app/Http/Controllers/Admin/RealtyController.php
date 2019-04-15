@@ -25,7 +25,7 @@ class RealtyController extends Controller
 		}
 		
 		$realties = $query
-//		    ->with('images')
+		    ->with('images')
 			->paginate($request->per_page, ['*'], 'page', $request->page)
 			->toJson();
 
@@ -51,8 +51,14 @@ class RealtyController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        //$realty = new Realty;
+		
+	    $requestArr = $request->toArray();
+		
+		$realty = Realty::create($requestArr);
+		
+		return $realty;
+	}
 
     /**
      * Display the specified resource.
@@ -62,8 +68,8 @@ class RealtyController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+
+	}
 
     /**
      * Show the form for editing the specified resource.
@@ -86,12 +92,12 @@ class RealtyController extends Controller
     public function update(Request $request, $id)
     {
 		
-		$realty = Realty::find($id);
+		$realty = Realty::find($id);		
 		
 		$requestArr = $request->toArray();
 		
 		foreach($requestArr as $key => $value) {
-			if (isset($realty->$key)) {
+			if ($key != 'images') {
 				$realty->$key = $value;
 			}
 		}

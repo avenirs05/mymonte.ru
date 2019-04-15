@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Realty;
 
 class IndexController extends Controller
 {
@@ -25,4 +26,14 @@ class IndexController extends Controller
 		return view('admin.index');
 	}
 
+	public function getRealtyIdByName($name) {
+		return Realty::where('name', $name)->first()->id;
+		
+		//dd($realty);
+		
+		
+		//return $realty->id;
+		//dd($name);
+	}
+	
 }

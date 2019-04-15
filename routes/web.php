@@ -64,10 +64,12 @@ Route::get('/feedbacks-data', 'FeedbacksDataController');
 
 Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function() {
 	Route::get('/', 'IndexController@index');	
+	Route::get('/realtyname/{name}', 'IndexController@getRealtyIdByName')->name('getRealtyIdByName');
 	Route::resource('realties', 'RealtyController')->names(
 			[
 				"index"  => "admin.realty.index",
-				"update" => "admin.realty.update"
+				"update" => "admin.realty.update",
+				"store" => "admin.realty.store",
 			]);
 });
 
