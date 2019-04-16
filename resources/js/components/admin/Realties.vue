@@ -407,6 +407,7 @@
                 this.secondaryImages.splice(index, 1)                
                 let indexOfRealtyImages = this.editedItem.images.indexOf(imageToDelete);               
                 this.editedItem.images.splice(indexOfRealtyImages, 1)
+                this.delImageInDb(imageToDelete.id)
             },        
      
             load() {
@@ -437,13 +438,13 @@
                       .catch(function (error) { console.log(error); })
             },
             
-//            delImageInDb() {             
-//                axios.delete(route("admin.image.destroy", { id: this.editedItem.id }))
-//                      .then(response => {
-//                          console.log(response);
-//                      })
-//                      .catch(function (error) { console.log(error); })
-//            },
+            delImageInDb(imageId) {             
+                axios.delete(route("admin.image.destroy", { id: imageId }))
+                      .then(response => {
+                          console.log(response);
+                      })
+                      .catch(function (error) { console.log(error); })
+            },
             
             addRealtyInDb() {    
                 let newRealty = this.editedItem;

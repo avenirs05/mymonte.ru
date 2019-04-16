@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Image;
+use Illuminate\Support\Facades\File;
+
 
 class ImageController extends Controller
 {
@@ -79,7 +82,11 @@ class ImageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-       return json_encode(['test' => 'yu']);
-    }
+    {								
+		$image = Image::find($id);			
+	
+		$image->delete();
+		
+		return $path;
+	}
 }

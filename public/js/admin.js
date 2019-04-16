@@ -3026,6 +3026,7 @@ __webpack_require__.r(__webpack_exports__);
       this.secondaryImages.splice(index, 1);
       var indexOfRealtyImages = this.editedItem.images.indexOf(imageToDelete);
       this.editedItem.images.splice(indexOfRealtyImages, 1);
+      this.delImageInDb(imageToDelete.id);
     },
     load: function load() {
       var _this = this;
@@ -3059,13 +3060,15 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    //            delImageInDb() {             
-    //                axios.delete(route("admin.image.destroy", { id: this.editedItem.id }))
-    //                      .then(response => {
-    //                          console.log(response);
-    //                      })
-    //                      .catch(function (error) { console.log(error); })
-    //            },
+    delImageInDb: function delImageInDb(imageId) {
+      axios.delete(route("admin.image.destroy", {
+        id: imageId
+      })).then(function (response) {
+        console.log(response);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
     addRealtyInDb: function addRealtyInDb() {
       var _this3 = this;
 
