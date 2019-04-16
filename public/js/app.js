@@ -2958,15 +2958,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    this.getPrimaryImg();
-  },
+  mounted: function mounted() {},
   props: ['realty', 'locale'],
   data: function data() {
-    return {
-      primaryImgPath: ''
-    };
+    return {};
   },
   methods: {
     /**
@@ -2977,16 +2977,18 @@ __webpack_require__.r(__webpack_exports__);
      */
     openLg: function openLg() {
       $('#lightgallery a').first().trigger("click");
+    }
+  },
+  computed: {
+    secondaryImages: function secondaryImages() {
+      return this.realty.images.filter(function (image) {
+        return image.type === 'secondary';
+      });
     },
-    getPrimaryImg: function getPrimaryImg() {
-      var images = this.realty.images;
-
-      for (var i = 0; i < images.length; i++) {
-        if (images[i].type === 'primary') {
-          this.primaryImgPath = images[i].path;
-          break;
-        }
-      }
+    primaryImage: function primaryImage() {
+      return this.realty.images.filter(function (image) {
+        return image.type === 'primary';
+      })[0];
     }
   }
 });
@@ -44430,7 +44432,7 @@ var render = function() {
                 [
                   _c("v-img", {
                     staticClass: "realty-card-desk white--text",
-                    attrs: { src: _vm.primaryImgPath, "aspect-ratio": "1.5" }
+                    attrs: { src: _vm.primaryImage.path, "aspect-ratio": "1.5" }
                   })
                 ],
                 1
@@ -44661,10 +44663,12 @@ var render = function() {
             _c(
               "div",
               { ref: "lightgallery", attrs: { id: "lightgallery" } },
-              _vm._l(_vm.realty.images, function(image) {
-                return _c("a", { key: image.id, attrs: { href: image.path } }, [
-                  _c("img", { attrs: { src: image.path } })
-                ])
+              _vm._l(_vm.secondaryImages, function(image, index) {
+                return _c(
+                  "a",
+                  { key: image.index, attrs: { href: image.path } },
+                  [_c("img", { attrs: { src: image.path } })]
+                )
               }),
               0
             )

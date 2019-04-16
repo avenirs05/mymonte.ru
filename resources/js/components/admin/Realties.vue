@@ -257,28 +257,29 @@
                                     
                                     <!-- Картинки при редактировании -->         
                                     <div v-if="isEditAction">
+                                        <div class="mb-1"><b>Основное изображение</b></div>
                                         <v-flex 
                                             v-for="(image, index) in primaryImages"
                                             :key="image.index"
                                             class="mb-3" 
                                             xs12 
-                                            >                                         
-                                            <div class="mb-1"><b>Основное изображение</b></div>
-                                            <v-img :src="image.path" :width="350" class="img-primary">
-                                                <i @click="delPrimaryImg(editedItem)" class="material-icons del-img-icon">close</i>
-                                            </v-img>
-                                        </v-flex>                                    
-                                        <v-flex xs12>  
-                                            <div class="mb-1"><b>Изображения галереи</b></div>
+                                            >                                  
+                                            <v-img :src="image.path" :width="350" class="img-primary"></v-img>
+                                        </v-flex>    
+                                        <div class="mb-1"><b>Изображения галереи</b></div>
+                                        <v-flex xs12>                                            
                                             <v-layout row wrap justify-left>
                                                 <v-flex 
-                                                    v-for="(image, index) in editedItem.images" 
+                                                    v-for="(image, index) in secondaryImages" 
                                                     :key="image.index"
                                                     :style="{ padding: '1px' }" 
                                                     shrink                                                     
                                                     >
                                                     <v-img :src="image.path" :width="100" class="img-gallery">
-                                                        <i class="material-icons del-img-icon">close</i>
+                                                        <i class="material-icons del-img-icon"
+                                                           @click="delSecondaryImage(image, index)"
+                                                           >close
+                                                        </i>
                                                     </v-img>                                                
                                                 </v-flex>
                                             </v-layout>
@@ -346,18 +347,14 @@
             loading: false,            
             editedIndex: -1,
             editedItem: { },
-            defaultItem: { },   
-            
+            defaultItem: { }, 
             realties: [],
             pagination: {
-                rowsPerPage: 50,
+                rowsPerPage: 50
             },
             total: 0,
-            rowsPerPageItems: [50, 100],
-            
-            primaryImgPath: '',
-            secondaryImgPath: '',            
-            
+            rowsPerPageItems: [50, 100],         
+            secondaryImages: [],
             enums: {
                 type: ['villa', 'apartment'],
                 type_ru: ['вилла', 'апартамент'],
@@ -402,8 +399,14 @@
         },
 
         methods: {
-            delPrimaryImg(editedItem) {
-                console.log(this.editedItem);
+            getSecondaryImages(realty) {
+                this.secondaryImages = realty.images.filter(image => image.type === 'secondary');
+            },
+            
+            delSecondaryImage(imageToDelete, index) {                
+                this.secondaryImages.splice(index, 1)                
+                let indexOfRealtyImages = this.editedItem.images.indexOf(imageToDelete);               
+                this.editedItem.images.splice(indexOfRealtyImages, 1)
             },        
      
             load() {
@@ -426,7 +429,6 @@
             },
             
             updateInDb() {             
-                //console.log(this.editedItem);
                 axios.put(route("admin.realty.update", { id: this.editedItem.id }), this.editedItem)
                       .then(response => {
                           Object.assign(this.realties[this.editedIndex], this.editedItem)                          
@@ -434,6 +436,14 @@
                       })
                       .catch(function (error) { console.log(error); })
             },
+            
+//            delImageInDb() {             
+//                axios.delete(route("admin.image.destroy", { id: this.editedItem.id }))
+//                      .then(response => {
+//                          console.log(response);
+//                      })
+//                      .catch(function (error) { console.log(error); })
+//            },
             
             addRealtyInDb() {    
                 let newRealty = this.editedItem;
@@ -446,12 +456,10 @@
                     .catch(error => { console.log(error) });
             },
             
-            editItem(item) {
-                
+            editItem(item) {      
+                this.getSecondaryImages(item)
                 this.editedIndex = this.realties.indexOf(item)
-                this.editedItem = Object.assign({}, item)   
-                
-                this.getPrimaryImgPath(this.editedItem)
+                this.editedItem = Object.assign({}, item)             
                 this.dialog = true
             },
 

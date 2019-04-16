@@ -67,11 +67,20 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 	Route::get('/realtyname/{name}', 'IndexController@getRealtyIdByName')->name('getRealtyIdByName');
 	Route::resource('realties', 'RealtyController')->names(
 			[
-				"index"  => "admin.realty.index",
-				"update" => "admin.realty.update",
-				"store" => "admin.realty.store",
+				"index"   => "admin.realty.index",
+				"update"  => "admin.realty.update",
+				"store"   => "admin.realty.store",
+			]);
+	Route::resource('images', 'ImageController')->names(
+			[
+				"index"    => "admin.image.index",
+				"update"   => "admin.image.update",
+				"store"    => "admin.image.store",
+				"destroy"  => "admin.image.destroy",
 			]);
 });
+
+
 
 
 

@@ -5,10 +5,9 @@
                 <v-card dark hover class="text-xs-left" @click="openLg">
                     <v-img
                         class="realty-card-desk white--text"                            
-                        :src="primaryImgPath"  
+                        :src="primaryImage.path"  
                         aspect-ratio="1.5"
-                        >
-                    </v-img>
+                    ></v-img>
                 </v-card>
             </v-flex>
             <v-flex xs4>
@@ -94,7 +93,12 @@
         <v-layout row align-center class="hidden-sm-and-down">
             <v-flex>                              
                 <div id="lightgallery" ref="lightgallery">
-                    <a v-for="image in realty.images" :key="image.id" :href="image.path"><img :src="image.path" /></a>
+                    <a  v-for="(image, index) in secondaryImages" 
+                        :key="image.index" 
+                        :href="image.path"
+                        >
+                        <img :src="image.path" />
+                    </a>
                 </div>
             </v-flex>               
         </v-layout> 
@@ -104,13 +108,9 @@
 
 <script>
     export default {   
-        mounted() { 
-            this.getPrimaryImg() 
-        },    
+        mounted() { },    
         props: ['realty', 'locale'],    
-        data: () => ({ 
-            primaryImgPath: ''            
-        }),
+        data: () => ({ }),
         methods: {
             /**
              * Т.к. основная картинка лежит вне lightgallery,
@@ -120,16 +120,14 @@
              */
             openLg() {
                 $('#lightgallery a').first().trigger("click");
+            }          
+        },
+        computed: {
+            secondaryImages() {
+                return this.realty.images.filter(image => image.type === 'secondary');
             },
-            getPrimaryImg() {
-                let images = this.realty.images;                
-                
-                for (let i = 0; i < images.length; i++) {
-                     if (images[i].type === 'primary') {
-                         this.primaryImgPath = images[i].path;
-                         break;
-                     }
-                }
+            primaryImage() {
+                return this.realty.images.filter(image => image.type === 'primary')[0];
             }
         }
     }

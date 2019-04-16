@@ -2928,6 +2928,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
   data: function data() {
@@ -2964,8 +2965,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       total: 0,
       rowsPerPageItems: [50, 100],
-      primaryImgPath: '',
-      secondaryImgPath: '',
+      secondaryImages: [],
       enums: {
         type: ['villa', 'apartment'],
         type_ru: ['вилла', 'апартамент'],
@@ -3017,8 +3017,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    delPrimaryImg: function delPrimaryImg(editedItem) {
-      console.log(this.editedItem);
+    getSecondaryImages: function getSecondaryImages(realty) {
+      this.secondaryImages = realty.images.filter(function (image) {
+        return image.type === 'secondary';
+      });
+    },
+    delSecondaryImage: function delSecondaryImage(imageToDelete, index) {
+      this.secondaryImages.splice(index, 1);
+      var indexOfRealtyImages = this.editedItem.images.indexOf(imageToDelete);
+      this.editedItem.images.splice(indexOfRealtyImages, 1);
     },
     load: function load() {
       var _this = this;
@@ -3042,7 +3049,6 @@ __webpack_require__.r(__webpack_exports__);
     updateInDb: function updateInDb() {
       var _this2 = this;
 
-      //console.log(this.editedItem);
       axios.put(route("admin.realty.update", {
         id: this.editedItem.id
       }), this.editedItem).then(function (response) {
@@ -3053,6 +3059,13 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
+    //            delImageInDb() {             
+    //                axios.delete(route("admin.image.destroy", { id: this.editedItem.id }))
+    //                      .then(response => {
+    //                          console.log(response);
+    //                      })
+    //                      .catch(function (error) { console.log(error); })
+    //            },
     addRealtyInDb: function addRealtyInDb() {
       var _this3 = this;
 
@@ -3068,9 +3081,9 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editItem: function editItem(item) {
+      this.getSecondaryImages(item);
       this.editedIndex = this.realties.indexOf(item);
       this.editedItem = Object.assign({}, item);
-      this.getPrimaryImgPath(this.editedItem);
       this.dialog = true;
     },
     deleteItem: function deleteItem(item) {
@@ -42046,6 +42059,12 @@ var render = function() {
                                   ? _c(
                                       "div",
                                       [
+                                        _c("div", { staticClass: "mb-1" }, [
+                                          _c("b", [
+                                            _vm._v("Основное изображение")
+                                          ])
+                                        ]),
+                                        _vm._v(" "),
                                         _vm._l(_vm.primaryImages, function(
                                           image,
                                           index
@@ -42058,62 +42077,28 @@ var render = function() {
                                               attrs: { xs12: "" }
                                             },
                                             [
-                                              _c(
-                                                "div",
-                                                { staticClass: "mb-1" },
-                                                [
-                                                  _c("b", [
-                                                    _vm._v(
-                                                      "Основное изображение"
-                                                    )
-                                                  ])
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-img",
-                                                {
-                                                  staticClass: "img-primary",
-                                                  attrs: {
-                                                    src: image.path,
-                                                    width: 350
-                                                  }
-                                                },
-                                                [
-                                                  _c(
-                                                    "i",
-                                                    {
-                                                      staticClass:
-                                                        "material-icons del-img-icon",
-                                                      on: {
-                                                        click: function(
-                                                          $event
-                                                        ) {
-                                                          return _vm.delPrimaryImg(
-                                                            _vm.editedItem
-                                                          )
-                                                        }
-                                                      }
-                                                    },
-                                                    [_vm._v("close")]
-                                                  )
-                                                ]
-                                              )
+                                              _c("v-img", {
+                                                staticClass: "img-primary",
+                                                attrs: {
+                                                  src: image.path,
+                                                  width: 350
+                                                }
+                                              })
                                             ],
                                             1
                                           )
                                         }),
                                         _vm._v(" "),
+                                        _c("div", { staticClass: "mb-1" }, [
+                                          _c("b", [
+                                            _vm._v("Изображения галереи")
+                                          ])
+                                        ]),
+                                        _vm._v(" "),
                                         _c(
                                           "v-flex",
                                           { attrs: { xs12: "" } },
                                           [
-                                            _c("div", { staticClass: "mb-1" }, [
-                                              _c("b", [
-                                                _vm._v("Изображения галереи")
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
                                             _c(
                                               "v-layout",
                                               {
@@ -42124,7 +42109,7 @@ var render = function() {
                                                 }
                                               },
                                               _vm._l(
-                                                _vm.editedItem.images,
+                                                _vm.secondaryImages,
                                                 function(image, index) {
                                                   return _c(
                                                     "v-flex",
@@ -42149,9 +42134,23 @@ var render = function() {
                                                             "i",
                                                             {
                                                               staticClass:
-                                                                "material-icons del-img-icon"
+                                                                "material-icons del-img-icon",
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.delSecondaryImage(
+                                                                    image,
+                                                                    index
+                                                                  )
+                                                                }
+                                                              }
                                                             },
-                                                            [_vm._v("close")]
+                                                            [
+                                                              _vm._v(
+                                                                "close\n                                                    "
+                                                              )
+                                                            ]
                                                           )
                                                         ]
                                                       )
