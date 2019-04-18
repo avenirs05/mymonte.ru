@@ -2,9 +2,9 @@
     <v-card class="mb-3 hidden-md-and-up">
         <v-carousel hide-delimiters :height="carouselHeight" :cycle="cycle">
             <v-carousel-item
-                v-for="(image,i) in realty.images"
+                v-for="(image, i) in realty.images.filter(image => image.type === 'secondary')"
                 :key="i"
-                :src="image.path"
+                :src="`/storage/${image.path}`"
             ></v-carousel-item>
         </v-carousel>
 
@@ -92,26 +92,17 @@
 <script>
     export default {  
         mounted() { 
-            this.getPrimaryImg() 
+
         },
         props: ['realty', 'locale'],
         data () {
            return {
                cycle: false,  
-               primaryImgPath: '', 
+               primaryImgPath: '' 
             }
         },
         methods: { 
-            getPrimaryImg() {
-                let images = this.realty.images;                
-                
-                for (let i = 0; i < images.length; i++) {
-                     if (images[i].type === 'primary') {
-                         this.primaryImgPath = images[i].path;
-                         break;
-                     }
-                }
-            }
+
         },
         computed: {
             carouselHeight() {                            
@@ -119,7 +110,7 @@
                     case 'xs': return '250'
                     case 'sm': return '400'
                 }
-            }
+            },          
         }
     }
 </script>

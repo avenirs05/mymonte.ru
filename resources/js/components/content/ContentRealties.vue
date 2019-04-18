@@ -15,7 +15,7 @@
                     <v-card dark :href="`realty/${realty.id}`" hover class="text-xs-left">
                         <v-img
                             class="white--text"                            
-                            :src="`/storage/${realty.images[0].path}`"  
+                            :src="`/storage/${realty.images.filter(image => image.type === 'primary')[0].path}`"  
                             aspect-ratio="1.5"
                             ></v-img>
                     </v-card>
@@ -79,7 +79,7 @@
                     <v-card dark :href="`realty/${realty.id}`" hover class="text-xs-left">
                         <v-img
                             class="white--text"                            
-                            :src="realty.images[0].path"  
+                            :src="`/storage/${realty.images.filter(image => image.type === 'primary')[0].path}`"  
                             aspect-ratio="1.5"
                         ></v-img>
                     </v-card>
@@ -142,6 +142,7 @@
 <script> 
     export default {  
         mounted() {   
+            console.log(JSON.parse(this.realtiesJson))
             this.getTypeOfRealty();            
             this.getHeader();
             this.realties = JSON.parse(this.realtiesJson).data;
@@ -157,7 +158,7 @@
             page: 1,
             perPage: 2,
             typeOfRealty: '',
-            realtyPage: ''
+            realtyPage: '',
         }),
         
         watch: {
@@ -199,6 +200,7 @@
                        this.total = response.data.total;    
                 })
             },
+
              
              /**
              * Если оценка 9.0 или 8.0, то по умолчанию js обрезает до 8 или 9
@@ -215,7 +217,7 @@
                 
                 return mark;
              }
-        }
+        },
     }
 </script>
 

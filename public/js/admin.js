@@ -2941,6 +2941,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
   data: function data() {
@@ -41491,6 +41501,32 @@ var render = function() {
                                   [
                                     _c("v-text-field", {
                                       attrs: {
+                                        label: "Количество спален",
+                                        type: "number",
+                                        name: "bedrooms"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.bedrooms,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "bedrooms",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.bedrooms"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
                                         label: "До моря, м",
                                         type: "number",
                                         name: "dist_sea"
@@ -42219,7 +42255,7 @@ var render = function() {
                                           ])
                                         ]),
                                         _vm._v(" "),
-                                        _c("v-flex", [
+                                        _c("v-flex", { staticClass: "mb-4" }, [
                                           _c("input", {
                                             ref: "primaryFileInput",
                                             attrs: { type: "file" },

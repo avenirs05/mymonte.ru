@@ -59,7 +59,10 @@
             <v-flex xs3>
                 <v-card flat class="pl-3">
                     <h2 class="subheading indigo--text font-weight-bold mb-3">
-                        {{ trans('text.realty.price_per_day') }} <span class="caption red--text darken-4">({{ trans('text.realty.without_discounts') }})</span>
+                        {{ trans('text.realty.price_per_day') }} 
+                        <span class="caption red--text darken-4">
+                            ({{ trans('text.realty.without_discounts') }})
+                        </span>
                     </h2> 
                     <table class="table">
                         <tr>

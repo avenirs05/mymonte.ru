@@ -2962,6 +2962,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
   props: ['realty', 'locale'],
@@ -3096,9 +3099,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    this.getPrimaryImg();
-  },
+  mounted: function mounted() {},
   props: ['realty', 'locale'],
   data: function data() {
     return {
@@ -3106,18 +3107,7 @@ __webpack_require__.r(__webpack_exports__);
       primaryImgPath: ''
     };
   },
-  methods: {
-    getPrimaryImg: function getPrimaryImg() {
-      var images = this.realty.images;
-
-      for (var i = 0; i < images.length; i++) {
-        if (images[i].type === 'primary') {
-          this.primaryImgPath = images[i].path;
-          break;
-        }
-      }
-    }
-  },
+  methods: {},
   computed: {
     carouselHeight: function carouselHeight() {
       switch (this.$vuetify.breakpoint.name) {
@@ -3563,6 +3553,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
+    console.log(JSON.parse(this.realtiesJson));
     this.getTypeOfRealty();
     this.getHeader();
     this.realties = JSON.parse(this.realtiesJson).data;
@@ -12921,7 +12912,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n/* Десктоп-версия*/\n.realties-desk-wrap #headline-wrap-desk[data-v-cd44f02e] {\n        text-decoration: none;\n}\n.realties-desk-wrap #headline-wrap-desk[data-v-cd44f02e]:hover {\n        color: rgb(51, 122, 183);\n        text-decoration: underline;\n}\n.realties-desk-wrap .v-card[data-v-cd44f02e] {\n        background-color: transparent;\n        font-size: 18px;\n}\n.realties-desk-wrap .v-card.card-mini-right-text-desk[data-v-cd44f02e] {\n        margin-top: -5px;\n}\n.realties-desk-wrap h4[data-v-cd44f02e] {\n        font-weight: normal;\n}\n.realties-desk-wrap .price-text-desk[data-v-cd44f02e] {\n        font-size: 24px;\n}\n.realties-desk-wrap .price-text-through-desk[data-v-cd44f02e] {\n        text-decoration: line-through;\n        -webkit-text-decoration-color: red;\n                text-decoration-color: red;\n        font-size: 24px;\n}\n.realties-desk-wrap .btn-more-desk.v-btn.v-btn--large[data-v-cd44f02e] {\n        margin-right: 0;  \n        padding: 10px 20px;\n        font-size: 20px;\n        border-radius: 3px;\n        background-color: rgb(51, 153, 51);\n        color: rgb(255, 255, 255);\n        border: medium none;\n        width: 100%;\n        letter-spacing: 1px;  \n        text-transform: none;\n        font-weight: 400;\n}\n.realties-desk-wrap .booking-mark[data-v-cd44f02e] {\n        position: absolute;\n        color: #fff;\n        left: 13px;\n        top: 11px;\n        font-size: 18px;\n        color: white;\n}\n/* End Десктоп-версия*/    \n\n\n/*Мобильная версия*/\n.realties-mob-wrap.container[data-v-cd44f02e] {\n        border-top: 1px solid #CCCCCC;\n}\n.realties-mob-wrap .v-card.card-mini-right-text-mob[data-v-cd44f02e] {\n        background-color: transparent;\n        font-size: 16px;\n        margin-top: -5px;\n}\n.realties-mob-wrap .card-mini-right-text-mob ul[data-v-cd44f02e] {\n        list-style-type: none;\n        -webkit-padding-start: 0;\n                padding-inline-start: 0;\n}\n.realties-mob-wrap.bg-color-card-mini-mob[data-v-cd44f02e] {\n        /*        background: lavender;*/\n        margin-bottom: 0px;\n}\n.realties-mob-wrap .price-text-through-mob[data-v-cd44f02e] {\n        text-decoration: line-through;\n        -webkit-text-decoration-color: red;\n                text-decoration-color: red;\n        font-size: 18px;\n}\n.realties-mob-wrap .price-text-mob[data-v-cd44f02e] {\n        font-size: 18px;\n        color: green;\n}\n.realties-mob-wrap .btn-more-mob.v-btn.theme--light[data-v-cd44f02e] {\n        letter-spacing: 1px;  \n        text-transform: none;\n        color: rgb(255, 255, 255);\n        background-color: rgb(51, 153, 51);\n        margin-left: 0; \n        marfin-bottom: 0;\n}\n/*End Мобильная версия*/\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n/* Десктоп-версия*/\n.realties-desk-wrap #headline-wrap-desk[data-v-cd44f02e] {\n        text-decoration: none;\n}\n.realties-desk-wrap #headline-wrap-desk[data-v-cd44f02e]:hover {\n        color: rgb(51, 122, 183);\n        text-decoration: underline;\n}\n.realties-desk-wrap .v-card[data-v-cd44f02e] {\n        background-color: transparent;\n        font-size: 18px;\n}\n.realties-desk-wrap .v-card.card-mini-right-text-desk[data-v-cd44f02e] {\n        margin-top: -5px;\n}\n.realties-desk-wrap h4[data-v-cd44f02e] {\n        font-weight: normal;\n}\n.realties-desk-wrap .price-text-desk[data-v-cd44f02e] {\n        font-size: 24px;\n}\n.realties-desk-wrap .price-text-through-desk[data-v-cd44f02e] {\n        text-decoration: line-through;\n        -webkit-text-decoration-color: red;\n                text-decoration-color: red;\n        font-size: 24px;\n}\n.realties-desk-wrap .btn-more-desk.v-btn.v-btn--large[data-v-cd44f02e] {\n        margin-right: 0;  \n        padding: 10px 20px;\n        font-size: 20px;\n        border-radius: 3px;\n        background-color: rgb(51, 153, 51);\n        color: rgb(255, 255, 255);\n        border: medium none;\n        width: 100%;\n        letter-spacing: 1px;  \n        text-transform: none;\n        font-weight: 400;\n}\n.realties-desk-wrap .booking-mark[data-v-cd44f02e] {\n        position: absolute;\n        color: #fff;\n        left: 13px;\n        top: 11px;\n        font-size: 18px;\n        color: white;\n}\n/* End Десктоп-версия*/    \n\n\n/*Мобильная версия*/\n.realties-mob-wrap.container[data-v-cd44f02e] {\n        border-top: 1px solid #CCCCCC;\n}\n.realties-mob-wrap .v-card.card-mini-right-text-mob[data-v-cd44f02e] {\n        background-color: transparent;\n        font-size: 16px;\n        margin-top: -5px;\n}\n.realties-mob-wrap .card-mini-right-text-mob ul[data-v-cd44f02e] {\n        list-style-type: none;\n        -webkit-padding-start: 0;\n                padding-inline-start: 0;\n}\n.realties-mob-wrap.bg-color-card-mini-mob[data-v-cd44f02e] {\n        /*        background: lavender;*/\n        margin-bottom: 0px;\n}\n.realties-mob-wrap .price-text-through-mob[data-v-cd44f02e] {\n        text-decoration: line-through;\n        -webkit-text-decoration-color: red;\n                text-decoration-color: red;\n        font-size: 18px;\n}\n.realties-mob-wrap .price-text-mob[data-v-cd44f02e] {\n        font-size: 18px;\n        color: green;\n}\n.realties-mob-wrap .btn-more-mob.v-btn.theme--light[data-v-cd44f02e] {\n        letter-spacing: 1px;  \n        text-transform: none;\n        color: rgb(255, 255, 255);\n        background-color: rgb(51, 153, 51);\n        margin-left: 0; \n        marfin-bottom: 0;\n}\n/*End Мобильная версия*/\n", ""]);
 
 
 
@@ -44551,13 +44542,13 @@ var render = function() {
                     _vm._v(
                       "\n                    " +
                         _vm._s(_vm.trans("text.realty.price_per_day")) +
-                        " "
+                        " \n                    "
                     ),
                     _c("span", { staticClass: "caption red--text darken-4" }, [
                       _vm._v(
-                        "(" +
+                        "\n                        (" +
                           _vm._s(_vm.trans("text.realty.without_discounts")) +
-                          ")"
+                          ")\n                    "
                       )
                     ])
                   ]
@@ -44676,9 +44667,17 @@ var render = function() {
             cycle: _vm.cycle
           }
         },
-        _vm._l(_vm.realty.images, function(image, i) {
-          return _c("v-carousel-item", { key: i, attrs: { src: image.path } })
-        }),
+        _vm._l(
+          _vm.realty.images.filter(function(image) {
+            return image.type === "secondary"
+          }),
+          function(image, i) {
+            return _c("v-carousel-item", {
+              key: i,
+              attrs: { src: "/storage/" + image.path }
+            })
+          }
+        ),
         1
       ),
       _vm._v(" "),
@@ -45245,7 +45244,11 @@ var render = function() {
                         _c("v-img", {
                           staticClass: "white--text",
                           attrs: {
-                            src: "/storage/" + realty.images[0].path,
+                            src:
+                              "/storage/" +
+                              realty.images.filter(function(image) {
+                                return image.type === "primary"
+                              })[0].path,
                             "aspect-ratio": "1.5"
                           }
                         })
@@ -45486,7 +45489,11 @@ var render = function() {
                         _c("v-img", {
                           staticClass: "white--text",
                           attrs: {
-                            src: realty.images[0].path,
+                            src:
+                              "/storage/" +
+                              realty.images.filter(function(image) {
+                                return image.type === "primary"
+                              })[0].path,
                             "aspect-ratio": "1.5"
                           }
                         })

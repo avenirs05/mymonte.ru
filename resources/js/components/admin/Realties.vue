@@ -144,6 +144,16 @@
                                         ></v-text-field>
                                     </v-flex> 
                                     
+                                    <!-- Количество спален -->
+                                    <v-flex xs12>
+                                        <v-text-field 
+                                            label="Количество спален"
+                                            v-model="editedItem.bedrooms" 
+                                            type="number"  
+                                            name="bedrooms"
+                                        ></v-text-field>
+                                    </v-flex> 
+                                    
                                     <!-- До моря, м -->
                                     <v-flex xs12>
                                         <v-text-field 
@@ -289,7 +299,7 @@
                                     <!-- Картинки при добавлении нового объекта -->         
                                     <div v-if="isNewRealty">
                                         <div class="mb-1"><b>Основное изображение</b></div>
-                                        <v-flex>                                           
+                                        <v-flex class="mb-4">                                           
                                             <input type="file" @change="uploadPrimaryImage" ref="primaryFileInput">                                               
                                         </v-flex>   
                                         <div class="mb-1"><b>Изображения галереи</b></div>
@@ -437,7 +447,7 @@
                 this.delImageInDb(imageToDelete.id)
             },        
      
-            load() {
+            load() {                
                 this.loading = true;                
                 let params = {
                     page: this.pagination.page,
@@ -447,7 +457,7 @@
                 }            
                 
                 axios.get(route("admin.realty.index"), { params: params })
-                     .then(response => {
+                     .then(response => {                           
                            this.realties = response.data.data;
                            this.total = response.data.total; 
                      }).finally(() => {

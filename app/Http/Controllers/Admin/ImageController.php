@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Image;
 use Illuminate\Support\Facades\File;
+use Storage;
 
 
 class ImageController extends Controller
@@ -82,11 +83,15 @@ class ImageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {								
-		$image = Image::find($id);			
-	
+    {		
+		
+		$image = Image::find($id);	
+		
+		unlink(storage_path('app/public/') . $image->path);	
+
 		$image->delete();
 		
-		//return $path;
+		return 'deleted';
+		
 	}
 }
