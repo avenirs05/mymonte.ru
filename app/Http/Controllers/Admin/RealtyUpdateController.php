@@ -42,8 +42,7 @@ class RealtyUpdateController extends Controller
 		 * Если карточка изначально не дозаполнена, то незаполненные поля
 		 * получают значение null (если nullable в mysql)
 		 * Null приходит в строком виде, поэтому 'null'
-		 */
-		
+		 */		
 		foreach ($requestArr as $key => $value) {
 			if ($key != 'images' && $key != 'id' && $value != 'null') {
 				$realty->$key = $value;
@@ -53,6 +52,8 @@ class RealtyUpdateController extends Controller
 		$realty->save();
 
 		if (isset($request->primaryImg)) {
+			self::delPrimaryImagesIfExists($realty->id); 
+
 			Image::create(
 			[
 				'realty_id' => $realty->id,
@@ -73,8 +74,22 @@ class RealtyUpdateController extends Controller
 					'path' => $request->file("secondaryImg_$key")->store("uploads/$realty->id/secondary", 'public')
 				]);
 			}
+		}		
+		
+		
+		//return var_dump($images);
+	}
+	
+	
+	protected function delPrimaryImagesIfExists($realtyId) 
+	{
+		$images = Image::where('realty_id', $realtyId)->where('type', 'primary')->get();
+		
+		if ($images->isNotEmpty()) {
+			foreach ($images as $image) {
+				unlink(storage_path('app/public/') . $image->path);
+				$image->delete();
+			}
 		}
-
-		return $request;
 	}
 }
