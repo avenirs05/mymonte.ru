@@ -3566,7 +3566,7 @@ __webpack_require__.r(__webpack_exports__);
       realties: [],
       total: 1,
       page: 1,
-      perPage: 2,
+      perPage: 5,
       typeOfRealty: '',
       realtyPage: ''
     };

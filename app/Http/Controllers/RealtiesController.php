@@ -13,7 +13,7 @@ class RealtiesController extends Controller
     public function __invoke(Request $request) 
 	{
 		
-		$per_page = 2;
+		$per_page = 5;
 		$locale = app()->getLocale();
 		
 		$phone_main = Parameter::where('param', 'phone_main')->get()->toArray()[0]['value'];

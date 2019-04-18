@@ -13,9 +13,6 @@ class IndexController extends Controller
 	 *
 	 * @return void
 	 */
-//	public function __construct() {
-//		$this->middleware('auth');
-//	}
 
 	/**
 	 * Show the application dashboard.
@@ -24,10 +21,5 @@ class IndexController extends Controller
 	 */
 	public function index() {
 		return view('admin.index');
-	}
-
-	public function getRealtyIdByName($name) {
-		return Realty::where('name', $name)->first()->id;
-	}
-	
+	}	
 }

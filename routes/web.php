@@ -64,20 +64,15 @@ Route::get('/feedbacks-data', 'FeedbacksDataController');
 
 Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function() {
 	Route::get('/', 'IndexController@index');	
-	Route::get('/realtyname/{name}', 'IndexController@getRealtyIdByName')->name('getRealtyIdByName');
-	Route::resource('realties', 'RealtyController')->names(
-			[
-				"index"   => "admin.realty.index",
-				"update"  => "admin.realty.update",
-				"store"   => "admin.realty.store",
-			]);
-	Route::resource('images', 'ImageController')->names(
-			[
-				"index"    => "admin.image.index",
-				"update"   => "admin.image.update",
-				"store"    => "admin.image.store",
-				"destroy"  => "admin.image.destroy",
-			]);
+	
+	Route::get('/realties', 'RealtiesIndexController@index')->name('admin-realties-index');	
+
+	Route::post('/realty-add', 'RealtyAddController@index')->name('admin-realty-add');
+	
+	Route::post('/realty-update', 'RealtyUpdateController@index')->name('admin-realty-update');
+	
+	Route::delete('/image-delete/{id}', 'ImageDeleteController@index')->name('admin-image-delete');
+	
 });
 
 

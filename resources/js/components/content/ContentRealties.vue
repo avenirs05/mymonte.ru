@@ -130,7 +130,7 @@
         
         <v-container>
             <v-pagination
-                v-model="page"
+                v-model="page"                
                 :length="Math.ceil( total / perPage)"
                 :style="{ marginLeft: '-10px' }"
             ></v-pagination>
@@ -156,9 +156,9 @@
             realties: [],
             total: 1, 
             page: 1,
-            perPage: 2,
+            perPage: 5,
             typeOfRealty: '',
-            realtyPage: '',
+            realtyPage: ''
         }),
         
         watch: {

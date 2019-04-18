@@ -2951,6 +2951,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
   data: function data() {
@@ -3074,7 +3079,7 @@ __webpack_require__.r(__webpack_exports__);
         sort_by: this.pagination.sortBy,
         descending: this.pagination.descending
       };
-      axios.get(route("admin.realty.index"), {
+      axios.get(route("admin-realties-index"), {
         params: params
       }).then(function (response) {
         _this.realties = response.data.data;
@@ -3083,31 +3088,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.loading = false;
       });
     },
-    updateInDb: function updateInDb() {
-      var _this2 = this;
-
-      axios.put(route("admin.realty.update", {
-        id: this.editedItem.id
-      }), this.editedItem).then(function (response) {
-        Object.assign(_this2.realties[_this2.editedIndex], _this2.editedItem);
-
-        _this2.close();
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-    delImageInDb: function delImageInDb(imageId) {
-      axios.delete(route("admin.image.destroy", {
-        id: imageId
-      })).then(function (response) {
-        console.log(response);
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
     addRealtyInDb: function addRealtyInDb() {
-      var _this3 = this;
-
       var formData = this.formData;
       var newRealty = this.editedItem;
 
@@ -3115,12 +3096,33 @@ __webpack_require__.r(__webpack_exports__);
         formData.append(prop, newRealty[prop]);
       }
 
-      axios.post(route("admin.realty.store"), formData).then(function (response) {
-        _this3.editedItem.id = response.data.id;
+      axios.post(route("admin-realty-add"), formData).then(function (response) {
+        location.reload();
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    updateRealtyInDb: function updateRealtyInDb() {
+      var _this2 = this;
 
-        _this3.realties.push(_this3.editedItem);
+      var formData = this.formData;
+      var editedRealty = this.editedItem;
 
-        location.reload(); //this.close()                        
+      for (var prop in editedRealty) {
+        formData.append(prop, editedRealty[prop]);
+      }
+
+      axios.post(route("admin-realty-update"), formData).then(function (response) {
+        //console.log(response)
+        Object.assign(_this2.realties[_this2.editedIndex], _this2.editedItem);
+        location.reload();
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    delImageInDb: function delImageInDb(imageId) {
+      axios.delete(route("admin-image-delete", imageId)).then(function (response) {
+        console.log(response);
       }).catch(function (error) {
         console.log(error);
       });
@@ -3136,15 +3138,15 @@ __webpack_require__.r(__webpack_exports__);
       confirm('Вы уверены, что хотите удалить этот объект?') && this.realties.splice(index, 1);
     },
     close: function close() {
-      var _this4 = this;
+      var _this3 = this;
 
       this.dialog = false; // Очищаем инпуты файлов
       //                this.$refs.primaryFileInput.value = '';
       //                this.$refs.secondaryFileInput.value = '';
 
       setTimeout(function () {
-        _this4.editedItem = Object.assign({}, _this4.defaultItem);
-        _this4.editedIndex = -1;
+        _this3.editedItem = Object.assign({}, _this3.defaultItem);
+        _this3.editedIndex = -1;
       }, 300);
     },
     save: function save() {
@@ -3152,7 +3154,7 @@ __webpack_require__.r(__webpack_exports__);
       * В зависимости от того, добавляем объект или обновляем,
       * вызываем нужную функцию
       */
-      this.editedIndex > -1 ? this.updateInDb() : this.addRealtyInDb();
+      this.editedIndex > -1 ? this.updateRealtyInDb() : this.addRealtyInDb();
     }
   }
 });
@@ -42133,11 +42135,20 @@ var render = function() {
                                   ? _c(
                                       "div",
                                       [
-                                        _c("div", { staticClass: "mb-1" }, [
-                                          _c("b", [
-                                            _vm._v("Основное изображение")
-                                          ])
-                                        ]),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass: "mb-1",
+                                            staticStyle: {
+                                              "padding-left": "4px"
+                                            }
+                                          },
+                                          [
+                                            _c("b", [
+                                              _vm._v("Основное изображение")
+                                            ])
+                                          ]
+                                        ),
                                         _vm._v(" "),
                                         _vm._l(_vm.primaryImages, function(
                                           image,
@@ -42163,15 +42174,36 @@ var render = function() {
                                           )
                                         }),
                                         _vm._v(" "),
-                                        _c("div", { staticClass: "mb-1" }, [
-                                          _c("b", [
-                                            _vm._v("Изображения галереи")
-                                          ])
+                                        _c("v-flex", { staticClass: "mb-5" }, [
+                                          _c("input", {
+                                            attrs: { type: "file" },
+                                            on: {
+                                              change: _vm.uploadPrimaryImage
+                                            }
+                                          })
                                         ]),
                                         _vm._v(" "),
                                         _c(
+                                          "div",
+                                          {
+                                            staticClass: "mb-1",
+                                            staticStyle: {
+                                              "padding-left": "4px"
+                                            }
+                                          },
+                                          [
+                                            _c("b", [
+                                              _vm._v("Изображения галереи")
+                                            ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
                                           "v-flex",
-                                          { attrs: { xs12: "" } },
+                                          {
+                                            style: { paddingLeft: "4px" },
+                                            attrs: { xs12: "" }
+                                          },
                                           [
                                             _c(
                                               "v-layout",
@@ -42189,7 +42221,6 @@ var render = function() {
                                                     "v-flex",
                                                     {
                                                       key: image.index,
-                                                      style: { padding: "1px" },
                                                       attrs: { shrink: "" }
                                                     },
                                                     [
@@ -42239,6 +42270,28 @@ var render = function() {
                                             )
                                           ],
                                           1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-flex",
+                                          {
+                                            style: {
+                                              paddingLeft: "4px",
+                                              paddingTop: "20px"
+                                            }
+                                          },
+                                          [
+                                            _c("input", {
+                                              attrs: {
+                                                type: "file",
+                                                multiple: ""
+                                              },
+                                              on: {
+                                                change:
+                                                  _vm.uploadSecondaryImages
+                                              }
+                                            })
+                                          ]
                                         )
                                       ],
                                       2
@@ -42249,13 +42302,22 @@ var render = function() {
                                   ? _c(
                                       "div",
                                       [
-                                        _c("div", { staticClass: "mb-1" }, [
-                                          _c("b", [
-                                            _vm._v("Основное изображение")
-                                          ])
-                                        ]),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass: "mb-1",
+                                            staticStyle: {
+                                              "padding-left": "4px"
+                                            }
+                                          },
+                                          [
+                                            _c("b", [
+                                              _vm._v("Основное изображение")
+                                            ])
+                                          ]
+                                        ),
                                         _vm._v(" "),
-                                        _c("v-flex", { staticClass: "mb-4" }, [
+                                        _c("v-flex", { staticClass: "mb-5" }, [
                                           _c("input", {
                                             ref: "primaryFileInput",
                                             attrs: { type: "file" },
@@ -42265,15 +42327,27 @@ var render = function() {
                                           })
                                         ]),
                                         _vm._v(" "),
-                                        _c("div", { staticClass: "mb-1" }, [
-                                          _c("b", [
-                                            _vm._v("Изображения галереи")
-                                          ])
-                                        ]),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass: "mb-1",
+                                            staticStyle: {
+                                              "padding-left": "4px"
+                                            }
+                                          },
+                                          [
+                                            _c("b", [
+                                              _vm._v("Изображения галереи")
+                                            ])
+                                          ]
+                                        ),
                                         _vm._v(" "),
                                         _c("v-flex", [
                                           _c("input", {
                                             ref: "secondaryFileInput",
+                                            staticStyle: {
+                                              "{ paddingLeft": "'4px'}"
+                                            },
                                             attrs: {
                                               type: "file",
                                               multiple: ""
