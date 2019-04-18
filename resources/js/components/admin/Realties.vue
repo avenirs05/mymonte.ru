@@ -256,7 +256,7 @@
                                     </v-flex>     
                                     
                                     <!-- Картинки при редактировании -->         
-                                    <div v-if="isEditAction">
+                                    <div v-if="isEditRealty">
                                         <div class="mb-1"><b>Основное изображение</b></div>
                                         <v-flex 
                                             v-for="(image, index) in primaryImages"
@@ -264,7 +264,7 @@
                                             class="mb-3" 
                                             xs12 
                                             >                                  
-                                            <v-img :src="image.path" :width="350" class="img-primary"></v-img>
+                                            <v-img :src="`/storage/${image.path}`" :width="350" class="img-primary"></v-img>
                                         </v-flex>    
                                         <div class="mb-1"><b>Изображения галереи</b></div>
                                         <v-flex xs12>                                            
@@ -275,7 +275,7 @@
                                                     :style="{ padding: '1px' }" 
                                                     shrink                                                     
                                                     >
-                                                    <v-img :src="image.path" :width="100" class="img-gallery">
+                                                    <v-img :src="`/storage/${image.path}`" :width="100" class="img-gallery">
                                                         <i class="material-icons del-img-icon"
                                                            @click="delSecondaryImage(image, index)"
                                                            >close
@@ -284,6 +284,18 @@
                                                 </v-flex>
                                             </v-layout>
                                         </v-flex> 
+                                    </div>
+                                    
+                                    <!-- Картинки при добавлении нового объекта -->         
+                                    <div v-if="isNewRealty">
+                                        <div class="mb-1"><b>Основное изображение</b></div>
+                                        <v-flex>                                           
+                                            <input type="file" @change="uploadPrimaryImage" ref="primaryFileInput">                                               
+                                        </v-flex>   
+                                        <div class="mb-1"><b>Изображения галереи</b></div>
+                                        <v-flex>                                           
+                                            <input type="file" multiple @change="uploadSecondaryImages" ref="secondaryFileInput">                                               
+                                        </v-flex>   
                                     </div>
                                 </v-layout>
                             </v-container>
@@ -332,8 +344,7 @@
 
 <script>
     export default {
-        mounted() {
-            
+        mounted() {            
         },
         data: () => ({            
             headers: [
@@ -378,15 +389,19 @@
             locales: [
                 { code: 'ru', text: 'Русский' },
                 { code: 'en', text: 'English' }
-            ]            
+            ],
+            formData: new FormData()
         }),
 
         computed: {
             formTitle() { 
                 return this.editedIndex === -1 ? 'Новый объект' : 'Редактировать объект' 
             },
-            isEditAction() {
+            isEditRealty() {
                 return this.editedIndex !== -1 ? true : false 
+            },
+            isNewRealty() {
+                return this.editedIndex === -1 ? true : false 
             },
             primaryImages() {
                 return this.editedItem.images.filter(image => image.type === 'primary');
@@ -399,6 +414,18 @@
         },
 
         methods: {
+            uploadPrimaryImage() {           
+                this.formData.append('primaryImg', event.target.files[0])            
+            },
+            
+            uploadSecondaryImages() {   
+                let fileList = event.target.files
+                
+                for (let i = 0; i < fileList.length; i++) {
+                    this.formData.append('secondaryImg_' + i, fileList[i])
+                }         
+            },     
+            
             getSecondaryImages(realty) {
                 this.secondaryImages = realty.images.filter(image => image.type === 'secondary');
             },
@@ -423,7 +450,6 @@
                      .then(response => {
                            this.realties = response.data.data;
                            this.total = response.data.total; 
-                           //console.log(this.realties)
                      }).finally(() => {
                            this.loading = false;
                      })
@@ -446,18 +472,25 @@
                       .catch(function (error) { console.log(error); })
             },
             
-            addRealtyInDb() {    
+            addRealtyInDb() {  
+                let formData = this.formData;
                 let newRealty = this.editedItem;
-                axios.post(route("admin.realty.store"), newRealty)
+                
+                for (let prop in newRealty) {
+                    formData.append(prop, newRealty[prop]);
+                }               
+                
+                axios.post(route("admin.realty.store"), formData)
                     .then(response => {
                         this.editedItem.id = response.data.id
-                        this.realties.push(this.editedItem) 
-                        this.close()
+                        this.realties.push(this.editedItem)     
+                        location.reload()
+                        //this.close()                        
                     })
                     .catch(error => { console.log(error) });
             },
             
-            editItem(item) {      
+            editItem(item) { 
                 this.getSecondaryImages(item)
                 this.editedIndex = this.realties.indexOf(item)
                 this.editedItem = Object.assign({}, item)             
@@ -471,20 +504,25 @@
 
             close() {
                 this.dialog = false
+                
+                // Очищаем инпуты файлов
+//                this.$refs.primaryFileInput.value = '';
+//                this.$refs.secondaryFileInput.value = '';
                 setTimeout(() => {
                     this.editedItem = Object.assign({}, this.defaultItem)
                     this.editedIndex = -1
                 }, 300)
+                
             },
 
-            save() {   
+            save() {                 
                  /**
                  * В зависимости от того, добавляем объект или обновляем,
                  * вызываем нужную функцию
                  */
                 this.editedIndex > -1 ? this.updateInDb() : this.addRealtyInDb()  
             }
-        },
+        }
         
     } 
 </script>

@@ -15,7 +15,7 @@
                     <v-card dark :href="`realty/${realty.id}`" hover class="text-xs-left">
                         <v-img
                             class="white--text"                            
-                            :src="realty.images[0].path"  
+                            :src="`/storage/${realty.images[0].path}`"  
                             aspect-ratio="1.5"
                             ></v-img>
                     </v-card>

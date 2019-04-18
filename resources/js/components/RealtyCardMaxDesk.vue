@@ -5,7 +5,7 @@
                 <v-card dark hover class="text-xs-left" @click="openLg">
                     <v-img
                         class="realty-card-desk white--text"                            
-                        :src="primaryImage.path"  
+                        :src="`/storage/${primaryImage.path}`"  
                         aspect-ratio="1.5"
                     ></v-img>
                 </v-card>
@@ -95,9 +95,9 @@
                 <div id="lightgallery" ref="lightgallery">
                     <a  v-for="(image, index) in secondaryImages" 
                         :key="image.index" 
-                        :href="image.path"
+                        :href="`/storage/${image.path}`"
                         >
-                        <img :src="image.path" />
+                        <img :src="`/storage/${image.path}`" />
                     </a>
                 </div>
             </v-flex>               

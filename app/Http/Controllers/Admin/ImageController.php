@@ -37,8 +37,8 @@ class ImageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {        
+
     }
 
     /**
@@ -87,6 +87,6 @@ class ImageController extends Controller
 	
 		$image->delete();
 		
-		return $path;
+		//return $path;
 	}
 }

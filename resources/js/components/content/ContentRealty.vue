@@ -82,7 +82,5 @@
 
 
 <style scoped>    
-/*    .description {
-        margin-top: -25px;
-    }*/
+
 </style>

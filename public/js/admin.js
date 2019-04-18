@@ -2929,6 +2929,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
   data: function data() {
@@ -2992,15 +3004,19 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         code: 'en',
         text: 'English'
-      }]
+      }],
+      formData: new FormData()
     };
   },
   computed: {
     formTitle: function formTitle() {
       return this.editedIndex === -1 ? 'Новый объект' : 'Редактировать объект';
     },
-    isEditAction: function isEditAction() {
+    isEditRealty: function isEditRealty() {
       return this.editedIndex !== -1 ? true : false;
+    },
+    isNewRealty: function isNewRealty() {
+      return this.editedIndex === -1 ? true : false;
     },
     primaryImages: function primaryImages() {
       return this.editedItem.images.filter(function (image) {
@@ -3017,6 +3033,16 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    uploadPrimaryImage: function uploadPrimaryImage() {
+      this.formData.append('primaryImg', event.target.files[0]);
+    },
+    uploadSecondaryImages: function uploadSecondaryImages() {
+      var fileList = event.target.files;
+
+      for (var i = 0; i < fileList.length; i++) {
+        this.formData.append('secondaryImg_' + i, fileList[i]);
+      }
+    },
     getSecondaryImages: function getSecondaryImages(realty) {
       this.secondaryImages = realty.images.filter(function (image) {
         return image.type === 'secondary';
@@ -3042,7 +3068,7 @@ __webpack_require__.r(__webpack_exports__);
         params: params
       }).then(function (response) {
         _this.realties = response.data.data;
-        _this.total = response.data.total; //console.log(this.realties)
+        _this.total = response.data.total;
       }).finally(function () {
         _this.loading = false;
       });
@@ -3072,13 +3098,19 @@ __webpack_require__.r(__webpack_exports__);
     addRealtyInDb: function addRealtyInDb() {
       var _this3 = this;
 
+      var formData = this.formData;
       var newRealty = this.editedItem;
-      axios.post(route("admin.realty.store"), newRealty).then(function (response) {
+
+      for (var prop in newRealty) {
+        formData.append(prop, newRealty[prop]);
+      }
+
+      axios.post(route("admin.realty.store"), formData).then(function (response) {
         _this3.editedItem.id = response.data.id;
 
         _this3.realties.push(_this3.editedItem);
 
-        _this3.close();
+        location.reload(); //this.close()                        
       }).catch(function (error) {
         console.log(error);
       });
@@ -3096,7 +3128,10 @@ __webpack_require__.r(__webpack_exports__);
     close: function close() {
       var _this4 = this;
 
-      this.dialog = false;
+      this.dialog = false; // Очищаем инпуты файлов
+      //                this.$refs.primaryFileInput.value = '';
+      //                this.$refs.secondaryFileInput.value = '';
+
       setTimeout(function () {
         _this4.editedItem = Object.assign({}, _this4.defaultItem);
         _this4.editedIndex = -1;
@@ -42058,7 +42093,7 @@ var render = function() {
                                   1
                                 ),
                                 _vm._v(" "),
-                                _vm.isEditAction
+                                _vm.isEditRealty
                                   ? _c(
                                       "div",
                                       [
@@ -42083,7 +42118,7 @@ var render = function() {
                                               _c("v-img", {
                                                 staticClass: "img-primary",
                                                 attrs: {
-                                                  src: image.path,
+                                                  src: "/storage/" + image.path,
                                                   width: 350
                                                 }
                                               })
@@ -42128,7 +42163,9 @@ var render = function() {
                                                           staticClass:
                                                             "img-gallery",
                                                           attrs: {
-                                                            src: image.path,
+                                                            src:
+                                                              "/storage/" +
+                                                              image.path,
                                                             width: 100
                                                           }
                                                         },
@@ -42169,6 +42206,49 @@ var render = function() {
                                         )
                                       ],
                                       2
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.isNewRealty
+                                  ? _c(
+                                      "div",
+                                      [
+                                        _c("div", { staticClass: "mb-1" }, [
+                                          _c("b", [
+                                            _vm._v("Основное изображение")
+                                          ])
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("v-flex", [
+                                          _c("input", {
+                                            ref: "primaryFileInput",
+                                            attrs: { type: "file" },
+                                            on: {
+                                              change: _vm.uploadPrimaryImage
+                                            }
+                                          })
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "mb-1" }, [
+                                          _c("b", [
+                                            _vm._v("Изображения галереи")
+                                          ])
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("v-flex", [
+                                          _c("input", {
+                                            ref: "secondaryFileInput",
+                                            attrs: {
+                                              type: "file",
+                                              multiple: ""
+                                            },
+                                            on: {
+                                              change: _vm.uploadSecondaryImages
+                                            }
+                                          })
+                                        ])
+                                      ],
+                                      1
                                     )
                                   : _vm._e()
                               ],
@@ -83225,15 +83305,14 @@ if (token) {
 /*!*******************************************************!*\
   !*** ./resources/js/components/admin/ContentMain.vue ***!
   \*******************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ContentMain_vue_vue_type_template_id_507f0737___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ContentMain.vue?vue&type=template&id=507f0737& */ "./resources/js/components/admin/ContentMain.vue?vue&type=template&id=507f0737&");
 /* harmony import */ var _ContentMain_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ContentMain.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/ContentMain.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ContentMain_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ContentMain_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -83263,7 +83342,7 @@ component.options.__file = "resources/js/components/admin/ContentMain.vue"
 /*!********************************************************************************!*\
   !*** ./resources/js/components/admin/ContentMain.vue?vue&type=script&lang=js& ***!
   \********************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83364,15 +83443,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************!*\
   !*** ./resources/js/components/admin/Realties.vue ***!
   \****************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Realties_vue_vue_type_template_id_3d13cdec_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Realties.vue?vue&type=template&id=3d13cdec&scoped=true& */ "./resources/js/components/admin/Realties.vue?vue&type=template&id=3d13cdec&scoped=true&");
 /* harmony import */ var _Realties_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Realties.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/Realties.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Realties_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Realties_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _Realties_vue_vue_type_style_index_0_id_3d13cdec_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Realties.vue?vue&type=style&index=0&id=3d13cdec&scoped=true&lang=css& */ "./resources/js/components/admin/Realties.vue?vue&type=style&index=0&id=3d13cdec&scoped=true&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Realties_vue_vue_type_style_index_0_id_3d13cdec_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Realties.vue?vue&type=style&index=0&id=3d13cdec&scoped=true&lang=css& */ "./resources/js/components/admin/Realties.vue?vue&type=style&index=0&id=3d13cdec&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -83404,7 +83482,7 @@ component.options.__file = "resources/js/components/admin/Realties.vue"
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/admin/Realties.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
