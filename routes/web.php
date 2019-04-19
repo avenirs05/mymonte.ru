@@ -42,36 +42,25 @@ Route::get('/js/language/{locale}.js', function () {
 	exit();
 })->name('assets.lang');
 
-
 Auth::routes();
 
 Route::get('/', 'IndexController')->name('mainPage');
-
 Route::get('/villas', 'RealtiesController');
-
 Route::get('/apartments', 'RealtiesController');
-
 Route::get('/feedbacks', 'FeedbacksController');
-
 Route::get('/contact', 'ContactController');
-
 Route::get('/realty/{id}', 'RealtyController')->name('realtyPage');
-
 Route::get('/realties-data', 'RealtiesDataController');
-
 Route::get('/feedbacks-data', 'FeedbacksDataController');
 
-
 Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function() {
-	Route::get('/', 'IndexController@index');	
-	
-	Route::get('/realties', 'RealtiesIndexController@index')->name('admin-realties-index');	
-
-	Route::post('/realty-add', 'RealtyAddController@index')->name('admin-realty-add');
-	
-	Route::post('/realty-update', 'RealtyUpdateController@index')->name('admin-realty-update');
-	
+	Route::get('/', 'IndexController@index');		
+	Route::get('/realties', 'RealtiesIndexController@index')->name('admin-realties-index');
+	Route::post('/realty-add', 'RealtyAddController@index')->name('admin-realty-add');	
+	Route::post('/realty-update', 'RealtyUpdateController@index')->name('admin-realty-update');	
+	Route::delete('/realty-delete/{id}', 'RealtyDeleteController@index')->name('admin-realty-delete');
 	Route::delete('/image-delete/{id}', 'ImageDeleteController@index')->name('admin-image-delete');
+
 	
 });
 

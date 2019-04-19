@@ -22,8 +22,9 @@
         <v-container>    
             <v-layout row>
                 <v-flex>                              
-                    <div class="mb-5" :style="{ marginTop: marginTop }">
-                        {{ JSON.parse(realty)[`description_${locale}`] }}
+                    <div v-html="JSON.parse(realty)[`description_${locale}`]" 
+                         class="mb-5" 
+                         :style="{ marginTop: marginTop }">                        
                     </div>
                 </v-flex>               
             </v-layout> 
@@ -51,7 +52,7 @@
     import RealtyCardMaxMob from '../RealtyCardMaxMob.vue'
     
     export default {
-//        mounted() { console.log(JSON.parse(this.feedbacks).length) },   
+//        mounted() { console.log(JSON.parse(this.realty)) },   
         props: [
             'locale',
             'realty',

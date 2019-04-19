@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require("@babel/polyfill");
+//require("@babel/polyfill");
 require('./bootstrap');
 
 
@@ -15,6 +15,12 @@ require('./bootstrap');
 window.Vue = require('vue');
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
+
+// CKEditor
+import CKEditor from '@ckeditor/ckeditor5-vue';
+Vue.use( CKEditor );
+
+
 
 /**
  * Vuetufy, fortawesome, materiial icons, material-design-icons
@@ -75,7 +81,8 @@ const router = new VueRouter({
 const app = new Vue({
     el: '#app',
     router,
-    data: {},
+    data: {}
+    
 }).$mount('#app');
 
 

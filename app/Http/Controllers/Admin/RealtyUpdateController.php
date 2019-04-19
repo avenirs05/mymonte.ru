@@ -76,8 +76,6 @@ class RealtyUpdateController extends Controller
 			}
 		}		
 		
-		
-		//return var_dump($images);
 	}
 	
 	

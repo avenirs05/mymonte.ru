@@ -96,11 +96,11 @@
         <v-layout row align-center class="hidden-sm-and-down">
             <v-flex>                              
                 <div id="lightgallery" ref="lightgallery">
-                    <a  v-for="(image, index) in secondaryImages" 
-                        :key="image.index" 
-                        :href="`/storage/${image.path}`"
-                        >
-                        <img :src="`/storage/${image.path}`" />
+                    <a v-for="(image, index) in secondaryImages" 
+                       :key="index" 
+                       :href="`/storage/${image.path}`"
+                       >
+                       <img :src="`/storage/${image.path}`" />
                     </a>
                 </div>
             </v-flex>               
@@ -111,9 +111,11 @@
 
 <script>
     export default {   
-        mounted() { },    
+        mounted() { 
+            
+        },    
         props: ['realty', 'locale'],    
-        data: () => ({ }),
+        data: () => ({   }),
         methods: {
             /**
              * Т.к. основная картинка лежит вне lightgallery,

@@ -3103,8 +3103,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['realty', 'locale'],
   data: function data() {
     return {
-      cycle: false,
-      primaryImgPath: ''
+      cycle: false
     };
   },
   methods: {},
@@ -3691,10 +3690,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  //        mounted() { console.log(JSON.parse(this.feedbacks).length) },   
+  //        mounted() { console.log(JSON.parse(this.realty)) },   
   props: ['locale', 'realty', 'feedbacks'],
   components: {
     RealtyCardMaxDesk: _RealtyCardMaxDesk_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -44615,10 +44615,7 @@ var render = function() {
               _vm._l(_vm.secondaryImages, function(image, index) {
                 return _c(
                   "a",
-                  {
-                    key: image.index,
-                    attrs: { href: "/storage/" + image.path }
-                  },
+                  { key: index, attrs: { href: "/storage/" + image.path } },
                   [_c("img", { attrs: { src: "/storage/" + image.path } })]
                 )
               }),
@@ -45749,19 +45746,15 @@ var render = function() {
             { attrs: { row: "" } },
             [
               _c("v-flex", [
-                _c(
-                  "div",
-                  { staticClass: "mb-5", style: { marginTop: _vm.marginTop } },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(
-                          JSON.parse(_vm.realty)["description_" + _vm.locale]
-                        ) +
-                        "\n                "
+                _c("div", {
+                  staticClass: "mb-5",
+                  style: { marginTop: _vm.marginTop },
+                  domProps: {
+                    innerHTML: _vm._s(
+                      JSON.parse(_vm.realty)["description_" + _vm.locale]
                     )
-                  ]
-                )
+                  }
+                })
               ])
             ],
             1

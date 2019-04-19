@@ -92,13 +92,11 @@
 <script>
     export default {  
         mounted() { 
-
         },
         props: ['realty', 'locale'],
         data () {
            return {
                cycle: false,  
-               primaryImgPath: '' 
             }
         },
         methods: { 
@@ -110,7 +108,7 @@
                     case 'xs': return '250'
                     case 'sm': return '400'
                 }
-            },          
+            }
         }
     }
 </script>

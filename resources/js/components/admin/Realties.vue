@@ -227,7 +227,16 @@
                                     <v-flex xs12><v-text-field label="Цена — Октябрь" v-model="editedItem.price_oct" type="number" name="price_oct" ></v-text-field></v-flex>
                                     <v-flex xs12><v-text-field label="Цена — Ноябрь" v-model="editedItem.price_nov" type="number" name="price_nov" ></v-text-field></v-flex>
                                     <v-flex xs12><v-text-field label="Цена — Декабрь" v-model="editedItem.price_dec" type="number" name="price_dec" ></v-text-field></v-flex>
-                                                                        
+                                              
+                                    <!-- Цена октябрь-апрель (языки) -->
+                                    <v-flex v-for="(locale,index) in locales" :key="locale.index" xs12>                                        
+                                        <v-text-field 
+                                            :label="`Цена — Октябрь-Апрель — ${locale.text}`" 
+                                            v-model="editedItem[`price_oct_apr_${locale.code}`]"                                            
+                                            :name="`price_oct_apr_${locale.code}`">                                                
+                                        </v-text-field>                                         
+                                    </v-flex>  
+                                    
                                     <!-- Скидка -->
                                     <v-flex xs12>
                                         <v-text-field 
@@ -236,25 +245,19 @@
                                             type="number"  
                                             name="discount"
                                         ></v-text-field>
-                                    </v-flex> 
-                                    
-                                    <!-- Цена октябрь-апрель (языки) -->
-                                    <v-flex v-for="(locale,index) in locales" :key="locale.index" xs12>                                        
-                                        <v-text-field 
-                                            :label="`Цена — Октябрь-Апрель — ${locale.text}`" 
-                                            v-model="editedItem[`price_oct_apr_${locale.code}`]"                                            
-                                            :name="`price_oct_apr_${locale.code}`">                                                
-                                        </v-text-field>                                         
-                                    </v-flex> 
-                                    
+                                    </v-flex>                               
+                                
                                     <!-- Описание (языки) -->
-                                    <v-flex v-for="(locale,index) in locales" :key="locale.index" xs12>  
-                                        <v-textarea                                            
-                                            :label="`Описание — ${locale.text}`"                                            
-                                            v-model="editedItem[`description_${locale.code}`]"
+                                    <v-flex v-for="(locale,index) in locales" :key="locale.index" class="mb-4" xs12>
+                                        <div class="mb-1"><b>Описание — {{ locale.text }}</b></div>
+                                        <ckeditor 
+                                            tag-name="textarea"
+                                            :editor="editor" 
+                                            v-model="editedItem[`description_${locale.code}`]" 
+                                            :config="editorConfig"
                                             :name="`description_${locale.code}`"
-                                        ></v-textarea>                                          
-                                    </v-flex>    
+                                        ></ckeditor>
+                                    </v-flex>
                                     
                                     <!-- Карта код -->
                                     <v-flex xs12>  
@@ -358,11 +361,15 @@
 
 
 <script>
+    import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+    
     export default {
         mounted() {            
         },
-        data: () => ({            
-            headers: [
+        data: () => ({  
+           editor: ClassicEditor,
+           editorConfig: { },
+           headers: [
                 { text: 'Название', value: 'name', sortable: true },
                 { text: 'Тип', value: 'type', sortable: true },
                 { text: 'Цена, €', value: 'price', sortable: true },
@@ -495,15 +502,22 @@
                 
                 axios.post(route("admin-realty-update"), formData)
                       .then(response => {
-                          //console.log(response)
                           Object.assign(this.realties[this.editedIndex], this.editedItem) 
                           location.reload()
                       })
                       .catch(function (error) { console.log(error); })
             },
             
+            delRealtyInDb(realtyId) {             
+                axios.delete(route("admin-realty-delete", realtyId))
+                      .then(response => {
+                          console.log(response);
+                      })
+                      .catch(function (error) { console.log(error); })
+            }, 
+            
             delImageInDb(imageId) {             
-                axios.delete(route("admin-image-delete", imageId ))
+                axios.delete(route("admin-image-delete", imageId))
                       .then(response => {
                           console.log(response);
                       })
@@ -519,27 +533,21 @@
 
             deleteItem(item) {
                 const index = this.realties.indexOf(item)
+                this.delRealtyInDb(item.id)
                 confirm('Вы уверены, что хотите удалить этот объект?') && this.realties.splice(index, 1)
+                
             },
 
             close() {
                 this.dialog = false
-                
-                // Очищаем инпуты файлов
-//                this.$refs.primaryFileInput.value = '';
-//                this.$refs.secondaryFileInput.value = '';
                 setTimeout(() => {
                     this.editedItem = Object.assign({}, this.defaultItem)
                     this.editedIndex = -1
-                }, 300)
-                
+                }, 10)                
             },
 
             save() {                 
-                 /**
-                 * В зависимости от того, добавляем объект или обновляем,
-                 * вызываем нужную функцию
-                 */
+                // В зависимости от того, добавляем объект или обновляем, вызываем нужную функцию
                 this.editedIndex > -1 ? this.updateRealtyInDb() : this.addRealtyInDb()  
             }
         }
