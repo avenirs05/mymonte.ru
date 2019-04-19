@@ -14,12 +14,18 @@ class RealtyDeleteController extends Controller
 		$realty = Realty::find($realty_id);
 		
 		// Удаляем картинки на сервере 
-		foreach ($realty->images as $image) {
-			unlink(storage_path('app/public/') . $image->path);
+		if (isset($realty->images)) {
+			foreach ($realty->images as $image) {
+				unlink(storage_path('app/public/') . $image->path);
+			}
 		}
+
 		
 		// Удаляем привязанные картинки
-		$realty->images()->delete();
+		if (isset($realty->images)) {
+			$realty->images()->delete();
+		}
+		
 		
 		// Удаляем объект
 		$realty->delete();

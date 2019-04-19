@@ -74,8 +74,16 @@ class RealtyUpdateController extends Controller
 					'path' => $request->file("secondaryImg_$key")->store("uploads/$realty->id/secondary", 'public')
 				]);
 			}
-		}		
+		}	
 		
+		// Возвращаем обновленный объект		
+		$arrayRealty = $realty->toArray();
+		$images = $realty->images->toArray();
+		$arrayRealty['images'] = $images;
+		unset($arrayRealty['created_at']);
+		unset($arrayRealty['updated_at']);		
+		
+		return json_encode($arrayRealty);
 	}
 	
 	

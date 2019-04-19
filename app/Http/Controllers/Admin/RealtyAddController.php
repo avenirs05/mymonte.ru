@@ -40,10 +40,10 @@ class RealtyAddController extends Controller
 
 		if (isset($request->primaryImg)) {
 			Image::create(
-					[
-						'realty_id' => $realty->id,
-						'type' => 'primary',
-						'path' => $request->file('primaryImg')->store("uploads/$realty->id/primary", 'public')
+			[
+				'realty_id' => $realty->id,
+				'type' => 'primary',
+				'path' => $request->file('primaryImg')->store("uploads/$realty->id/primary", 'public')
 			]);
 		}
 
@@ -53,12 +53,21 @@ class RealtyAddController extends Controller
 		if (isset($request->secondaryImg_0)) {
 			foreach ($secondaryImages as $key => $image) {
 				Image::create(
-						[
-							'realty_id' => $realty->id,
-							'type' => 'secondary',
-							'path' => $request->file("secondaryImg_$key")->store("uploads/$realty->id/secondary", 'public')
+				[
+					'realty_id' => $realty->id,
+					'type' => 'secondary',
+					'path' => $request->file("secondaryImg_$key")->store("uploads/$realty->id/secondary", 'public')
 				]);
 			}
 		}
+		
+		// Возвращаем добавленный объект		
+		$arrayRealty = $realty->toArray();
+		$images = $realty->images->toArray();
+		$arrayRealty['images'] = $images;		
+		unset($arrayRealty['created_at']);
+		unset($arrayRealty['updated_at']);
+		
+		return json_encode($arrayRealty);
 	}
 }

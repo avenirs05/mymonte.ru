@@ -248,7 +248,11 @@
                                     </v-flex>                               
                                 
                                     <!-- Описание (языки) -->
-                                    <v-flex v-for="(locale,index) in locales" :key="locale.index" class="mb-4" xs12>
+                                    <v-flex 
+                                            v-for="(locale,index) in locales" 
+                                            :key="locale.index" 
+                                            class="mb-4" 
+                                            xs12>
                                         <div class="mb-1"><b>Описание — {{ locale.text }}</b></div>
                                         <ckeditor 
                                             tag-name="textarea"
@@ -280,7 +284,7 @@
                                             <v-img :src="`/storage/${image.path}`" :width="350" class="img-primary"></v-img>
                                         </v-flex>  
                                         <v-flex class="mb-5">                                           
-                                            <input type="file" @change="uploadPrimaryImage">                                               
+                                            <input type="file" @change="uploadPrimaryImage" ref="primaryFileInput">                                               
                                         </v-flex> 
                                         <div class="mb-1" style="padding-left: 4px;"><b>Изображения галереи</b></div>
                                         <v-flex xs12 :style="{ paddingLeft: '4px' }">                                            
@@ -300,7 +304,7 @@
                                             </v-layout>
                                         </v-flex> 
                                         <v-flex :style="{ paddingLeft: '4px', paddingTop: '20px' }">                                           
-                                            <input type="file" multiple @change="uploadSecondaryImages">                                               
+                                            <input type="file" multiple @change="uploadSecondaryImages" ref="secondaryFileInput">                                               
                                         </v-flex> 
                                     </div>
                                     
@@ -367,6 +371,7 @@
         mounted() {            
         },
         data: () => ({  
+           empty: '', 
            editor: ClassicEditor,
            editorConfig: { },
            headers: [
@@ -478,23 +483,29 @@
             },
             
             addRealtyInDb() {  
-                let formData = this.formData;
-                let newRealty = this.editedItem;
-                
+                let formData = this.formData
+                let newRealty = this.editedItem                
+                this.preventNull(newRealty)
+
                 for (let prop in newRealty) {
-                    formData.append(prop, newRealty[prop]);
+                    formData.append(prop, newRealty[prop])
                 }               
                 
                 axios.post(route("admin-realty-add"), formData)
-                    .then(response => { 
-                        location.reload()                      
+                    .then(response => {                        
+                        console.log(response.data)                        
+                        this.editedItem = Object.assign({}, response.data)
+                        this.realties.push(this.editedItem)    
+                        this.formData = new FormData()
+                        this.close()                   
                     })
-                    .catch(error => { console.log(error) });
+                    .catch(error => { console.log(error) })
             },
             
             updateRealtyInDb() {   
                 let formData = this.formData;
-                let editedRealty = this.editedItem;
+                let editedRealty = this.editedItem;                
+                this.preventNull(editedRealty)
                 
                 for (let prop in editedRealty) {
                     formData.append(prop, editedRealty[prop]);
@@ -502,8 +513,10 @@
                 
                 axios.post(route("admin-realty-update"), formData)
                       .then(response => {
-                          Object.assign(this.realties[this.editedIndex], this.editedItem) 
-                          location.reload()
+                          //console.log(response.data.description_en)
+                          this.editedItem = Object.assign(this.realties[this.editedIndex], response.data) 
+                          this.formData = new FormData()  
+                          this.close()
                       })
                       .catch(function (error) { console.log(error); })
             },
@@ -525,6 +538,7 @@
             },          
 
             editItem(item) { 
+                //console.log(item)
                 this.getSecondaryImages(item)
                 this.editedIndex = this.realties.indexOf(item)
                 this.editedItem = Object.assign({}, item)             
@@ -534,12 +548,16 @@
             deleteItem(item) {
                 const index = this.realties.indexOf(item)
                 this.delRealtyInDb(item.id)
-                confirm('Вы уверены, что хотите удалить этот объект?') && this.realties.splice(index, 1)
-                
+                confirm('Вы уверены, что хотите удалить этот объект?') && this.realties.splice(index, 1)                
             },
 
             close() {
                 this.dialog = false
+                
+                // Очищаем инпуты файлов
+                this.$refs.primaryFileInput.value = '';
+                this.$refs.secondaryFileInput.value = '';
+                
                 setTimeout(() => {
                     this.editedItem = Object.assign({}, this.defaultItem)
                     this.editedIndex = -1
@@ -549,6 +567,14 @@
             save() {                 
                 // В зависимости от того, добавляем объект или обновляем, вызываем нужную функцию
                 this.editedIndex > -1 ? this.updateRealtyInDb() : this.addRealtyInDb()  
+            },
+            
+            preventNull(item) {
+                this.locales.map(locale => {
+                    if (item[`description_${locale.code}`] === undefined || item[`description_${locale.code}`] === '') {
+                        item[`description_${locale.code}`] = '&nbsp;';
+                    }
+                })
             }
         }
         

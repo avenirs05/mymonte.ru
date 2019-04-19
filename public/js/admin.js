@@ -2209,11 +2209,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
   data: function data() {
     return {
+      empty: '',
       editor: _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_0___default.a,
       editorConfig: {},
       headers: [{
@@ -2345,32 +2350,46 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     addRealtyInDb: function addRealtyInDb() {
+      var _this2 = this;
+
       var formData = this.formData;
       var newRealty = this.editedItem;
+      this.preventNull(newRealty);
 
       for (var prop in newRealty) {
         formData.append(prop, newRealty[prop]);
       }
 
       axios.post(route("admin-realty-add"), formData).then(function (response) {
-        location.reload();
+        console.log(response.data);
+        _this2.editedItem = Object.assign({}, response.data);
+
+        _this2.realties.push(_this2.editedItem);
+
+        _this2.formData = new FormData();
+
+        _this2.close();
       }).catch(function (error) {
         console.log(error);
       });
     },
     updateRealtyInDb: function updateRealtyInDb() {
-      var _this2 = this;
+      var _this3 = this;
 
       var formData = this.formData;
       var editedRealty = this.editedItem;
+      this.preventNull(editedRealty);
 
       for (var prop in editedRealty) {
         formData.append(prop, editedRealty[prop]);
       }
 
       axios.post(route("admin-realty-update"), formData).then(function (response) {
-        Object.assign(_this2.realties[_this2.editedIndex], _this2.editedItem);
-        location.reload();
+        //console.log(response.data.description_en)
+        _this3.editedItem = Object.assign(_this3.realties[_this3.editedIndex], response.data);
+        _this3.formData = new FormData();
+
+        _this3.close();
       }).catch(function (error) {
         console.log(error);
       });
@@ -2390,6 +2409,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editItem: function editItem(item) {
+      //console.log(item)
       this.getSecondaryImages(item);
       this.editedIndex = this.realties.indexOf(item);
       this.editedItem = Object.assign({}, item);
@@ -2401,17 +2421,27 @@ __webpack_require__.r(__webpack_exports__);
       confirm('Вы уверены, что хотите удалить этот объект?') && this.realties.splice(index, 1);
     },
     close: function close() {
-      var _this3 = this;
+      var _this4 = this;
 
-      this.dialog = false;
+      this.dialog = false; // Очищаем инпуты файлов
+
+      this.$refs.primaryFileInput.value = '';
+      this.$refs.secondaryFileInput.value = '';
       setTimeout(function () {
-        _this3.editedItem = Object.assign({}, _this3.defaultItem);
-        _this3.editedIndex = -1;
+        _this4.editedItem = Object.assign({}, _this4.defaultItem);
+        _this4.editedIndex = -1;
       }, 10);
     },
     save: function save() {
       // В зависимости от того, добавляем объект или обновляем, вызываем нужную функцию
       this.editedIndex > -1 ? this.updateRealtyInDb() : this.addRealtyInDb();
+    },
+    preventNull: function preventNull(item) {
+      this.locales.map(function (locale) {
+        if (item["description_".concat(locale.code)] === undefined || item["description_".concat(locale.code)] === '') {
+          item["description_".concat(locale.code)] = '&nbsp;';
+        }
+      });
     }
   }
 });
@@ -32483,6 +32513,7 @@ var render = function() {
                                         _vm._v(" "),
                                         _c("v-flex", { staticClass: "mb-5" }, [
                                           _c("input", {
+                                            ref: "primaryFileInput",
                                             attrs: { type: "file" },
                                             on: {
                                               change: _vm.uploadPrimaryImage
@@ -32589,6 +32620,7 @@ var render = function() {
                                           },
                                           [
                                             _c("input", {
+                                              ref: "secondaryFileInput",
                                               attrs: {
                                                 type: "file",
                                                 multiple: ""

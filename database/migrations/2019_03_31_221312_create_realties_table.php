@@ -47,8 +47,8 @@ class CreateRealtiesTable extends Migration
 			
 			$table->float('booking_mark', 2, 1)->default(0.0);
 			
-			$table->text('description_ru')->nullable();
-			$table->text('description_en')->nullable();
+			$table->text('description_ru');
+			$table->text('description_en');
 			
 			$table->enum('country_ru', ['Черногория'])->default('Черногория');
 			$table->enum('country_en', ['Montenegro'])->default('Montenegro');
