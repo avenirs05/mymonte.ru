@@ -248,8 +248,7 @@
                                     </v-flex>                               
                                 
                                     <!-- Описание (языки) -->
-                                    <v-flex 
-                                            v-for="(locale,index) in locales" 
+                                    <v-flex v-for="(locale,index) in locales" 
                                             :key="locale.index" 
                                             class="mb-4" 
                                             xs12>
@@ -260,6 +259,18 @@
                                             v-model="editedItem[`description_${locale.code}`]" 
                                             :config="editorConfig"
                                             :name="`description_${locale.code}`"
+                                        ></ckeditor>
+                                    </v-flex>
+                                    
+                                    <!-- Отзывы -->
+                                    <v-flex>
+                                        <div class="mb-1"><b>Отзывы</b></div>
+                                        <ckeditor 
+                                            tag-name="textarea"
+                                            :editor="editor" 
+                                            v-model="editedItem.feedback"  
+                                            :config="editorConfig"
+                                            name="feedback"
                                         ></ckeditor>
                                     </v-flex>
                                     
@@ -492,8 +503,7 @@
                 }               
                 
                 axios.post(route("admin-realty-add"), formData)
-                    .then(response => {                        
-                        console.log(response.data)                        
+                    .then(response => {                     
                         this.editedItem = Object.assign({}, response.data)
                         this.realties.push(this.editedItem)    
                         this.formData = new FormData()
@@ -513,12 +523,11 @@
                 
                 axios.post(route("admin-realty-update"), formData)
                       .then(response => {
-                          //console.log(response.data.description_en)
                           this.editedItem = Object.assign(this.realties[this.editedIndex], response.data) 
                           this.formData = new FormData()  
                           this.close()
                       })
-                      .catch(function (error) { console.log(error); })
+                      .catch(function (error) { console.log(error) })
             },
             
             delRealtyInDb(realtyId) {             
@@ -538,7 +547,6 @@
             },          
 
             editItem(item) { 
-                //console.log(item)
                 this.getSecondaryImages(item)
                 this.editedIndex = this.realties.indexOf(item)
                 this.editedItem = Object.assign({}, item)             

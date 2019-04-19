@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 //use Illuminate\Http\Request;
 use App\Parameter;
 use App\Realty;
-use App\Feedback;
 
 
 class RealtyController extends Controller
@@ -18,7 +17,6 @@ class RealtyController extends Controller
 	
 		$realty = Realty::with('images')->where('id', $id)->first();					
 
-		$feedbacks = Feedback::where('realty_id', $id)->get();
 		
 		/**
 		 * Установка title страницы
@@ -30,7 +28,6 @@ class RealtyController extends Controller
 			'title'      => $title,
 			'phone_main' => $phone_main,
 			'realty'     => $realty->toJson(),
-			'feedbacks'  => $feedbacks->toJson()
 		];			
 		
 		

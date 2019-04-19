@@ -54,11 +54,9 @@ Vue.component('drawer', require('./components/Drawer.vue').default);
 Vue.component('lang', require('./components/Lang.vue').default);
 Vue.component('content-main', require('./components/content/ContentMain.vue').default);
 Vue.component('content-realties', require('./components/content/ContentRealties.vue').default);
-Vue.component('content-feedbacks', require('./components/content/ContentFeedbacks.vue').default);
 Vue.component('content-contact', require('./components/content/ContentContact.vue').default);
 Vue.component('content-realty', require('./components/content/ContentRealty.vue').default);
 Vue.component('footer-component', require('./components/FooterComponent.vue').default);
-
 
 
 // Localization

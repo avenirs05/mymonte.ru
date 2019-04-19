@@ -2213,6 +2213,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
@@ -2361,7 +2372,6 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       axios.post(route("admin-realty-add"), formData).then(function (response) {
-        console.log(response.data);
         _this2.editedItem = Object.assign({}, response.data);
 
         _this2.realties.push(_this2.editedItem);
@@ -2385,7 +2395,6 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       axios.post(route("admin-realty-update"), formData).then(function (response) {
-        //console.log(response.data.description_en)
         _this3.editedItem = Object.assign(_this3.realties[_this3.editedIndex], response.data);
         _this3.formData = new FormData();
 
@@ -2409,7 +2418,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editItem: function editItem(item) {
-      //console.log(item)
       this.getSecondaryImages(item);
       this.editedIndex = this.realties.indexOf(item);
       this.editedItem = Object.assign({}, item);
@@ -32442,6 +32450,36 @@ var render = function() {
                                     1
                                   )
                                 }),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  [
+                                    _c("div", { staticClass: "mb-1" }, [
+                                      _c("b", [_vm._v("Отзывы")])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("ckeditor", {
+                                      attrs: {
+                                        "tag-name": "textarea",
+                                        editor: _vm.editor,
+                                        config: _vm.editorConfig,
+                                        name: "feedback"
+                                      },
+                                      model: {
+                                        value: _vm.editedItem.feedback,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedItem,
+                                            "feedback",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "editedItem.feedback"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
                                 _vm._v(" "),
                                 _c(
                                   "v-flex",

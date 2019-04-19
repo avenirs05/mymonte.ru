@@ -69,7 +69,8 @@ const routes = [
       path: '', 
       component: require('./components/admin/Realties.vue').default 
     },
-    { path: '/content-to-edit', 
+    { 
+      path: '/content-to-edit', 
       component: require('./components/admin/ContentToEdit.vue').default 
     }
 ];

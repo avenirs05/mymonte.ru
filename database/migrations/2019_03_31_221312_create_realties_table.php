@@ -50,6 +50,8 @@ class CreateRealtiesTable extends Migration
 			$table->text('description_ru');
 			$table->text('description_en');
 			
+			$table->text('feedback');
+			
 			$table->enum('country_ru', ['Черногория'])->default('Черногория');
 			$table->enum('country_en', ['Montenegro'])->default('Montenegro');
 			

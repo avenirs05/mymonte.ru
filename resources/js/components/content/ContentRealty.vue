@@ -28,15 +28,10 @@
                     </div>
                 </v-flex>               
             </v-layout> 
-            <v-layout v-if="JSON.parse(this.feedbacks).length > 0" row>
+            <v-layout row>
                 <v-flex>  
                     <h2>{{ trans('text.menu.feedbacks') }}</h2>
-                    <hr class="mb-3">
-                    <div v-for="feedback in JSON.parse(feedbacks)" 
-                         class="feedback mb-5">
-                        <h5 class="mb-2">{{ feedback.header }}</h5>
-                        <p>{{ feedback.text }}</p>
-                    </div>
+                    <p>Feedback какой то</p>
                 </v-flex>               
             </v-layout>         
         </v-container> 
@@ -55,8 +50,7 @@
 //        mounted() { console.log(JSON.parse(this.realty)) },   
         props: [
             'locale',
-            'realty',
-            'feedbacks'            
+            'realty'         
         ],
         components: { 
             RealtyCardMaxDesk,
