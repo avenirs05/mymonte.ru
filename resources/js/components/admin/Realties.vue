@@ -37,17 +37,17 @@
                                     <!-- Видимость -->
                                     <v-flex xs12>
                                         <v-select 
-                                            label="Видимость" 
+                                            label="Видимость —— По умолчанию: опубликовано" 
                                             v-model="editedItem.visibility" 
                                             :items="enums.visibility"                                             
                                             name="visibility"
-                                            ></v-select>
+                                        ></v-select>
                                     </v-flex>                                
 
                                     <!-- Тип (общий) -->
                                     <v-flex xs12>
                                         <v-select 
-                                            label="Тип"
+                                            label="Тип (служебный) —— По умолчанию: apartment"
                                             v-model="editedItem.type" 
                                             :items="enums.type"                                             
                                             name="type"
@@ -57,37 +57,46 @@
                                     <!-- Тип (языки) -->
                                     <v-flex v-for="(locale,index) in locales" :key="locale.index" xs12>                                        
                                         <v-select 
-                                            :label="`Тип — ${locale.text}`" 
+                                            :label="`Тип — ${locale.text} —— По умолчанию: апартамент, apartment и т.д.`" 
                                             v-model="editedItem[`type_${locale.code}`]" 
                                             :items="enums[`type_${locale.code}`]"                                             
                                             :name="`type_${locale.code}`"
-                                            ></v-select>                                          
+                                        ></v-select>                                          
                                     </v-flex>    
 
                                     <!-- Район (языки) -->
                                     <v-flex v-for="(locale,index) in locales" :key="locale.index" xs12>                                        
                                         <v-select 
                                             :label="`Район — ${locale.text}`" 
-                                            v-model="editedItem[`area_${locale.code}`]" 
+                                            v-model="editedItem[`area_${locale.code}  —— По умолчанию: Будванская ривьера, Budva Riviera и т.д.`]" 
                                             :items="enums[`area_${locale.code}`]"                                             
                                             :name="`area_${locale.code}`"
-                                            ></v-select>                                          
+                                        ></v-select>                                          
                                     </v-flex>  
+                                    
+                                    <!-- Страна (языки) -->
+                                    <v-flex v-for="(locale,index) in locales" :key="locale.index" xs12>                                        
+                                        <v-select 
+                                            :label="`Страна — ${locale.text} —— По умолчанию: Черногория, Montenegro и т.д.`" 
+                                            v-model="editedItem[`country_${locale.code}`]" 
+                                            :items="enums[`country_${locale.code}`]"                                             
+                                            :name="`country_${locale.code}`"
+                                        ></v-select> 
+                                    </v-flex> 
 
                                     <!-- Город (языки) -->
                                     <v-flex v-for="(locale,index) in locales" :key="locale.index" xs12>                                        
-                                        <v-select 
-                                            :label="`Город — ${locale.text}`" 
-                                            v-model="editedItem[`city_${locale.code}`]" 
-                                            :items="enums[`city_${locale.code}`]"                                             
-                                            :name="`city_${locale.code}`"
-                                            ></v-select>                                          
+                                        <v-text-field 
+                                            :label="`Город — ${locale.text} —— По умолчанию: Будва, Budva и т.д.`" 
+                                            v-model="editedItem[`city_${locale.code}`]"                                            
+                                            :name="`city_${locale.code}`">                                                
+                                        </v-text-field>                                        
                                     </v-flex>  
 
                                     <!-- Оценка booking -->
                                     <v-flex xs12>
                                         <v-text-field 
-                                            label="Оценка booking"
+                                            label="Оценка booking —— По умолчанию: 0"
                                             v-model="editedItem.booking_mark" 
                                             type="number"  
                                             name="booking_mark"
@@ -104,14 +113,13 @@
                                             ></v-text-field>
                                     </v-flex> 
 
-                                    <!-- Вид (языки) -->
+                                    <!-- Вид с номера (языки) -->
                                     <v-flex v-for="(locale,index) in locales" :key="locale.index" xs12>                                        
-                                        <v-select 
-                                            :label="`Вид — ${locale.text}`" 
-                                            v-model="editedItem[`view_${locale.code}`]" 
-                                            :items="enums[`view_${locale.code}`]"                                             
-                                            :name="`view_${locale.code}`"
-                                            ></v-select>                                          
+                                        <v-text-field 
+                                            :label="`Вид с номера — ${locale.text}`" 
+                                            v-model="editedItem[`view_${locale.code}`]"                                            
+                                            :name="`view_${locale.code}`">                                                
+                                        </v-text-field>    
                                     </v-flex>  
 
                                     <!-- Вместимость -->
@@ -121,7 +129,7 @@
                                             v-model="editedItem.capacity" 
                                             type="number"  
                                             name="capacity"
-                                            ></v-text-field>
+                                        ></v-text-field>
                                     </v-flex> 
 
                                     <!-- Количество спален -->
@@ -167,7 +175,7 @@
                                     <!-- Трансфер (языки) -->
                                     <v-flex v-for="(locale,index) in locales" :key="locale.index" xs12>                                        
                                         <v-select 
-                                            :label="`Трансфер — ${locale.text}`" 
+                                            :label="`Трансфер — ${locale.text} —— По умолчанию: платный, paid и т.д.`" 
                                             v-model="editedItem[`transfer_${locale.code}`]" 
                                             :items="enums[`transfer_${locale.code}`]"                                             
                                             :name="`transfer_${locale.code}`"
@@ -177,21 +185,21 @@
                                     <!-- Интернет (языки) -->
                                     <v-flex v-for="(locale,index) in locales" :key="locale.index" xs12>                                        
                                         <v-select 
-                                            :label="`Интернет — ${locale.text}`" 
+                                            :label="`Интернет — ${locale.text} —— По умолчанию: бесплатный, free и т.д.`" 
                                             v-model="editedItem[`internet_${locale.code}`]" 
                                             :items="enums[`internet_${locale.code}`]"                                             
                                             :name="`internet_${locale.code}`"
-                                            ></v-select>                                          
+                                        ></v-select>                                          
                                     </v-flex>  
 
                                     <!-- Паркинг (языки) -->
                                     <v-flex v-for="(locale,index) in locales" :key="locale.index" xs12>                                        
                                         <v-select 
-                                            :label="`Паркинг — ${locale.text}`" 
+                                            :label="`Паркинг — ${locale.text} —— По умолчанию: платный, paid и т.д.`" 
                                             v-model="editedItem[`parking_${locale.code}`]" 
                                             :items="enums[`parking_${locale.code}`]"                                             
                                             :name="`parking_${locale.code}`"
-                                            ></v-select>                                          
+                                        ></v-select>                                          
                                     </v-flex>  
                                     
                                     <!-- Цена -->
@@ -201,7 +209,7 @@
                                             v-model="editedItem.price" 
                                             type="number"  
                                             name="price"
-                                            ></v-text-field>
+                                        ></v-text-field>
                                     </v-flex>
 
                                     <!-- Цена перечеркнутая -->
@@ -211,7 +219,7 @@
                                             v-model="editedItem.price_line_through" 
                                             type="number"  
                                             name="price_line_through"
-                                            ></v-text-field>
+                                        ></v-text-field>
                                     </v-flex>                                    
                                     
                                     <!-- Цены по месяцам -->
@@ -237,7 +245,7 @@
                                             v-model="editedItem.discount" 
                                             type="number"  
                                             name="discount"
-                                            ></v-text-field>
+                                        ></v-text-field>
                                     </v-flex>                               
 
                                     <!-- Описание (языки) -->
@@ -252,7 +260,7 @@
                                             v-model="editedItem[`description_${locale.code}`]" 
                                             :config="editorConfig"
                                             :name="`description_${locale.code}`"
-                                            ></ckeditor>
+                                        ></ckeditor>
                                     </v-flex>
 
                                     <!-- Отзывы -->
@@ -270,10 +278,10 @@
                                     <!-- Карта код -->
                                     <v-flex xs12>  
                                         <v-textarea                                            
-                                            label="Карта код"                                            
+                                            label="Карта (код)"                                            
                                             v-model="editedItem.map_html"
                                             name="map_html"
-                                            ></v-textarea>                                          
+                                        ></v-textarea>                                          
                                     </v-flex>     
 
                                     <!-- Картинки при редактировании -->         
@@ -375,54 +383,50 @@
         mounted() {
         },
         data: () => ({
-                empty: '',
-                editor: ClassicEditor,
-                editorConfig: {},
-                headers: [
-                    {text: 'Название', value: 'name', sortable: true},
-                    {text: 'Тип', value: 'type', sortable: true},
-                    {text: 'Цена, €', value: 'price', sortable: true},
-                    {text: 'Видимость', value: 'visibility', sortable: true},
-                    {text: '', value: '', sortable: false}
-                ],
-                dialog: false,
-                loading: false,
-                editedIndex: -1,
-                editedItem: {},
-                defaultItem: {},
-                realties: [],
-                pagination: {
-                    rowsPerPage: 50
-                },
-                total: 0,
-                rowsPerPageItems: [50, 100],
-                secondaryImages: [],
-                enums: {
-                    type: ['villa', 'apartment'],
-                    type_ru: ['вилла', 'апартамент'],
-                    type_en: ['villa', 'apartment'],
-                    visibility: ['опубликовано', 'скрыто'],
-                    view_ru: ['на море', 'на море и горы', 'на горы', 'на окрестности и горы'],
-                    view_en: ['sea', 'sea and mountains', 'mountains', 'surroundings and mountains'],
-                    transfer_ru: ['платный', 'бесплатный'],
-                    transfer_en: ['paid', 'free'],
-                    internet_ru: ['wi-fi'],
-                    internet_en: ['wi-fi'],
-                    parking_ru: ['платный', 'платный (частный)', 'платный (общественный)'],
-                    parking_en: ['paid', 'paid (private)', 'paid (public)'],
-                    country_ru: ['Черногория'],
-                    country_en: ['Montenegro'],
-                    city_ru: ['Будва', 'Кумбор'],
-                    city_en: ['Budva', 'Kumbor'],
-                    area_ru: ['Будванская ривьера', 'Бока-Которский залив', 'Барская ривьера'],
-                    area_en: ['Budva Riviera', 'Boka Kotorska Bay', 'Bar Riviera']
-                },
-                locales: [
-                    {code: 'ru', text: 'Русский'},
-                    {code: 'en', text: 'English'}
-                ],
-                formData: new FormData()
-            }),
+            empty: '',
+            editor: ClassicEditor,
+            editorConfig: {},
+            headers: [
+                {text: 'Название', value: 'name', sortable: true},
+                {text: 'Тип', value: 'type', sortable: true},
+                {text: 'Цена, €', value: 'price', sortable: true},
+                {text: 'Видимость', value: 'visibility', sortable: true},
+                {text: '', value: '', sortable: false}
+            ],
+            dialog: false,
+            loading: false,
+            editedIndex: -1,
+            editedItem: {},
+            defaultItem: {},
+            realties: [],
+            pagination: {
+                rowsPerPage: 50
+            },
+            total: 0,
+            rowsPerPageItems: [50, 100],
+            secondaryImages: [],
+            enums: {
+                type: ['villa', 'apartment'],
+                type_ru: ['вилла', 'апартамент'],
+                type_en: ['villa', 'apartment'],
+                visibility: ['опубликовано', 'скрыто'],
+                transfer_ru: ['платный', 'бесплатный'],
+                transfer_en: ['paid', 'free'],
+                internet_ru: ['бесплатный'],
+                internet_en: ['free'],
+                parking_ru: ['платный', 'платный (частный)', 'платный (общественный)'],
+                parking_en: ['paid', 'paid (private)', 'paid (public)'],
+                country_ru: ['Черногория', 'Хорватия'],
+                country_en: ['Montenegro', 'Croatia'],
+                area_ru: ['Будванская ривьера', 'Бока-Которский залив', 'Барская ривьера'],
+                area_en: ['Budva Riviera', 'Boka Kotorska Bay', 'Bar Riviera']
+            },
+            locales: [
+                {code: 'ru', text: 'Русский'},
+                {code: 'en', text: 'English'}
+            ],
+            formData: new FormData()
+        }),
         computed: {
             formTitle() {
                 return this.editedIndex === -1 ? 'Новый объект' : 'Редактировать объект'

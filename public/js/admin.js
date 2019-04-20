@@ -2217,6 +2217,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
@@ -2263,18 +2271,14 @@ __webpack_require__.r(__webpack_exports__);
         type_ru: ['вилла', 'апартамент'],
         type_en: ['villa', 'apartment'],
         visibility: ['опубликовано', 'скрыто'],
-        view_ru: ['на море', 'на море и горы', 'на горы', 'на окрестности и горы'],
-        view_en: ['sea', 'sea and mountains', 'mountains', 'surroundings and mountains'],
         transfer_ru: ['платный', 'бесплатный'],
         transfer_en: ['paid', 'free'],
-        internet_ru: ['wi-fi'],
-        internet_en: ['wi-fi'],
+        internet_ru: ['бесплатный'],
+        internet_en: ['free'],
         parking_ru: ['платный', 'платный (частный)', 'платный (общественный)'],
         parking_en: ['paid', 'paid (private)', 'paid (public)'],
-        country_ru: ['Черногория'],
-        country_en: ['Montenegro'],
-        city_ru: ['Будва', 'Кумбор'],
-        city_en: ['Budva', 'Kumbor'],
+        country_ru: ['Черногория', 'Хорватия'],
+        country_en: ['Montenegro', 'Croatia'],
         area_ru: ['Будванская ривьера', 'Бока-Которский залив', 'Барская ривьера'],
         area_en: ['Budva Riviera', 'Boka Kotorska Bay', 'Bar Riviera']
       },
@@ -31523,7 +31527,8 @@ var render = function() {
                                   [
                                     _c("v-select", {
                                       attrs: {
-                                        label: "Видимость",
+                                        label:
+                                          "Видимость —— По умолчанию: опубликовано",
                                         items: _vm.enums.visibility,
                                         name: "visibility"
                                       },
@@ -31549,7 +31554,8 @@ var render = function() {
                                   [
                                     _c("v-select", {
                                       attrs: {
-                                        label: "Тип",
+                                        label:
+                                          "Тип (служебный) —— По умолчанию: apartment",
                                         items: _vm.enums.type,
                                         name: "type"
                                       },
@@ -31572,7 +31578,10 @@ var render = function() {
                                     [
                                       _c("v-select", {
                                         attrs: {
-                                          label: "Тип — " + locale.text,
+                                          label:
+                                            "Тип — " +
+                                            locale.text +
+                                            " —— По умолчанию: апартамент, apartment и т.д.",
                                           items:
                                             _vm.enums["type_" + locale.code],
                                           name: "type_" + locale.code
@@ -31613,17 +31622,21 @@ var render = function() {
                                         model: {
                                           value:
                                             _vm.editedItem[
-                                              "area_" + locale.code
+                                              "area_" +
+                                                locale.code +
+                                                "  —— По умолчанию: Будванская ривьера, Budva Riviera и т.д."
                                             ],
                                           callback: function($$v) {
                                             _vm.$set(
                                               _vm.editedItem,
-                                              "area_" + locale.code,
+                                              "area_" +
+                                                locale.code +
+                                                "  —— По умолчанию: Будванская ривьера, Budva Riviera и т.д.",
                                               $$v
                                             )
                                           },
                                           expression:
-                                            "editedItem[`area_${locale.code}`]"
+                                            "editedItem[`area_${locale.code}  —— По умолчанию: Будванская ривьера, Budva Riviera и т.д.`]"
                                         }
                                       })
                                     ],
@@ -31638,9 +31651,46 @@ var render = function() {
                                     [
                                       _c("v-select", {
                                         attrs: {
-                                          label: "Город — " + locale.text,
+                                          label:
+                                            "Страна — " +
+                                            locale.text +
+                                            " —— По умолчанию: Черногория, Montenegro и т.д.",
                                           items:
-                                            _vm.enums["city_" + locale.code],
+                                            _vm.enums["country_" + locale.code],
+                                          name: "country_" + locale.code
+                                        },
+                                        model: {
+                                          value:
+                                            _vm.editedItem[
+                                              "country_" + locale.code
+                                            ],
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.editedItem,
+                                              "country_" + locale.code,
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "editedItem[`country_${locale.code}`]"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _vm._l(_vm.locales, function(locale, index) {
+                                  return _c(
+                                    "v-flex",
+                                    { key: locale.index, attrs: { xs12: "" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label:
+                                            "Город — " +
+                                            locale.text +
+                                            " —— По умолчанию: Будва, Budva и т.д.",
                                           name: "city_" + locale.code
                                         },
                                         model: {
@@ -31670,7 +31720,8 @@ var render = function() {
                                   [
                                     _c("v-text-field", {
                                       attrs: {
-                                        label: "Оценка booking",
+                                        label:
+                                          "Оценка booking —— По умолчанию: 0",
                                         type: "number",
                                         name: "booking_mark"
                                       },
@@ -31721,11 +31772,10 @@ var render = function() {
                                     "v-flex",
                                     { key: locale.index, attrs: { xs12: "" } },
                                     [
-                                      _c("v-select", {
+                                      _c("v-text-field", {
                                         attrs: {
-                                          label: "Вид — " + locale.text,
-                                          items:
-                                            _vm.enums["view_" + locale.code],
+                                          label:
+                                            "Вид с номера — " + locale.text,
                                           name: "view_" + locale.code
                                         },
                                         model: {
@@ -31886,7 +31936,10 @@ var render = function() {
                                     [
                                       _c("v-select", {
                                         attrs: {
-                                          label: "Трансфер — " + locale.text,
+                                          label:
+                                            "Трансфер — " +
+                                            locale.text +
+                                            " —— По умолчанию: платный, paid и т.д.",
                                           items:
                                             _vm.enums[
                                               "transfer_" + locale.code
@@ -31921,7 +31974,10 @@ var render = function() {
                                     [
                                       _c("v-select", {
                                         attrs: {
-                                          label: "Интернет — " + locale.text,
+                                          label:
+                                            "Интернет — " +
+                                            locale.text +
+                                            " —— По умолчанию: бесплатный, free и т.д.",
                                           items:
                                             _vm.enums[
                                               "internet_" + locale.code
@@ -31956,7 +32012,10 @@ var render = function() {
                                     [
                                       _c("v-select", {
                                         attrs: {
-                                          label: "Паркинг — " + locale.text,
+                                          label:
+                                            "Паркинг — " +
+                                            locale.text +
+                                            " —— По умолчанию: платный, paid и т.д.",
                                           items:
                                             _vm.enums["parking_" + locale.code],
                                           name: "parking_" + locale.code
@@ -32302,7 +32361,7 @@ var render = function() {
                                   [
                                     _c("v-textarea", {
                                       attrs: {
-                                        label: "Карта код",
+                                        label: "Карта (код)",
                                         name: "map_html"
                                       },
                                       model: {
