@@ -1,20 +1,33 @@
 <template>
     <v-content>    
-        <div>Content To Edit</div>        
+        <v-layout>
+            <div>Content To Edit</div>  
+        </v-layout>  
     </v-content>
 </template>
 
 
 <script>  
     export default { 
-//        mounted() { console.log(this.phoneMain)},   
+        mounted() { 
+            this.load()
+        },   
         props: [
-
-        ],     
-        components: {
             
-        },
-        data: () => ({ }),  
+        ],
+        
+        data: () => ({
+        
+        }),
+        
+        methods: {
+            load() {
+                axios.get(route("admin-contents-index"))
+                    .then(response => {
+                        console.log(response)
+                    })
+            }
+        }
     }
 </script>
 

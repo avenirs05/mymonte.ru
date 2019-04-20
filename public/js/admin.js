@@ -1825,12 +1825,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  //        mounted() { console.log(this.phoneMain)},   
+  mounted: function mounted() {
+    this.load();
+  },
   props: [],
-  components: {},
   data: function data() {
     return {};
+  },
+  methods: {
+    load: function load() {
+      axios.get(route("admin-contents-index")).then(function (response) {
+        console.log(response);
+      });
+    }
   }
 });
 
@@ -31372,7 +31382,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("v-content", [_c("div", [_vm._v("Content To Edit")])])
+  return _c(
+    "v-content",
+    [_c("v-layout", [_c("div", [_vm._v("Content To Edit")])])],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

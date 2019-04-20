@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 	Route::post('/realty-update', 'RealtyUpdateController@index')->name('admin-realty-update');	
 	Route::delete('/realty-delete/{id}', 'RealtyDeleteController@index')->name('admin-realty-delete');
 	Route::delete('/image-delete/{id}', 'ImageDeleteController@index')->name('admin-image-delete');
+	Route::get('/contents', 'ContentsIndexController@index')->name('admin-contents-index');
 });
 
 
