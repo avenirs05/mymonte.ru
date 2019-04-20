@@ -28,10 +28,10 @@
                     </div>
                 </v-flex>               
             </v-layout> 
-            <v-layout row>
+            <v-layout v-if="JSON.parse(realty).feedback != '&nbsp;'" row>
                 <v-flex>  
                     <h2>{{ trans('text.menu.feedbacks') }}</h2>
-                    <p>Feedback какой то</p>
+                    <div v-html="JSON.parse(realty).feedback"></div>
                 </v-flex>               
             </v-layout>         
         </v-container> 
@@ -47,7 +47,9 @@
     import RealtyCardMaxMob from '../RealtyCardMaxMob.vue'
     
     export default {
-//        mounted() { console.log(JSON.parse(this.realty)) },   
+        mounted() { 
+            console.log(JSON.parse(this.realty).feedback) 
+        },   
         props: [
             'locale',
             'realty'         

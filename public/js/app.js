@@ -3598,7 +3598,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  //        mounted() { console.log(JSON.parse(this.realty)) },   
+  mounted: function mounted() {
+    console.log(JSON.parse(this.realty).feedback);
+  },
   props: ['locale', 'realty'],
   components: {
     RealtyCardMaxDesk: _RealtyCardMaxDesk_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -45504,18 +45506,26 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c(
-            "v-layout",
-            { attrs: { row: "" } },
-            [
-              _c("v-flex", [
-                _c("h2", [_vm._v(_vm._s(_vm.trans("text.menu.feedbacks")))]),
-                _vm._v(" "),
-                _c("p", [_vm._v("Feedback какой то")])
-              ])
-            ],
-            1
-          )
+          JSON.parse(_vm.realty).feedback != "&nbsp;"
+            ? _c(
+                "v-layout",
+                { attrs: { row: "" } },
+                [
+                  _c("v-flex", [
+                    _c("h2", [
+                      _vm._v(_vm._s(_vm.trans("text.menu.feedbacks")))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", {
+                      domProps: {
+                        innerHTML: _vm._s(JSON.parse(_vm.realty).feedback)
+                      }
+                    })
+                  ])
+                ],
+                1
+              )
+            : _vm._e()
         ],
         1
       ),

@@ -2217,13 +2217,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
@@ -2448,6 +2441,10 @@ __webpack_require__.r(__webpack_exports__);
       this.locales.map(function (locale) {
         if (item["description_".concat(locale.code)] === undefined || item["description_".concat(locale.code)] === '') {
           item["description_".concat(locale.code)] = '&nbsp;';
+        }
+
+        if (item.feedback === undefined || item.feedback === '') {
+          item.feedback = '&nbsp;';
         }
       });
     }
@@ -31673,56 +31670,6 @@ var render = function() {
                                   [
                                     _c("v-text-field", {
                                       attrs: {
-                                        label: "Цена",
-                                        type: "number",
-                                        name: "price"
-                                      },
-                                      model: {
-                                        value: _vm.editedItem.price,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.editedItem, "price", $$v)
-                                        },
-                                        expression: "editedItem.price"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        label: "Цена перечеркнутая",
-                                        type: "number",
-                                        name: "price_line_through"
-                                      },
-                                      model: {
-                                        value:
-                                          _vm.editedItem.price_line_through,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.editedItem,
-                                            "price_line_through",
-                                            $$v
-                                          )
-                                        },
-                                        expression:
-                                          "editedItem.price_line_through"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
                                         label: "Оценка booking",
                                         type: "number",
                                         name: "booking_mark"
@@ -32041,20 +31988,16 @@ var render = function() {
                                   [
                                     _c("v-text-field", {
                                       attrs: {
-                                        label: "Цена — Январь",
+                                        label: "Цена",
                                         type: "number",
-                                        name: "price_jan"
+                                        name: "price"
                                       },
                                       model: {
-                                        value: _vm.editedItem.price_jan,
+                                        value: _vm.editedItem.price,
                                         callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.editedItem,
-                                            "price_jan",
-                                            $$v
-                                          )
+                                          _vm.$set(_vm.editedItem, "price", $$v)
                                         },
-                                        expression: "editedItem.price_jan"
+                                        expression: "editedItem.price"
                                       }
                                     })
                                   ],
@@ -32067,72 +32010,22 @@ var render = function() {
                                   [
                                     _c("v-text-field", {
                                       attrs: {
-                                        label: "Цена — Февраль",
+                                        label: "Цена перечеркнутая",
                                         type: "number",
-                                        name: "price_feb"
+                                        name: "price_line_through"
                                       },
                                       model: {
-                                        value: _vm.editedItem.price_feb,
+                                        value:
+                                          _vm.editedItem.price_line_through,
                                         callback: function($$v) {
                                           _vm.$set(
                                             _vm.editedItem,
-                                            "price_feb",
+                                            "price_line_through",
                                             $$v
                                           )
                                         },
-                                        expression: "editedItem.price_feb"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        label: "Цена — Март",
-                                        type: "number",
-                                        name: "price_mar"
-                                      },
-                                      model: {
-                                        value: _vm.editedItem.price_mar,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.editedItem,
-                                            "price_mar",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "editedItem.price_mar"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        label: "Цена — Апрель",
-                                        type: "number",
-                                        name: "price_apr"
-                                      },
-                                      model: {
-                                        value: _vm.editedItem.price_apr,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.editedItem,
-                                            "price_apr",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "editedItem.price_apr"
+                                        expression:
+                                          "editedItem.price_line_through"
                                       }
                                     })
                                   ],
@@ -32263,84 +32156,6 @@ var render = function() {
                                           )
                                         },
                                         expression: "editedItem.price_sep"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        label: "Цена — Октябрь",
-                                        type: "number",
-                                        name: "price_oct"
-                                      },
-                                      model: {
-                                        value: _vm.editedItem.price_oct,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.editedItem,
-                                            "price_oct",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "editedItem.price_oct"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        label: "Цена — Ноябрь",
-                                        type: "number",
-                                        name: "price_nov"
-                                      },
-                                      model: {
-                                        value: _vm.editedItem.price_nov,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.editedItem,
-                                            "price_nov",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "editedItem.price_nov"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        label: "Цена — Декабрь",
-                                        type: "number",
-                                        name: "price_dec"
-                                      },
-                                      model: {
-                                        value: _vm.editedItem.price_dec,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.editedItem,
-                                            "price_dec",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "editedItem.price_dec"
                                       }
                                     })
                                   ],
