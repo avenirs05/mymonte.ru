@@ -16,13 +16,14 @@ class CreateContentsTable extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->increments('id');
 			
-			$table->string('lang', 10);	
-			$table->string('header_main_screen');
-			$table->string('header_main_content');
-			$table->text('areas');
-			$table->text('questions');
-			$table->text('products');
-			$table->text('contact_page');
+			$table->integer('language_id')->unsigned()->index();
+			$table->foreign('language_id')->references('id')->on('languages');
+
+			$table->string('type')->nullable();
+			$table->string('name')->nullable();
+			$table->string('header')->nullable();
+			$table->text('text');
+			
 			$table->timestamps();
         });
     }

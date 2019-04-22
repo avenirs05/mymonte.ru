@@ -9,8 +9,8 @@
 		<title>Админ — MyBudva.ru</title>
 
 		<!-- Fonts -->
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+<!--		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">-->
 		
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="/images/fav-admin.ico" type="image/png">

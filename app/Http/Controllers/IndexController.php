@@ -22,10 +22,7 @@ class IndexController extends Controller
 			'locale'			   => $locale,	
 			'phone_main'		   => $phone_main,
 			'header_main_screen'   => $content['header_main_screen'],	
-			'header_main_content'  => $content['header_main_content'],
-			'areas'				   => $content['areas'],
-			'questions'			   => $content['questions'],
-			'products'			   => $content['products'],							
+			'header_main_content'  => $content['header_main_content'],			
 			'contact_page'		   => $content['contact_page'],			
 		];		
 	

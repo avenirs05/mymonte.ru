@@ -45,7 +45,6 @@ Route::get('/js/language/{locale}.js', function () {
 
 Auth::routes();
 
-
 // Маршруты для клиентов-фронтенд
 Route::get('/', 'IndexController')->name('mainPage');
 Route::get('/villas', 'RealtiesController');
@@ -58,12 +57,18 @@ Route::get('/realties-data', 'RealtiesDataController');
 // Админка
 Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function() {
 	Route::get('/', 'IndexController@index');		
+	
+	// Редактирование объектов недвижимости
 	Route::get('/realties', 'RealtiesIndexController@index')->name('admin-realties-index');
 	Route::post('/realty-add', 'RealtyAddController@index')->name('admin-realty-add');	
 	Route::post('/realty-update', 'RealtyUpdateController@index')->name('admin-realty-update');	
 	Route::delete('/realty-delete/{id}', 'RealtyDeleteController@index')->name('admin-realty-delete');
 	Route::delete('/image-delete/{id}', 'ImageDeleteController@index')->name('admin-image-delete');
-	Route::get('/contents', 'ContentsIndexController@index')->name('admin-contents-index');
+	
+	// Редактирование текстового контента
+	Route::get('/languages', 'LanguagesIndexController@index')->name('admin-languages-index');
+	Route::get('/parameters', 'ParametersIndexController@index')->name('admin-parameters-index');
+	Route::post('/content-update', 'ContentUpdateController@index')->name('admin-content-update');	
 });
 
 

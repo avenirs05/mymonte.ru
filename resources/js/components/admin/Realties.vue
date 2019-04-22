@@ -100,7 +100,7 @@
                                             v-model="editedItem.booking_mark" 
                                             type="number"  
                                             name="booking_mark"
-                                            ></v-text-field>
+                                        ></v-text-field>
                                     </v-flex>     
 
                                     <!-- Площадь -->
@@ -387,11 +387,11 @@
             editor: ClassicEditor,
             editorConfig: {},
             headers: [
-                {text: 'Название', value: 'name', sortable: true},
-                {text: 'Тип', value: 'type', sortable: true},
-                {text: 'Цена, €', value: 'price', sortable: true},
-                {text: 'Видимость', value: 'visibility', sortable: true},
-                {text: '', value: '', sortable: false}
+                { text: 'Название', value: 'name', sortable: true },
+                { text: 'Тип', value: 'type', sortable: true },
+                { text: 'Цена, €', value: 'price', sortable: true },
+                { text: 'Видимость', value: 'visibility', sortable: true },
+                { text: '', value: '', sortable: false}
             ],
             dialog: false,
             loading: false,
