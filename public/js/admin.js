@@ -1908,6 +1908,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
@@ -1937,14 +1966,21 @@ __webpack_require__.r(__webpack_exports__);
       total: 0,
       rowsPerPageItems: [50, 100],
       secondaryImages: [],
-      locales: [{
-        code: 'ru',
-        text: 'Русский'
-      }, {
-        code: 'en',
-        text: 'English'
-      }],
-      areas: [13, 18]
+      editedContent: {
+        headerMainScreen: '',
+        headerMainContent: '',
+        areas: [{
+          header: '',
+          text: ''
+        }, {
+          header: '',
+          text: ''
+        }, {
+          header: '',
+          text: ''
+        }],
+        questions: ''
+      }
     };
   },
   computed: {
@@ -1974,6 +2010,24 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    getHeaderMainScreen: function getHeaderMainScreen() {
+      var headerMainScreen = null;
+      this.editedItem.contents.map(function (content) {
+        if (content.type === 'header_main_screen') {
+          headerMainScreen = content.text;
+        }
+      });
+      this.editedContent.headerMainScreen = headerMainScreen;
+    },
+    getHeaderMainContent: function getHeaderMainContent() {
+      var headerMainContent = null;
+      this.editedItem.contents.map(function (content) {
+        if (content.type === 'header_main_content') {
+          headerMainContent = content.text;
+        }
+      });
+      this.editedContent.headerMainContent = headerMainContent;
+    },
     getAreas: function getAreas() {
       var areas = [];
       this.editedItem.contents.map(function (content) {
@@ -1985,7 +2039,16 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
-      this.areas = areas;
+      this.editedContent.areas = areas;
+    },
+    getQuestions: function getQuestions() {
+      var questions = null;
+      this.editedItem.contents.map(function (content) {
+        if (content.type === 'questions') {
+          questions = content.text;
+        }
+      });
+      this.editedContent.questions = questions;
     },
     load: function load() {
       var _this = this;
@@ -2000,7 +2063,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(route("admin-languages-index"), {
         params: params
       }).then(function (response) {
-        console.log(response);
+        //console.log(response)                            
         _this.languages = response.data.data;
         _this.total = response.data.total;
       }).finally(function () {
@@ -2010,14 +2073,9 @@ __webpack_require__.r(__webpack_exports__);
     addRealtyInDb: function addRealtyInDb() {
       var _this2 = this;
 
-      var formData = this.formData;
+      this.editedContent.headerMainScreen = '';
       var newRealty = this.editedItem;
       this.preventNull(newRealty);
-
-      for (var prop in newRealty) {
-        formData.append(prop, newRealty[prop]);
-      }
-
       axios.post(route("admin-content-add"), formData).then(function (response) {
         _this2.editedItem = Object.assign({}, response.data);
 
@@ -2030,12 +2088,71 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    updateContentInDb: function updateContentInDb() {
-      var editedContent = this.editedItem;
-      console.log(editedContent);
-      axios.post(route("admin-content-update"), editedContent).then(function (response) {
-        console.log(response); //                            this.editedItem = Object.assign(this.languages[this.editedIndex], response.data)
-        //                            this.close()
+    btnAddNewContentClicked: function btnAddNewContentClicked() {
+      this.editedContent.headerMainScreen = '';
+      this.editedContent.headerMainContent = '';
+      this.editedContent.areas = [{
+        header: '',
+        text: ''
+      }, {
+        header: '',
+        text: ''
+      }, {
+        header: '',
+        text: ''
+      }];
+      this.editedContent.questions = '';
+    },
+    updateLanguageInDb: function updateLanguageInDb() {
+      var _this3 = this;
+
+      var editedLanguage = this.editedItem; // Формируем данные для ajax-запроса
+
+      editedLanguage.contents.filter(function (content) {
+        if (content.name === 'budva_riviera') {
+          _this3.editedContent.areas.map(function (area) {
+            if (area.name === 'budva_riviera') {
+              content.text = area.text;
+              content.header = area.header;
+            }
+          });
+        }
+
+        if (content.name === 'bar_riviera') {
+          _this3.editedContent.areas.map(function (area) {
+            if (area.name === 'bar_riviera') {
+              content.text = area.text;
+              content.header = area.header;
+            }
+          });
+        }
+
+        if (content.name === 'boka_kotor_bay') {
+          _this3.editedContent.areas.map(function (area) {
+            if (area.name === 'boka_kotor_bay') {
+              content.text = area.text;
+              content.header = area.header;
+            }
+          });
+        }
+
+        if (content.name === 'header_main_screen') {
+          content.text = _this3.editedContent.headerMainScreen;
+        }
+
+        if (content.name === 'header_main_content') {
+          content.text = _this3.editedContent.headerMainContent;
+        }
+
+        if (content.name === 'questions') {
+          content.text = _this3.editedContent.questions;
+        }
+      });
+      axios.post(route("admin-language-update"), editedLanguage).then(function (response) {
+        console.log(response);
+        _this3.editedItem = Object.assign(_this3.languages[_this3.editedIndex], response.data);
+
+        _this3.close();
       }).catch(function (error) {
         console.log(error);
       });
@@ -2049,9 +2166,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     editItem: function editItem(item) {
       this.editedIndex = this.languages.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      console.log(this.editedItem.contents[0].name);
+      this.editedItem = Object.assign({}, item); //console.log(this.editedItem.contents[0].name)
+
       this.getAreas();
+      this.getHeaderMainScreen();
+      this.getHeaderMainContent();
+      this.getQuestions();
       this.dialog = true;
     },
     deleteItem: function deleteItem(item) {
@@ -2060,17 +2180,17 @@ __webpack_require__.r(__webpack_exports__);
       confirm('Вы уверены, что хотите удалить этот объект?') && this.languages.splice(index, 1);
     },
     close: function close() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.dialog = false;
       setTimeout(function () {
-        _this3.editedItem = Object.assign({}, _this3.defaultItem);
-        _this3.editedIndex = -1;
+        _this4.editedItem = Object.assign({}, _this4.defaultItem);
+        _this4.editedIndex = -1;
       }, 10);
     },
     save: function save() {
       // В зависимости от того, добавляем объект или обновляем, вызываем нужную функцию
-      this.editedIndex > -1 ? this.updateContentInDb() : this.addRealtyInDb();
+      this.editedIndex > -1 ? this.updateLanguageInDb() : this.addRealtyInDb();
     }
   }
 });
@@ -31666,7 +31786,7 @@ var render = function() {
           "v-toolbar",
           { attrs: { flat: "", color: "white" } },
           [
-            _c("v-toolbar-title", [_vm._v("Объекты")]),
+            _c("v-toolbar-title", [_vm._v("Текстовый контент")]),
             _vm._v(" "),
             _c("v-spacer"),
             _vm._v(" "),
@@ -31685,7 +31805,8 @@ var render = function() {
                           _vm._g(
                             {
                               staticClass: "mb-2",
-                              attrs: { color: "primary", dark: "" }
+                              attrs: { color: "primary", dark: "" },
+                              on: { click: _vm.btnAddNewContentClicked }
                             },
                             on
                           ),
@@ -31737,8 +31858,7 @@ var render = function() {
                                       attrs: {
                                         label: "Язык",
                                         items: _vm.langList,
-                                        name: "name",
-                                        disabled: ""
+                                        name: "name"
                                       },
                                       model: {
                                         value: _vm.editedItem.name,
@@ -31752,7 +31872,63 @@ var render = function() {
                                   1
                                 ),
                                 _vm._v(" "),
-                                _vm._l(_vm.areas, function(area, i) {
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Основной заголовок на Главной"
+                                      },
+                                      model: {
+                                        value:
+                                          _vm.editedContent.headerMainScreen,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedContent,
+                                            "headerMainScreen",
+                                            $$v
+                                          )
+                                        },
+                                        expression:
+                                          "editedContent.headerMainScreen"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs12: "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label:
+                                          "Заголовок на Главной перед основным контентом"
+                                      },
+                                      model: {
+                                        value:
+                                          _vm.editedContent.headerMainContent,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.editedContent,
+                                            "headerMainContent",
+                                            $$v
+                                          )
+                                        },
+                                        expression:
+                                          "editedContent.headerMainContent"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _vm._l(_vm.editedContent.areas, function(
+                                  area,
+                                  i
+                                ) {
                                   return _c(
                                     "v-flex",
                                     { key: i, attrs: { xs12: "" } },
@@ -31793,7 +31969,38 @@ var render = function() {
                                     ],
                                     1
                                   )
-                                })
+                                }),
+                                _vm._v(" "),
+                                _c("v-flex", { staticClass: "mt-3" }, [
+                                  _c("div", { staticClass: "mb-2" }, [
+                                    _c("b", [_vm._v("FAQ на Главной")])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "mb-3" },
+                                    [
+                                      _c("ckeditor", {
+                                        attrs: {
+                                          editor: _vm.editor,
+                                          config: _vm.editorConfig
+                                        },
+                                        model: {
+                                          value: _vm.editedContent.questions,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.editedContent,
+                                              "questions",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "editedContent.questions"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ])
                               ],
                               2
                             )
@@ -74308,15 +74515,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************************!*\
   !*** ./resources/js/components/admin/ContentToEdit.vue ***!
   \*********************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ContentToEdit_vue_vue_type_template_id_a33935ba_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ContentToEdit.vue?vue&type=template&id=a33935ba&scoped=true& */ "./resources/js/components/admin/ContentToEdit.vue?vue&type=template&id=a33935ba&scoped=true&");
 /* harmony import */ var _ContentToEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ContentToEdit.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/ContentToEdit.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ContentToEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ContentToEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _ContentToEdit_vue_vue_type_style_index_0_id_a33935ba_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ContentToEdit.vue?vue&type=style&index=0&id=a33935ba&scoped=true&lang=css& */ "./resources/js/components/admin/ContentToEdit.vue?vue&type=style&index=0&id=a33935ba&scoped=true&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _ContentToEdit_vue_vue_type_style_index_0_id_a33935ba_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ContentToEdit.vue?vue&type=style&index=0&id=a33935ba&scoped=true&lang=css& */ "./resources/js/components/admin/ContentToEdit.vue?vue&type=style&index=0&id=a33935ba&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -74348,7 +74554,7 @@ component.options.__file = "resources/js/components/admin/ContentToEdit.vue"
 /*!**********************************************************************************!*\
   !*** ./resources/js/components/admin/ContentToEdit.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

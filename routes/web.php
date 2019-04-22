@@ -66,9 +66,10 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 	Route::delete('/image-delete/{id}', 'ImageDeleteController@index')->name('admin-image-delete');
 	
 	// Редактирование текстового контента
-	Route::get('/languages', 'LanguagesIndexController@index')->name('admin-languages-index');
+	Route::get('/languages', 'LanguagesIndexController@index')->name('admin-languages-index');	
+	Route::post('/language-update', 'LanguageUpdateController@index')->name('admin-language-update');
 	Route::get('/parameters', 'ParametersIndexController@index')->name('admin-parameters-index');
-	Route::post('/content-update', 'ContentUpdateController@index')->name('admin-content-update');	
+	
 });
 
 
