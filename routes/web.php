@@ -69,6 +69,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 	Route::get('/languages', 'LanguagesIndexController@index')->name('admin-languages-index');	
 	Route::post('/language-update', 'LanguageUpdateController@index')->name('admin-language-update');
 	Route::get('/parameters', 'ParametersIndexController@index')->name('admin-parameters-index');
+	Route::post('/parameters-update', 'ParametersUpdateController@index')->name('admin-parameters-update');
 	
 });
 

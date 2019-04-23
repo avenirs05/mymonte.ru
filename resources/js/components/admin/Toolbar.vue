@@ -19,7 +19,13 @@
                 class="btn-menu-desktop"      
                 flat
                 to="/content-to-edit"                
-                >Контент
+                >Контент 
+            </v-btn>
+            <v-btn                 
+                class="btn-menu-desktop"      
+                flat
+                to="/content-to-edit-all-langs"                
+                >Все языки
             </v-btn>
         </v-toolbar-items>
         
@@ -48,7 +54,7 @@
     .v-btn.btn-menu-desktop {
         text-transform: none;
         font-family: 'Open Sans Condensed', sans-serif;
-        font-size: 24px;
+        font-size: 18px;
     }    
     
     .v-toolbar__content .v-btn--icon {

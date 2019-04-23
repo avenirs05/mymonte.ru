@@ -12,7 +12,7 @@ class ParametersIndexController extends Controller
 	{
 		$data = [];
 		
-		$phone_main = Parameter::where('param', 'phone_main')->first()->toJson();
+		$phone_main = Parameter::where('param', 'phone_main')->first()->toArray();
 		
 		$data['phone_main'] = $phone_main;
 		

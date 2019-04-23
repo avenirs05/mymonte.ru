@@ -50,6 +50,7 @@ Vue.component('toolbar', require('./components/admin/Toolbar.vue').default);
 Vue.component('content-main', require('./components/admin/ContentMain.vue').default);
 Vue.component('realties', require('./components/admin/Realties.vue').default);
 Vue.component('content-to-edit', require('./components/admin/ContentToEdit.vue').default);
+Vue.component('content-to-edit-all-langs', require('./components/admin/ContentToEditAllLangs.vue').default);
 
 
 
@@ -72,6 +73,10 @@ const routes = [
     { 
       path: '/content-to-edit', 
       component: require('./components/admin/ContentToEdit.vue').default 
+    },
+    {
+      path: '/content-to-edit-all-langs',
+      component: require('./components/admin/ContentToEditAllLangs.vue').default
     }
 ];
 
@@ -82,8 +87,7 @@ const router = new VueRouter({
 const app = new Vue({
     el: '#app',
     router,
-    data: {}
-    
+    data: {}    
 }).$mount('#app');
 
 

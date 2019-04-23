@@ -1,7 +1,7 @@
 <template>
     <v-menu dark offset-y left bottom class="language-menu" attach="#toolbar">
         <v-btn flat slot="activator" class="flag-btn">
-            <v-img position="center right" contain height="24px" :src="`/images/${locale}.png`" ></v-img>
+            <v-img position="center right" contain height="24px" :src="`/images/flags/${locale}.png`" ></v-img>
         </v-btn>
 
         <v-list>
@@ -11,7 +11,7 @@
                     :href="`/locale/${item.name}`"
             >
                 <v-list-tile-avatar>
-                    <v-img contain height="24px" :src="`/images/${item.name}.png`"></v-img>
+                    <v-img contain height="24px" :src="`/images/flags/${item.name}.png`"></v-img>
                 </v-list-tile-avatar>
                 <v-list-tile-content>
                     <v-list-tile-title>{{item.title}}</v-list-tile-title>

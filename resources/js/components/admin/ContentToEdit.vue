@@ -31,7 +31,7 @@
                             <v-flex xs12>
                                 <v-text-field 
                                     label="Основной заголовок на Главной" 
-                                    v-model="editedContent.headerMainScreen"
+                                    v-model="editedContent.header_main_screen"
                                 ></v-text-field>
                             </v-flex>
                             
@@ -39,8 +39,16 @@
                             <v-flex xs12>
                                 <v-text-field 
                                     label="Заголовок на Главной перед основным контентом" 
-                                    v-model="editedContent.headerMainContent"
+                                    v-model="editedContent.header_main_content"
                                 ></v-text-field>
+                            </v-flex>
+                            
+                            <!-- Заголовок "Районы" -->
+                            <v-flex xs12>
+                                <v-text-field 
+                                    label="Заголовок Районы" 
+                                    v-model="editedContent.header_areas"
+                                    ></v-text-field>
                             </v-flex>
                             
                             <!-- Районы -->
@@ -59,7 +67,7 @@
                             </v-flex>
                             
                             <!-- FAQ -->
-                            <v-flex class="mt-3">
+                            <v-flex class="mt-3" xs12>
                                 <div class="mb-2"><b>FAQ на Главной</b></div>
                                 <div class="mb-3">
                                     <ckeditor                                                 
@@ -70,9 +78,18 @@
                                 </div>
                             </v-flex>
                             
-                            
-                            
-                            
+                            <!-- Contact Page -->
+                            <v-flex class="mt-3" xs12>
+                                <div class="mb-2"><b>Страница "Контакты"</b></div>
+                                <div class="mb-3">
+                                    <ckeditor                                                 
+                                        :editor="editor" 
+                                        v-model="editedContent.contact_page" 
+                                        :config="editorConfig"
+                                    ></ckeditor>
+                                </div>
+                            </v-flex>                         
+                        
                         </v-layout>
                     </v-container>
                 </v-card-text>
@@ -109,7 +126,9 @@
             </td>
         </template>
         <template v-slot:no-data></template>
-    </v-data-table>
+    </v-data-table>   
+
+    
 </div>
 </v-content>
 </template>
@@ -142,11 +161,13 @@
             rowsPerPageItems: [50, 100],
             secondaryImages: [],
             editedContent: {
-                headerMainScreen: '',
-                headerMainContent: '',                    
+                header_main_screen: '',
+                header_main_content: '',      
+                header_areas: '',
                 areas: [{header:'', text: ''}, {header:'', text: ''}, {header:'', text: ''}],
-                questions: ''
-            }                
+                questions: '',
+                contact_page: ''
+            },
         }),
         computed: {
             langList() {
@@ -175,23 +196,33 @@
         },
         methods: {  
             getHeaderMainScreen() {  
-                let headerMainScreen = null;
+                let header_main_screen = null;
                 this.editedItem.contents.map(content => {
                     if (content.type === 'header_main_screen') {
-                        headerMainScreen = content.text
+                        header_main_screen = content.text
                     }
                 })                
-                this.editedContent.headerMainScreen = headerMainScreen
+                this.editedContent.header_main_screen = header_main_screen
             },
             
             getHeaderMainContent() {  
-                let headerMainContent = null;
+                let header_main_content = null;
                 this.editedItem.contents.map(content => {
                     if (content.type === 'header_main_content') {
-                        headerMainContent = content.text
+                        header_main_content = content.text
                     }
                 })                
-                this.editedContent.headerMainContent = headerMainContent
+                this.editedContent.header_main_content = header_main_content
+            },
+            
+            getHeaderAreas() {  
+                let header_areas = null;
+                this.editedItem.contents.map(content => {
+                    if (content.type === 'header_areas') {
+                        header_areas = content.text
+                    }
+                })                
+                this.editedContent.header_areas = header_areas
             },
             
             getAreas() {
@@ -218,6 +249,16 @@
                 this.editedContent.questions = questions
             },
             
+            getContactPage() {  
+                let contact_page = null;
+                this.editedItem.contents.map(content => {
+                    if (content.type === 'contact_page') {
+                        contact_page = content.text
+                    }
+                })                
+                this.editedContent.contact_page = contact_page
+            },
+            
             load() {
                 this.loading = true;
                 let params = {
@@ -239,7 +280,7 @@
             },
 
             addRealtyInDb() {
-                this.editedContent.headerMainScreen = '';
+                this.editedContent.header_main_screen = '';
 
                 let newRealty = this.editedItem
                 this.preventNull(newRealty)               
@@ -257,8 +298,8 @@
             },
             
             btnAddNewContentClicked() {
-                this.editedContent.headerMainScreen = ''
-                this.editedContent.headerMainContent = ''
+                this.editedContent.header_main_screen = ''
+                this.editedContent.header_main_content = ''
                 this.editedContent.areas = [{header:'', text: ''}, {header:'', text: ''}, {header:'', text: ''}]
                 this.editedContent.questions = ''
 
@@ -294,16 +335,21 @@
                         });
                     }
                     if (content.name === 'header_main_screen') {   
-                        content.text =  this.editedContent.headerMainScreen
+                        content.text =  this.editedContent.header_main_screen
                     }
                     if (content.name === 'header_main_content') {   
-                        content.text =  this.editedContent.headerMainContent
+                        content.text =  this.editedContent.header_main_content
                     }
                     if (content.name === 'questions') {   
                         content.text =  this.editedContent.questions
                     }
-                })
-                
+                    if (content.name === 'contact_page') {   
+                        content.text =  this.editedContent.contact_page
+                    }
+                    if (content.name === 'header_areas') {   
+                        content.text =  this.editedContent.header_areas
+                    }
+                })                
 
                 axios.post(route("admin-language-update"), editedLanguage)
                         .then(response => {
@@ -314,7 +360,7 @@
                         .catch(function (error) {
                             console.log(error)
                         })
-            },
+            },            
 
             delRealtyInDb(contentId) {
                 axios.delete(route("admin-content-delete", contentId))
@@ -329,11 +375,14 @@
             editItem(item) {
                 this.editedIndex = this.languages.indexOf(item)
                 this.editedItem = Object.assign({}, item)
-                //console.log(this.editedItem.contents[0].name)
+                
                 this.getAreas()
                 this.getHeaderMainScreen()
                 this.getHeaderMainContent()
+                this.getHeaderAreas()
                 this.getQuestions()
+                this.getContactPage()
+                
                 this.dialog = true
             },
             deleteItem(item) {

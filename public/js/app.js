@@ -3316,24 +3316,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['locale', 'headerMainScreen', 'headerMainContent', 'headerAreas', 'phoneMain'],
+  mounted: function mounted() {
+    console.log(JSON.parse(this.areas));
+  },
+  props: ['locale', 'headerMainScreen', 'headerMainContent', 'phoneMain', 'headerAreas', 'areas'],
   components: {
     MainScreen: _MainScreen_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -12834,7 +12822,7 @@ exports.push([module.i, "\n.contacts-wrapper {\n    font-size: 18px;\n}\n", ""])
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* В файл app.js добавлена функция vh() */\n.v-content {\n        font-size: 18px;\n}\n.table-products-layout .table {\n        font-size: 16px;\n        width: 100%;\n        max-width: 100%;\n        border: 1px solid #ddd;\n        border-collapse: collapse;\n}\n.table-products-layout table tr {\n        border: 1px solid #ddd;\n        text-align: left;\n}\n.table-products-layout table td {\n        padding: 10px;\n}\n.table-products-layout table th {\n        background: white;\n        padding: 10px;\n        color: blue;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* В файл app.js добавлена функция vh() */\n.v-content {\n        font-size: 18px;\n}\n.table-products-layout .table {\n        font-size: 16px;\n        width: 100%;\n        max-width: 100%;\n        border: 1px solid #ddd;\n        border-collapse: collapse;\n}\n.table-products-layout table tr {\n        border: 1px solid #ddd;\n        text-align: left;\n}\n.table-products-layout table td {\n        padding: 10px;\n}\n.table-products-layout table th {\n        background: white;\n        padding: 10px;\n        color: blue;\n}\n", ""]);
 
 
 
@@ -44119,7 +44107,7 @@ var render = function() {
               position: "center right",
               contain: "",
               height: "24px",
-              src: "/images/" + _vm.locale + ".png"
+              src: "/images/flags/" + _vm.locale + ".png"
             }
           })
         ],
@@ -44140,7 +44128,7 @@ var render = function() {
                     attrs: {
                       contain: "",
                       height: "24px",
-                      src: "/images/" + item.name + ".png"
+                      src: "/images/flags/" + item.name + ".png"
                     }
                   })
                 ],
@@ -44946,7 +44934,33 @@ var render = function() {
         _c("h2", { staticClass: "text-xs-center mt-2 font-weight-bold" }, [
           _vm._v(_vm._s(_vm.headerMainContent))
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "v-container",
+        { attrs: { "grid-list-xl": "" } },
+        [
+          _c("h3", { staticClass: "text-xs-center mt-2 mb-4 blue--text" }, [
+            _vm._v(_vm._s(_vm.headerAreas))
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            _vm._b({}, "v-layout", _vm.columnOrRow, false),
+            _vm._l(JSON.parse(_vm.areas), function(area, i) {
+              return _c("v-flex", { key: i }, [
+                _c("h4", { staticClass: "mb-2" }, [
+                  _vm._v(_vm._s(area.header))
+                ]),
+                _vm._v(" "),
+                _c("div", { domProps: { innerHTML: _vm._s(area.text) } })
+              ])
+            }),
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )
