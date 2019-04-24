@@ -3,7 +3,9 @@
         <v-container class="mb-2">
             <v-layout row wrap>  
                 <v-flex>
-                    <h1 class="display-1 mt-1 mb-4 text-xs-center">Контакты</h1>  
+                    <h1 class="display-1 mt-1 mb-4 text-xs-center">
+                        {{ trans('text.menu.contact') }}
+                    </h1>  
                 </v-flex>
             </v-layout>
             <hr class="grey lighten-5 mb-4 hidden-sm-and-down">

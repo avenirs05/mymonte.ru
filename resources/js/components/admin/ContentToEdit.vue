@@ -7,9 +7,9 @@
         
         <!-- Модальное окно -->
         <v-dialog v-model="dialog" fullscreen scrollable>
-            <template v-slot:activator="{ on }">
+<!--            <template v-slot:activator="{ on }">
                 <v-btn color="primary" dark class="mb-2" v-on="on" @click="btnAddNewContentClicked">Добавить контент (язык)</v-btn>
-            </template>
+            </template>-->
             
             <v-card>
                 <v-card-text>
@@ -121,8 +121,8 @@
         <template v-slot:items="props">
             <td class="text-xs-left">{{ props.item.name }}</td>
             <td class="justify-center layout px-0">
-            <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
-            <v-icon small @click="deleteItem(props.item)">delete</v-icon>
+                <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
+                <v-icon small @click="deleteItem(props.item)">delete</v-icon>
             </td>
         </template>
         <template v-slot:no-data></template>
@@ -167,7 +167,7 @@
                 areas: [{header:'', text: ''}, {header:'', text: ''}, {header:'', text: ''}],
                 questions: '',
                 contact_page: ''
-            },
+            }
         }),
         computed: {
             langList() {
@@ -178,12 +178,6 @@
                         
             formTitle() {
                 return this.editedIndex === -1 ? 'Новый контент' : 'Редактировать контент'
-            },
-            isEditRealty() {
-                return this.editedIndex !== -1 ? true : false
-            },
-            isNewRealty() {
-                return this.editedIndex === -1 ? true : false
             }
         },
         watch: {
@@ -278,36 +272,19 @@
                             this.loading = false;
                 })
             },
-
-            addRealtyInDb() {
-                this.editedContent.header_main_screen = '';
-
-                let newRealty = this.editedItem
-                this.preventNull(newRealty)               
-
-                axios.post(route("admin-content-add"), formData)
-                     .then(response => {
-                         this.editedItem = Object.assign({}, response.data)
-                         this.languages.push(this.editedItem)
-                         this.formData = new FormData()
-                         this.close()
-                     })
-                     .catch(error => {
-                         console.log(error)
-                     })
-            },
-            
-            btnAddNewContentClicked() {
+           
+            clearEditedContent() {
                 this.editedContent.header_main_screen = ''
                 this.editedContent.header_main_content = ''
+                this.editedContent.header_areas = ''                
                 this.editedContent.areas = [{header:'', text: ''}, {header:'', text: ''}, {header:'', text: ''}]
+                this.editedContent.contact_page = ''
                 this.editedContent.questions = ''
-
             },
 
             updateLanguageInDb() {
                 let editedLanguage = this.editedItem;
-                
+
                 // Формируем данные для ajax-запроса
                 editedLanguage.contents.filter(content => {
                     if (content.name === 'budva_riviera') {                        
@@ -360,17 +337,7 @@
                         .catch(function (error) {
                             console.log(error)
                         })
-            },            
-
-            delRealtyInDb(contentId) {
-                axios.delete(route("admin-content-delete", contentId))
-                        .then(response => {
-                            console.log(response);
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        })
-            },
+            },           
 
             editItem(item) {
                 this.editedIndex = this.languages.indexOf(item)
@@ -385,6 +352,7 @@
                 
                 this.dialog = true
             },
+            
             deleteItem(item) {
                 const index = this.languages.indexOf(item)
                 this.delRealtyInDb(item.id)
@@ -392,6 +360,7 @@
             },
             close() {
                 this.dialog = false
+                this.clearEditedContent()
 
                 setTimeout(() => {
                     this.editedItem = Object.assign({}, this.defaultItem)

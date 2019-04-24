@@ -67,8 +67,8 @@
                                     <!-- Район (языки) -->
                                     <v-flex v-for="(locale,index) in locales" :key="locale.index" xs12>                                        
                                         <v-select 
-                                            :label="`Район — ${locale.text}`" 
-                                            v-model="editedItem[`area_${locale.code}  —— По умолчанию: Будванская ривьера, Budva Riviera и т.д.`]" 
+                                            :label="`Район — ${locale.text} —— По умолчанию: Будванская ривьера, Budva Riviera и т.д.`" 
+                                            v-model="editedItem[`area_${locale.code}`]" 
                                             :items="enums[`area_${locale.code}`]"                                             
                                             :name="`area_${locale.code}`"
                                         ></v-select>                                          
@@ -106,7 +106,7 @@
                                     <!-- Площадь -->
                                     <v-flex xs12>
                                         <v-text-field 
-                                            label="Площадь"
+                                            label="Площадь, метров"
                                             v-model="editedItem.square" 
                                             type="number"  
                                             name="square"
@@ -364,8 +364,8 @@
                     <td class="text-xs-left">{{ props.item.price }}</td>
                     <td class="text-xs-left">{{ props.item.visibility }}</td>
                     <td class="justify-center layout px-0">
-                    <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
-                    <v-icon small @click="deleteItem(props.item)">delete</v-icon>
+                        <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
+                        <v-icon small @click="deleteItem(props.item)">delete</v-icon>
                     </td>
                 </template>
                 <template v-slot:no-data></template>

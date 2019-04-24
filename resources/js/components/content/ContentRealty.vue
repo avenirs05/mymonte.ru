@@ -30,7 +30,8 @@
             </v-layout> 
             <v-layout v-if="JSON.parse(realty).feedback != '&nbsp;'" row>
                 <v-flex>  
-                    <h2>{{ trans('text.menu.feedbacks') }}</h2>
+                    <h2 class="mb-1">{{ trans('text.menu.feedbacks') }}</h2>
+                    <hr class="mb-4">
                     <div v-html="JSON.parse(realty).feedback"></div>
                 </v-flex>               
             </v-layout>         
@@ -48,7 +49,7 @@
     
     export default {
         mounted() { 
-            console.log(JSON.parse(this.realty).feedback) 
+            //console.log(JSON.parse(this.realty).feedback) 
         },   
         props: [
             'locale',

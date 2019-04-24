@@ -3257,6 +3257,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
   props: ['contact'],
@@ -3309,19 +3311,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log(JSON.parse(this.areas));
+  mounted: function mounted() {//console.log(JSON.parse(this.areas))
   },
-  props: ['locale', 'headerMainScreen', 'headerMainContent', 'phoneMain', 'headerAreas', 'areas'],
+  props: ['locale', 'headerMainScreen', 'headerMainContent', 'phoneMain', 'headerAreas', 'areas', 'questions'],
   components: {
     MainScreen: _MainScreen_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -3629,11 +3623,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log(JSON.parse(this.realty).feedback);
+  mounted: function mounted() {//console.log(JSON.parse(this.realty).feedback) 
   },
   props: ['locale', 'realty'],
   components: {
@@ -12822,7 +12816,7 @@ exports.push([module.i, "\n.contacts-wrapper {\n    font-size: 18px;\n}\n", ""])
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* В файл app.js добавлена функция vh() */\n.v-content {\n        font-size: 18px;\n}\n.table-products-layout .table {\n        font-size: 16px;\n        width: 100%;\n        max-width: 100%;\n        border: 1px solid #ddd;\n        border-collapse: collapse;\n}\n.table-products-layout table tr {\n        border: 1px solid #ddd;\n        text-align: left;\n}\n.table-products-layout table td {\n        padding: 10px;\n}\n.table-products-layout table th {\n        background: white;\n        padding: 10px;\n        color: blue;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* В файл app.js добавлена функция vh() */\n.v-content {\n        font-size: 18px;\n}\n.table-products-layout .table {\n        font-size: 16px;\n        width: 100%;\n        max-width: 100%;\n        border: 1px solid #ddd;\n        border-collapse: collapse;\n}\n.table-products-layout table tr {\n        border: 1px solid #ddd;\n        text-align: left;\n}\n.table-products-layout table td {\n        padding: 10px;\n}\n.table-products-layout table th {\n        background: white;\n        padding: 10px;\n        color: blue;\n}\n", ""]);
 
 
 
@@ -44881,7 +44875,13 @@ var render = function() {
                 _c(
                   "h1",
                   { staticClass: "display-1 mt-1 mb-4 text-xs-center" },
-                  [_vm._v("Контакты")]
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.trans("text.menu.contact")) +
+                        "\n                "
+                    )
+                  ]
                 )
               ])
             ],
@@ -44956,6 +44956,20 @@ var render = function() {
                 _c("div", { domProps: { innerHTML: _vm._s(area.text) } })
               ])
             }),
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-container",
+        { attrs: { "grid-list-xl": "", column: "" } },
+        [
+          _c(
+            "v-layout",
+            { attrs: { column: "" } },
+            [_c("v-flex", { domProps: { innerHTML: _vm._s(_vm.questions) } })],
             1
           )
         ],
@@ -45566,9 +45580,11 @@ var render = function() {
                 { attrs: { row: "" } },
                 [
                   _c("v-flex", [
-                    _c("h2", [
+                    _c("h2", { staticClass: "mb-1" }, [
                       _vm._v(_vm._s(_vm.trans("text.menu.feedbacks")))
                     ]),
+                    _vm._v(" "),
+                    _c("hr", { staticClass: "mb-4" }),
                     _vm._v(" "),
                     _c("div", {
                       domProps: {

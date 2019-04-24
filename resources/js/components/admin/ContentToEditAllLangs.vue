@@ -45,7 +45,7 @@
             load() {
                 axios.get(route("admin-parameters-index"))
                         .then(response => {   
-                            this.editedAllLangs.phone_main = response.data.phone_main.value                                                 
+                            this.editedAllLangs.phone_main = response.data.phone_main.value                              
                         }).finally(() => {
                             this.loading = false;
                 })
@@ -56,7 +56,7 @@
                     .then(response => {
                         console.log(response)
                         this.editedAllLangs.phone_main = response.data.phone_main;
-                        //alert('Данные обновлены')
+                        alert('Данные обновлены')
                     })
                     .catch(function (error) {
                         console.log(error)

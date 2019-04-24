@@ -2014,12 +2014,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     formTitle: function formTitle() {
       return this.editedIndex === -1 ? 'Новый контент' : 'Редактировать контент';
-    },
-    isEditRealty: function isEditRealty() {
-      return this.editedIndex !== -1 ? true : false;
-    },
-    isNewRealty: function isNewRealty() {
-      return this.editedIndex === -1 ? true : false;
     }
   },
   watch: {
@@ -2109,27 +2103,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.loading = false;
       });
     },
-    addRealtyInDb: function addRealtyInDb() {
-      var _this2 = this;
-
-      this.editedContent.header_main_screen = '';
-      var newRealty = this.editedItem;
-      this.preventNull(newRealty);
-      axios.post(route("admin-content-add"), formData).then(function (response) {
-        _this2.editedItem = Object.assign({}, response.data);
-
-        _this2.languages.push(_this2.editedItem);
-
-        _this2.formData = new FormData();
-
-        _this2.close();
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-    btnAddNewContentClicked: function btnAddNewContentClicked() {
+    clearEditedContent: function clearEditedContent() {
       this.editedContent.header_main_screen = '';
       this.editedContent.header_main_content = '';
+      this.editedContent.header_areas = '';
       this.editedContent.areas = [{
         header: '',
         text: ''
@@ -2140,16 +2117,17 @@ __webpack_require__.r(__webpack_exports__);
         header: '',
         text: ''
       }];
+      this.editedContent.contact_page = '';
       this.editedContent.questions = '';
     },
     updateLanguageInDb: function updateLanguageInDb() {
-      var _this3 = this;
+      var _this2 = this;
 
       var editedLanguage = this.editedItem; // Формируем данные для ajax-запроса
 
       editedLanguage.contents.filter(function (content) {
         if (content.name === 'budva_riviera') {
-          _this3.editedContent.areas.map(function (area) {
+          _this2.editedContent.areas.map(function (area) {
             if (area.name === 'budva_riviera') {
               content.text = area.text;
               content.header = area.header;
@@ -2158,7 +2136,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         if (content.name === 'bar_riviera') {
-          _this3.editedContent.areas.map(function (area) {
+          _this2.editedContent.areas.map(function (area) {
             if (area.name === 'bar_riviera') {
               content.text = area.text;
               content.header = area.header;
@@ -2167,7 +2145,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         if (content.name === 'boka_kotor_bay') {
-          _this3.editedContent.areas.map(function (area) {
+          _this2.editedContent.areas.map(function (area) {
             if (area.name === 'boka_kotor_bay') {
               content.text = area.text;
               content.header = area.header;
@@ -2176,37 +2154,30 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         if (content.name === 'header_main_screen') {
-          content.text = _this3.editedContent.header_main_screen;
+          content.text = _this2.editedContent.header_main_screen;
         }
 
         if (content.name === 'header_main_content') {
-          content.text = _this3.editedContent.header_main_content;
+          content.text = _this2.editedContent.header_main_content;
         }
 
         if (content.name === 'questions') {
-          content.text = _this3.editedContent.questions;
+          content.text = _this2.editedContent.questions;
         }
 
         if (content.name === 'contact_page') {
-          content.text = _this3.editedContent.contact_page;
+          content.text = _this2.editedContent.contact_page;
         }
 
         if (content.name === 'header_areas') {
-          content.text = _this3.editedContent.header_areas;
+          content.text = _this2.editedContent.header_areas;
         }
       });
       axios.post(route("admin-language-update"), editedLanguage).then(function (response) {
         console.log(response);
-        _this3.editedItem = Object.assign(_this3.languages[_this3.editedIndex], response.data);
+        _this2.editedItem = Object.assign(_this2.languages[_this2.editedIndex], response.data);
 
-        _this3.close();
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-    delRealtyInDb: function delRealtyInDb(contentId) {
-      axios.delete(route("admin-content-delete", contentId)).then(function (response) {
-        console.log(response);
+        _this2.close();
       }).catch(function (error) {
         console.log(error);
       });
@@ -2228,12 +2199,13 @@ __webpack_require__.r(__webpack_exports__);
       confirm('Вы уверены, что хотите удалить этот объект?') && this.languages.splice(index, 1);
     },
     close: function close() {
-      var _this4 = this;
+      var _this3 = this;
 
       this.dialog = false;
+      this.clearEditedContent();
       setTimeout(function () {
-        _this4.editedItem = Object.assign({}, _this4.defaultItem);
-        _this4.editedIndex = -1;
+        _this3.editedItem = Object.assign({}, _this3.defaultItem);
+        _this3.editedIndex = -1;
       }, 10);
     },
     save: function save() {
@@ -2310,7 +2282,8 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post(route("admin-parameters-update"), this.editedAllLangs).then(function (response) {
         console.log(response);
-        _this2.editedAllLangs.phone_main = response.data.phone_main; //alert('Данные обновлены')
+        _this2.editedAllLangs.phone_main = response.data.phone_main;
+        alert('Данные обновлены');
       }).catch(function (error) {
         console.log(error);
       });
@@ -31968,28 +31941,6 @@ var render = function() {
               "v-dialog",
               {
                 attrs: { fullscreen: "", scrollable: "" },
-                scopedSlots: _vm._u([
-                  {
-                    key: "activator",
-                    fn: function(ref) {
-                      var on = ref.on
-                      return [
-                        _c(
-                          "v-btn",
-                          _vm._g(
-                            {
-                              staticClass: "mb-2",
-                              attrs: { color: "primary", dark: "" },
-                              on: { click: _vm.btnAddNewContentClicked }
-                            },
-                            on
-                          ),
-                          [_vm._v("Добавить контент (язык)")]
-                        )
-                      ]
-                    }
-                  }
-                ]),
                 model: {
                   value: _vm.dialog,
                   callback: function($$v) {
@@ -31999,7 +31950,6 @@ var render = function() {
                 }
               },
               [
-                _vm._v(" "),
                 _c(
                   "v-card",
                   [
@@ -32689,7 +32639,10 @@ var render = function() {
                                     [
                                       _c("v-select", {
                                         attrs: {
-                                          label: "Район — " + locale.text,
+                                          label:
+                                            "Район — " +
+                                            locale.text +
+                                            " —— По умолчанию: Будванская ривьера, Budva Riviera и т.д.",
                                           items:
                                             _vm.enums["area_" + locale.code],
                                           name: "area_" + locale.code
@@ -32697,21 +32650,17 @@ var render = function() {
                                         model: {
                                           value:
                                             _vm.editedItem[
-                                              "area_" +
-                                                locale.code +
-                                                "  —— По умолчанию: Будванская ривьера, Budva Riviera и т.д."
+                                              "area_" + locale.code
                                             ],
                                           callback: function($$v) {
                                             _vm.$set(
                                               _vm.editedItem,
-                                              "area_" +
-                                                locale.code +
-                                                "  —— По умолчанию: Будванская ривьера, Budva Riviera и т.д.",
+                                              "area_" + locale.code,
                                               $$v
                                             )
                                           },
                                           expression:
-                                            "editedItem[`area_${locale.code}  —— По умолчанию: Будванская ривьера, Budva Riviera и т.д.`]"
+                                            "editedItem[`area_${locale.code}`]"
                                         }
                                       })
                                     ],
@@ -32822,7 +32771,7 @@ var render = function() {
                                   [
                                     _c("v-text-field", {
                                       attrs: {
-                                        label: "Площадь",
+                                        label: "Площадь, метров",
                                         type: "number",
                                         name: "square"
                                       },

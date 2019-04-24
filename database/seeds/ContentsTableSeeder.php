@@ -171,5 +171,79 @@ class ContentsTableSeeder extends Seeder
 						   <p><b>E-mail:</b> arenda@mybudva.ru</p>'
 				]
 		);
+			
+				
+		Content::create(['language_id' => 3, 'type' => 'header_main_screen', 'name' => 'header_main_screen', 'header' => '', 'text' => 'Аренда вилл и апартаментов в Черногории без посредников']);
+		Content::create(['language_id' => 3, 'type' => 'header_main_content', 'name' => 'header_main_content', 'header' => '', 'text' => 'Отдых в Черногории в 2019 году. Часто задаваемые вопросы.']);
+		Content::create(['language_id' => 3, 'type' => 'areas', 'name' => 'budva_riviera', 'header' => 'Будванская ривьера', 'text' => 'Текст про Будванская ривьера']);
+		Content::create(['language_id' => 3, 'type' => 'areas', 'name' => 'boka_kotor_bay', 'header' => 'Бока-Которский залив', 'text' => 'Текст про Бока-Которский']);
+		Content::create(['language_id' => 3, 'type' => 'header_areas', 'name' => 'header_areas', 'header' => '', 'text' => 'КУРОРТЫ И ГОРОДА В ЧЕРНОГОРИИ: КУДА ЛУЧШЕ ПОЕХАТЬ?']);
+		Content::create(['language_id' => 3, 'type' => 'areas', 'name' => 'bar_riviera', 'header' => 'Барская ривьера', 'text' => 'Текст про Барская ривьера']);
+		Content::create(['language_id' => 3, 'type' => 'questions', 'name' => 'questions', 'header' => '', 'text' => 'Вопросы и ответы']);
+		Content::create(['language_id' => 3, 'type' => 'contact_page', 'name' => 'contact_page', 'header' => 'Контакты', 'text' => 'Text contacts']);
+		
+		Content::create(['language_id' => 4, 'type' => 'header_main_screen', 'name' => 'header_main_screen', 'header' => '', 'text' => 'Аренда вилл и апартаментов в Черногории без посредников']);
+		Content::create(['language_id' => 4, 'type' => 'header_main_content', 'name' => 'header_main_content', 'header' => '', 'text' => 'Отдых в Черногории в 2019 году. Часто задаваемые вопросы.']);
+		Content::create(['language_id' => 4, 'type' => 'areas', 'name' => 'budva_riviera', 'header' => 'Будванская ривьера', 'text' => 'Текст про Будванская ривьера']);
+		Content::create(['language_id' => 4, 'type' => 'areas', 'name' => 'boka_kotor_bay', 'header' => 'Бока-Которский залив', 'text' => 'Текст про Бока-Которский']);
+		Content::create(['language_id' => 4, 'type' => 'header_areas', 'name' => 'header_areas', 'header' => '', 'text' => 'КУРОРТЫ И ГОРОДА В ЧЕРНОГОРИИ: КУДА ЛУЧШЕ ПОЕХАТЬ?']);
+		Content::create(['language_id' => 4, 'type' => 'areas', 'name' => 'bar_riviera', 'header' => 'Барская ривьера', 'text' => 'Текст про Барская ривьера']);
+		Content::create(['language_id' => 4, 'type' => 'questions', 'name' => 'questions', 'header' => '', 'text' => 'Вопросы и ответы']);
+		Content::create(['language_id' => 4, 'type' => 'contact_page', 'name' => 'contact_page', 'header' => 'Контакты', 'text' => 'Text contacts']);
+	
+		Content::create(['language_id' => 5, 'type' => 'header_main_screen', 'name' => 'header_main_screen', 'header' => '', 'text' => 'Аренда вилл и апартаментов в Черногории без посредников']);
+		Content::create(['language_id' => 5, 'type' => 'header_main_content', 'name' => 'header_main_content', 'header' => '', 'text' => 'Отдых в Черногории в 2019 году. Часто задаваемые вопросы.']);
+		Content::create(['language_id' => 5, 'type' => 'areas', 'name' => 'budva_riviera', 'header' => 'Будванская ривьера', 'text' => 'Текст про Будванская ривьера']);
+		Content::create(['language_id' => 5, 'type' => 'areas', 'name' => 'boka_kotor_bay', 'header' => 'Бока-Которский залив', 'text' => 'Текст про Бока-Которский']);
+		Content::create(['language_id' => 5, 'type' => 'header_areas', 'name' => 'header_areas', 'header' => '', 'text' => 'КУРОРТЫ И ГОРОДА В ЧЕРНОГОРИИ: КУДА ЛУЧШЕ ПОЕХАТЬ?']);
+		Content::create(['language_id' => 5, 'type' => 'areas', 'name' => 'bar_riviera', 'header' => 'Барская ривьера', 'text' => 'Текст про Барская ривьера']);
+		Content::create(['language_id' => 5, 'type' => 'questions', 'name' => 'questions', 'header' => '', 'text' => 'Вопросы и ответы']);
+		Content::create(['language_id' => 5, 'type' => 'contact_page', 'name' => 'contact_page', 'header' => 'Контакты', 'text' => 'Text contacts']);
+	
+		Content::create(['language_id' => 6, 'type' => 'header_main_screen', 'name' => 'header_main_screen', 'header' => '', 'text' => 'Аренда вилл и апартаментов в Черногории без посредников']);
+		Content::create(['language_id' => 6, 'type' => 'header_main_content', 'name' => 'header_main_content', 'header' => '', 'text' => 'Отдых в Черногории в 2019 году. Часто задаваемые вопросы.']);
+		Content::create(['language_id' => 6, 'type' => 'areas', 'name' => 'budva_riviera', 'header' => 'Будванская ривьера', 'text' => 'Текст про Будванская ривьера']);
+		Content::create(['language_id' => 6, 'type' => 'areas', 'name' => 'boka_kotor_bay', 'header' => 'Бока-Которский залив', 'text' => 'Текст про Бока-Которский']);
+		Content::create(['language_id' => 6, 'type' => 'header_areas', 'name' => 'header_areas', 'header' => '', 'text' => 'КУРОРТЫ И ГОРОДА В ЧЕРНОГОРИИ: КУДА ЛУЧШЕ ПОЕХАТЬ?']);
+		Content::create(['language_id' => 6, 'type' => 'areas', 'name' => 'bar_riviera', 'header' => 'Барская ривьера', 'text' => 'Текст про Барская ривьера']);
+		Content::create(['language_id' => 6, 'type' => 'questions', 'name' => 'questions', 'header' => '', 'text' => 'Вопросы и ответы']);
+		Content::create(['language_id' => 6, 'type' => 'contact_page', 'name' => 'contact_page', 'header' => 'Контакты', 'text' => 'Text contacts']);
+	
+		Content::create(['language_id' => 7, 'type' => 'header_main_screen', 'name' => 'header_main_screen', 'header' => '', 'text' => 'Аренда вилл и апартаментов в Черногории без посредников']);
+		Content::create(['language_id' => 7, 'type' => 'header_main_content', 'name' => 'header_main_content', 'header' => '', 'text' => 'Отдых в Черногории в 2019 году. Часто задаваемые вопросы.']);
+		Content::create(['language_id' => 7, 'type' => 'areas', 'name' => 'budva_riviera', 'header' => 'Будванская ривьера', 'text' => 'Текст про Будванская ривьера']);
+		Content::create(['language_id' => 7, 'type' => 'areas', 'name' => 'boka_kotor_bay', 'header' => 'Бока-Которский залив', 'text' => 'Текст про Бока-Которский']);
+		Content::create(['language_id' => 7, 'type' => 'header_areas', 'name' => 'header_areas', 'header' => '', 'text' => 'КУРОРТЫ И ГОРОДА В ЧЕРНОГОРИИ: КУДА ЛУЧШЕ ПОЕХАТЬ?']);
+		Content::create(['language_id' => 7, 'type' => 'areas', 'name' => 'bar_riviera', 'header' => 'Барская ривьера', 'text' => 'Текст про Барская ривьера']);
+		Content::create(['language_id' => 7, 'type' => 'questions', 'name' => 'questions', 'header' => '', 'text' => 'Вопросы и ответы']);
+		Content::create(['language_id' => 7, 'type' => 'contact_page', 'name' => 'contact_page', 'header' => 'Контакты', 'text' => 'Text contacts']);
+	
+		Content::create(['language_id' => 8, 'type' => 'header_main_screen', 'name' => 'header_main_screen', 'header' => '', 'text' => 'Аренда вилл и апартаментов в Черногории без посредников']);
+		Content::create(['language_id' => 8, 'type' => 'header_main_content', 'name' => 'header_main_content', 'header' => '', 'text' => 'Отдых в Черногории в 2019 году. Часто задаваемые вопросы.']);
+		Content::create(['language_id' => 8, 'type' => 'areas', 'name' => 'budva_riviera', 'header' => 'Будванская ривьера', 'text' => 'Текст про Будванская ривьера']);
+		Content::create(['language_id' => 8, 'type' => 'areas', 'name' => 'boka_kotor_bay', 'header' => 'Бока-Которский залив', 'text' => 'Текст про Бока-Которский']);
+		Content::create(['language_id' => 8, 'type' => 'header_areas', 'name' => 'header_areas', 'header' => '', 'text' => 'КУРОРТЫ И ГОРОДА В ЧЕРНОГОРИИ: КУДА ЛУЧШЕ ПОЕХАТЬ?']);
+		Content::create(['language_id' => 8, 'type' => 'areas', 'name' => 'bar_riviera', 'header' => 'Барская ривьера', 'text' => 'Текст про Барская ривьера']);
+		Content::create(['language_id' => 8, 'type' => 'questions', 'name' => 'questions', 'header' => '', 'text' => 'Вопросы и ответы']);
+		Content::create(['language_id' => 8, 'type' => 'contact_page', 'name' => 'contact_page', 'header' => 'Контакты', 'text' => 'Text contacts']);
+	
+		Content::create(['language_id' => 9, 'type' => 'header_main_screen', 'name' => 'header_main_screen', 'header' => '', 'text' => 'Аренда вилл и апартаментов в Черногории без посредников']);
+		Content::create(['language_id' => 9, 'type' => 'header_main_content', 'name' => 'header_main_content', 'header' => '', 'text' => 'Отдых в Черногории в 2019 году. Часто задаваемые вопросы.']);
+		Content::create(['language_id' => 9, 'type' => 'areas', 'name' => 'budva_riviera', 'header' => 'Будванская ривьера', 'text' => 'Текст про Будванская ривьера']);
+		Content::create(['language_id' => 9, 'type' => 'areas', 'name' => 'boka_kotor_bay', 'header' => 'Бока-Которский залив', 'text' => 'Текст про Бока-Которский']);
+		Content::create(['language_id' => 9, 'type' => 'header_areas', 'name' => 'header_areas', 'header' => '', 'text' => 'КУРОРТЫ И ГОРОДА В ЧЕРНОГОРИИ: КУДА ЛУЧШЕ ПОЕХАТЬ?']);
+		Content::create(['language_id' => 9, 'type' => 'areas', 'name' => 'bar_riviera', 'header' => 'Барская ривьера', 'text' => 'Текст про Барская ривьера']);
+		Content::create(['language_id' => 9, 'type' => 'questions', 'name' => 'questions', 'header' => '', 'text' => 'Вопросы и ответы']);
+		Content::create(['language_id' => 9, 'type' => 'contact_page', 'name' => 'contact_page', 'header' => 'Контакты', 'text' => 'Text contacts']);
+	
+		Content::create(['language_id' => 10, 'type' => 'header_main_screen', 'name' => 'header_main_screen', 'header' => '', 'text' => 'Аренда вилл и апартаментов в Черногории без посредников']);
+		Content::create(['language_id' => 10, 'type' => 'header_main_content', 'name' => 'header_main_content', 'header' => '', 'text' => 'Отдых в Черногории в 2019 году. Часто задаваемые вопросы.']);
+		Content::create(['language_id' => 10, 'type' => 'areas', 'name' => 'budva_riviera', 'header' => 'Будванская ривьера', 'text' => 'Текст про Будванская ривьера']);
+		Content::create(['language_id' => 10, 'type' => 'areas', 'name' => 'boka_kotor_bay', 'header' => 'Бока-Которский залив', 'text' => 'Текст про Бока-Которский']);
+		Content::create(['language_id' => 10, 'type' => 'header_areas', 'name' => 'header_areas', 'header' => '', 'text' => 'КУРОРТЫ И ГОРОДА В ЧЕРНОГОРИИ: КУДА ЛУЧШЕ ПОЕХАТЬ?']);
+		Content::create(['language_id' => 10, 'type' => 'areas', 'name' => 'bar_riviera', 'header' => 'Барская ривьера', 'text' => 'Текст про Барская ривьера']);
+		Content::create(['language_id' => 10, 'type' => 'questions', 'name' => 'questions', 'header' => '', 'text' => 'Вопросы и ответы']);
+		Content::create(['language_id' => 10, 'type' => 'contact_page', 'name' => 'contact_page', 'header' => 'Контакты', 'text' => 'Text contacts']);
 	}
+
 }

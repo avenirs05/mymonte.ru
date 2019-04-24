@@ -37,6 +37,10 @@ class IndexController extends Controller
 				->get()
 				->toJson();
 		
+		$questions = Content::where('language_id', $language->id)
+							->where('type', 'questions')
+							->first();
+
 		//dd($areas);
 
 		$data = [
@@ -46,7 +50,8 @@ class IndexController extends Controller
 			'header_main_screen'   => $header_main_screen->text,	
 			'header_main_content'  => $header_main_content->text,
 			'header_areas'         => $header_areas->text,
-			'areas'				   => $areas
+			'areas'				   => $areas,
+			'questions'			   => $questions->text,
 		];		
 		
 		//dd($data);
