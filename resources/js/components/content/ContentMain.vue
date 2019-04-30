@@ -63,7 +63,7 @@
 </script>
 
 
-<style>
+<style scoped>
 /* В файл app.js добавлена функция vh() */
     .v-content {
         font-size: 18px;
