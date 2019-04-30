@@ -63,7 +63,7 @@
 </script>
 
 
-<style scoped>
+<style>
 /* В файл app.js добавлена функция vh() */
     .v-content {
         font-size: 18px;
@@ -87,7 +87,6 @@
     }
 
     table th {
-        background: white;
         padding: 10px;
         color: blue;
     }
