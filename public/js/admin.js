@@ -75127,7 +75127,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/mybudva.ru.loc/resources/js/admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! /var/www/mymonte.loc/resources/js/admin.js */"./resources/js/admin.js");
 
 
 /***/ })

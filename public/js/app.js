@@ -87593,9 +87593,9 @@ function vh() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/mybudva.ru.loc/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/mybudva.ru.loc/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /var/www/mybudva.ru.loc/resources/styl/app.styl */"./resources/styl/app.styl");
+__webpack_require__(/*! /var/www/mymonte.loc/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/mymonte.loc/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /var/www/mymonte.loc/resources/styl/app.styl */"./resources/styl/app.styl");
 
 
 /***/ })
