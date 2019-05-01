@@ -12,7 +12,13 @@ return [
 		'villas'      => 'Villas',
 		'apartments'  => 'Apartments',
 		'feedbacks'   => 'Feedback',
-		'contact'     => 'Contacts'		
+		'contact'     => 'Contacts',
+		'objects' => [
+			'title'			  => 'Objects',
+			'less_than_100'   => 'Less than 100 000 €',
+			'from_100_to_150' => 'From 100 000 to 150 000 €',
+			'more_than_150'   => 'More than 150 000 €',
+		]
 	],
 	
 	'realty' => [

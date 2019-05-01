@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require("@babel/polyfill");
+//require("@babel/polyfill");
 require('./bootstrap');
 
 import { vh } from "./script.js";

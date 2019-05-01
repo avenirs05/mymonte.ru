@@ -11,17 +11,49 @@
         <v-spacer></v-spacer>            
 
         <v-toolbar-items>
-            <v-btn                 
+            <v-btn   
                 class="hidden-sm-and-down btn-menu-desktop"    
-                :class="activeClass(item.href)" 
+                :class="activeClass('/')" 
                 active-class="v-btn--active yellow--text"
-                v-for="item in menu"
-                :key="item.title"
                 flat                                      
-                :href="item.href"                       
+                href="/"                       
                 >
-                {{ item.title }}
+                {{ trans('text.menu.home') }}
             </v-btn> 
+            
+            <v-menu dark offset-y left bottom class="language-menu" attach="#toolbar">
+                <v-btn 
+                    flat slot="activator" 
+                    class="hidden-sm-and-down btn-menu-desktop"    
+                    :class="activeClass('/villas')" 
+                    flat
+                    >
+                    {{ trans('text.menu.objects.title') }}
+                </v-btn>
+
+                <v-list>
+                    <v-list-tile
+                        v-for="(realty, index) in realties"
+                        :key="index"
+                        :href="realty.href"
+                        >
+                        <v-list-tile-content>
+                            <v-list-tile-title text-xs-right>{{ realty.title }}</v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                </v-list>
+            </v-menu>
+            
+            <v-btn   
+                class="hidden-sm-and-down btn-menu-desktop"    
+                :class="activeClass('/contact')" 
+                active-class="v-btn--active yellow--text"
+                flat                                      
+                href="/contact"                       
+                >
+                {{ trans('text.menu.contact') }}
+            </v-btn>
+            
             <lang :locale="locale"></lang>
         </v-toolbar-items>
         
@@ -46,12 +78,16 @@
                 { title: trans('text.menu.apartments'), href: '/apartments' },
                 { title: trans('text.menu.contact'), href: '/contact' }
             ],
+            realties: [ 
+                { title: trans('text.menu.objects.less_than_100'), href: '/' },
+                { title: trans('text.menu.objects.from_100_to_150'), href: '/' },
+                { title: trans('text.menu.objects.more_than_150'), href: '/' },
+            ],
             toggle_exclusive: 2,
             active_class_name: 'v-btn--active yellow--text'
         }),
         methods: {
             /**
-             * Подсветка нужной кнопки меню              
              * @param {type} href
              * @returns {default.methods.active_class_name|String}
              */
@@ -106,5 +142,8 @@
     .logo:hover {
         background-color: black;
     }    
+    .v-list__tile__title {
+        text-align: right;
+    }
 </style>
 
