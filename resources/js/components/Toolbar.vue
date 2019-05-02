@@ -6,11 +6,13 @@
             <img src="/images/logo.png" :height="logoHeight">
         </v-toolbar-side-icon> 
         
+        <v-toolbar-title>MyMonte</v-toolbar-title>
+        
         <connect-desk :phone-main="phoneMain"></connect-desk>
         
         <v-spacer></v-spacer>            
 
-        <v-toolbar-items>
+        <v-toolbar-items :style="{ marginRight: '-30px' }">
             <v-btn   
                 class="hidden-sm-and-down btn-menu-desktop"    
                 :class="activeClass('/')" 
@@ -19,8 +21,7 @@
                 href="/"                       
                 >
                 {{ trans('text.menu.home') }}
-            </v-btn> 
-            
+            </v-btn>            
             <v-menu dark offset-y left bottom class="language-menu" attach="#toolbar">
                 <v-btn 
                     flat slot="activator" 
@@ -30,7 +31,6 @@
                     >
                     {{ trans('text.menu.objects.title') }}
                 </v-btn>
-
                 <v-list>
                     <v-list-tile
                         v-for="(realty, index) in realties"
@@ -42,8 +42,7 @@
                         </v-list-tile-content>
                     </v-list-tile>
                 </v-list>
-            </v-menu>
-            
+            </v-menu>            
             <v-btn   
                 class="hidden-sm-and-down btn-menu-desktop"    
                 :class="activeClass('/contact')" 
@@ -52,8 +51,10 @@
                 href="/contact"                       
                 >
                 {{ trans('text.menu.contact') }}
-            </v-btn>
-            
+            </v-btn>           
+        </v-toolbar-items>
+        
+        <v-toolbar-items>
             <lang :locale="locale"></lang>
         </v-toolbar-items>
         
@@ -72,12 +73,6 @@
         props: ['locale', 'phoneMain'],    
         data: () => ({
             drawer: false,
-            menu: [
-                { title: trans('text.menu.home'), href: '/' },
-                { title: trans('text.menu.villas'), href: '/villas' },
-                { title: trans('text.menu.apartments'), href: '/apartments' },
-                { title: trans('text.menu.contact'), href: '/contact' }
-            ],
             realties: [ 
                 { title: trans('text.menu.objects.less_than_100'), href: '/' },
                 { title: trans('text.menu.objects.from_100_to_150'), href: '/' },

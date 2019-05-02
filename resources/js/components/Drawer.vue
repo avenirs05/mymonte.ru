@@ -7,17 +7,49 @@
         fixed  
         dark
         >
+
         <v-list dense>
             <v-list-tile 
-                v-for="item in menu"
-                :key="item.title"
-                :href="item.href" 
+                href="/" 
                 flat
                 @click="drawer = !drawer"                    
                 >
-                <v-list-tile-content>
-                    <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                </v-list-tile-content>
+                <v-icon>home</v-icon>
+                <v-list-tile-content class="menu-item-mob">
+                    <v-list-tile-title>{{ trans('text.menu.home') }}</v-list-tile-title>
+                </v-list-tile-content>                 
+            </v-list-tile>
+            <v-list-tile 
+                flat
+                disabled                 
+                >
+                <v-icon>account_balance_wallet</v-icon>
+                <v-list-tile-content class="menu-item-mob">
+                    <v-list-tile-title>{{ trans('text.menu.objects.title') }}</v-list-tile-title>
+                </v-list-tile-content> 
+            </v-list-tile>
+            <v-list-tile
+                v-for="realty in realties"
+                :key="realty.title"
+                :href="realty.href" 
+                flat
+                @click="drawer = !drawer"                    
+                >
+                <v-list-tile-content :style="{ marginLeft: '70px' }">
+                    <v-list-tile-title :style="{ fontSize: '14px' }">
+                        {{ realty.title }}
+                    </v-list-tile-title>
+                </v-list-tile-content> 
+            </v-list-tile>
+            <v-list-tile 
+                href="/" 
+                flat
+                @click="drawer = !drawer"                    
+                >
+                <v-icon>account_box</v-icon>
+                <v-list-tile-content class="menu-item-mob">
+                    <v-list-tile-title>{{ trans('text.menu.contact') }}</v-list-tile-title>
+                </v-list-tile-content>                   
             </v-list-tile>
         </v-list>
     </v-navigation-drawer>
@@ -28,14 +60,32 @@
     export default {
         data: () => ({
                 drawer: false,
-                menu: [
-                    { title: trans('text.menu.home'), href: '/' },
-                    { title: trans('text.menu.villas'), href: '/villas' },
-                    { title: trans('text.menu.apartments'), href: '/apartments' },
-                    { title: trans('text.menu.contact'), href: '/contact' }
+                realties: [
+                    { title: trans('text.menu.objects.less_than_100'), href: '/' },
+                    { title: trans('text.menu.objects.from_100_to_150'), href: '/' },
+                    { title: trans('text.menu.objects.more_than_150'), href: '/' },
                 ],
                 toggle_exclusive: 2,
-                active_class_name: 'v-btn--active yellow--text'
+                active_class_name: 'v-btn--active yellow--text',
+                items: [
+                      {
+                        action: 'restaurant',
+                        title: 'Dining',
+                        active: true,
+                        items: [
+                          { title: 'Breakfast & brunch' },
+                          { title: 'New American' },
+                          { title: 'Sushi' }
+                        ]
+                      },
+                      {
+                        action: 'school',
+                        title: 'Education',
+                        items: [
+                          { title: 'List Item' }
+                        ]
+                      }
+                  ]
             }),
         methods: {
             /**
@@ -65,5 +115,8 @@
 <style scoped>
     .v-list__tile__title {
         font-size: 18px;
+    }
+    .menu-item-mob {
+        margin-left: 15px;
     }
 </style>
