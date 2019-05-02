@@ -24,7 +24,6 @@
 
 <style scoped>
     .connect-desk {
-        //padding-left: 24px;
         margin-left: 25px;
     }    
     .material-icons {

@@ -1,7 +1,11 @@
 export function vh() {
-    let el = document.getElementById('main-img');
-
-    if (screen.width >= 960 && el !== null) {
-        document.getElementById('main-img').style.height = '94vh';
-    }  
+    let mainImgDesk = document.getElementById('main-img');
+    let mainImgMob = document.getElementById('main-img-mob');    
+    
+    mainImgDesk.style.height = '94vh';
+    mainImgMob.style.height = '100vh';  
+           
+//    if (screen.width >= 960 && el !== null) {
+//        el.style.height = '94vh';
+//    } 
 }

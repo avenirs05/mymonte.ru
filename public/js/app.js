@@ -1818,6 +1818,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['phoneMain'],
   data: function data() {
@@ -2064,6 +2091,56 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ConnectMob_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ConnectMob.vue */ "./resources/js/components/ConnectMob.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3152,7 +3229,7 @@ exports.push([module.i, "/*!\n* Vuetify v1.5.5\n* Forged by John Leider\n* Relea
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.connect-desk[data-v-0ad35808] {\n    padding-left: 24px;\n    margin-left: 25px;\n}\n.material-icons[data-v-0ad35808] {\n    font-size: 12px;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.connect-desk[data-v-0ad35808] {\n    margin-left: 25px;\n}\n.material-icons[data-v-0ad35808] {\n    font-size: 12px;\n}\n\n\n", ""]);
 
 
 
@@ -3167,7 +3244,7 @@ exports.push([module.i, "\n.connect-desk[data-v-0ad35808] {\n    padding-left: 2
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.connect-mob[data-v-0d7ff761] {\n    display: flex;\n    justify-content: center;\n    margin-bottom: 40px;\n}\n.connect-mob .v-list__tile__title.tel-text[data-v-0d7ff761] {\n    font-family: 'Open Sans Condensed', sans-serif;\n    font-size: 28px;\n}\n.connect-mob .v-list__tile__avatar[data-v-0d7ff761] {\n    min-width: 25px;\n}\n.connect-mob .v-list__tile__avatar .v-avatar[data-v-0d7ff761] {\n    margin-right: 8px;\n}\n", ""]);
+exports.push([module.i, "\n.material-icons[data-v-0d7ff761] {\n        font-size: 14px;\n}\n.messangers .v-list__tile[data-v-0d7ff761] {\n        padding: 0;\n}\n.messangers .v-list__tile__avatar[data-v-0d7ff761] {\n        min-width: 25px;\n}\n.messangers .v-list__tile__avatar .v-avatar[data-v-0d7ff761] {\n        margin-right: 8px;\n}\n/*    .connect-mob {\n        display: flex;\n        justify-content: center;\n    }*/\n\n/*    .connect-mob .v-list__tile__title.tel-text {\n        font-family: 'Open Sans Condensed', sans-serif;\n        font-size: 28px;\n    }*/\n\n/*    .connect-mob .v-list__tile__avatar {\n        min-width: 25px;\n    }\n\n    .connect-mob .v-list__tile__avatar .v-avatar {\n        margin-right: 8px;\n    }*/\n", ""]);
 
 
 
@@ -3212,7 +3289,7 @@ exports.push([module.i, "\n.flag-btn[data-v-436361d9]::before {\n    color: tran
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.header-main-screen[data-v-d26db4a0] {\n    font-family: 'Open Sans Condensed', sans-serif; \n    font-size: 44px;\n    font-weight: 500;\n}\n.btn-get-offer-desk.v-btn.v-btn--large[data-v-d26db4a0] {\n    font-size: 20px;\n    border-radius: 3px;\n    background-color: rgb(51, 153, 51);\n    color: rgb(255, 255, 255);\n    border: medium none;\n    letter-spacing: 1px;  \n    text-transform: none;\n    font-weight: 400;\n}\n.messangers .v-list__tile__avatar[data-v-d26db4a0] {\n    min-width: 25px;\n}\n.messangers .v-list__tile__avatar .v-avatar[data-v-d26db4a0] {\n    margin-right: 8px;\n}\n", ""]);
+exports.push([module.i, "\n.header-main-screen-desk[data-v-d26db4a0] {\n        font-family: 'Open Sans Condensed', sans-serif; \n        font-size: 44px;\n        font-weight: 500;\n}\n.btn-get-offer-desk.v-btn.v-btn--large[data-v-d26db4a0] {\n        font-size: 20px;\n        border-radius: 3px;\n        background-color: rgb(51, 153, 51);\n        color: rgb(255, 255, 255);\n        border: medium none;\n        letter-spacing: 1px;  \n        text-transform: none;\n        font-weight: 400;\n}    \n\n/*    .messangers .v-list__tile__avatar {\n        min-width: 25px;\n    }\n\n    .messangers .v-list__tile__avatar .v-avatar {\n        margin-right: 8px;\n    }*/\n.header-main-screen-mob[data-v-d26db4a0] {\n        font-size: 24px;\n        font-weight: 500;\n}\n.subheader-mob[data-v-d26db4a0] {\n        font-size: 14px;\n}\n", ""]);
 
 
 
@@ -34365,39 +34442,84 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-list-tile",
-    { staticClass: "connect-mob grow" },
+    "div",
+    { staticClass: "connect-mob hidden-md-and-up" },
     [
-      _c(
-        "v-list-tile-avatar",
-        { attrs: { size: "25", color: "grey darken-3" } },
-        [
-          _c("v-img", {
-            staticClass: "elevation-6",
-            attrs: { src: "/images/whatsapp.svg" }
-          })
-        ],
-        1
-      ),
+      _c("div", [
+        _c("i", { staticClass: "material-icons" }, [_vm._v("phone")]),
+        _vm._v("\n        " + _vm._s(_vm.phoneMain) + " \n        "),
+        _c("small", [_vm._v("Украина")])
+      ]),
+      _vm._v(" "),
+      _c("div", {}, [
+        _c("i", { staticClass: "material-icons" }, [_vm._v("phone")]),
+        _vm._v("\n        " + _vm._s(_vm.phoneMain) + " \n        "),
+        _c("small", [_vm._v("Черногория")])
+      ]),
       _vm._v(" "),
       _c(
-        "v-list-tile-avatar",
-        { attrs: { size: "25", color: "grey darken-3" } },
+        "v-list-tile",
+        { staticClass: "messangers mb-5", style: { marginLeft: "-16px" } },
         [
-          _c("v-img", {
-            staticClass: "elevation-6",
-            attrs: { src: "/images/viber.png" }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-list-tile-content",
-        [
-          _c("v-list-tile-title", { staticClass: "tel-text" }, [
-            _vm._v(_vm._s(_vm.phoneMain))
-          ])
+          _c(
+            "v-list-tile-avatar",
+            { attrs: { size: "25", color: "grey darken-3" } },
+            [
+              _c("v-img", {
+                staticClass: "elevation-6",
+                attrs: { src: "/images/telegram.png" }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile-avatar",
+            { attrs: { size: "25", color: "grey darken-3" } },
+            [
+              _c("v-img", {
+                staticClass: "elevation-6",
+                attrs: { src: "/images/whatsapp.svg" }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile-avatar",
+            { attrs: { size: "25", color: "grey darken-3" } },
+            [
+              _c("v-img", {
+                staticClass: "elevation-6",
+                attrs: { src: "/images/viber.png" }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile-avatar",
+            { attrs: { size: "25", color: "grey darken-3" } },
+            [
+              _c("v-img", {
+                staticClass: "elevation-6",
+                attrs: { src: "/images/facebook.png" }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile-avatar",
+            { attrs: { size: "25", color: "grey darken-3" } },
+            [
+              _c("v-img", {
+                staticClass: "elevation-6",
+                attrs: { src: "/images/instagram.png" }
+              })
+            ],
+            1
+          )
         ],
         1
       )
@@ -34726,297 +34848,311 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-img",
-    { attrs: { src: "/images/main.jpg", id: "main-img" } },
+    "div",
     [
       _c(
-        "v-container",
-        { attrs: { "fill-height": "", fluid: "", "grid-list-xl": "" } },
+        "v-img",
+        {
+          staticClass: "hidden-sm-and-down",
+          attrs: { src: "/images/main.jpg", id: "main-img" }
+        },
         [
           _c(
-            "v-layout",
-            {
-              staticClass: "hidden-sm-and-down pb-3",
-              attrs: { row: "", "align-center": "" }
-            },
+            "v-container",
+            { attrs: { fluid: "", "grid-list-xl": "", "fill-height": "" } },
             [
               _c(
-                "v-flex",
+                "v-layout",
+                { staticClass: "pb-3", attrs: { row: "", "align-center": "" } },
                 [
                   _c(
-                    "h1",
-                    { staticClass: "header-main-screen text-xs-center" },
-                    [_vm._v(_vm._s(_vm.headerMainScreen))]
-                  ),
-                  _vm._v(" "),
-                  _c("h4", { staticClass: "text-xs-center" }, [
-                    _vm._v(
-                      "Приобретение недвижимости и управление ей с минимальным участием инвестора"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("h4", { staticClass: "text-xs-center pb-5" }, [
-                    _vm._v(
-                      "Получайте стабильный пассивный доход до 9% годовых в евро!"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-layout",
-                    {
-                      staticClass: "pb-5",
-                      attrs: {
-                        row: "",
-                        "justify-center": "",
-                        "align-center": ""
-                      }
-                    },
+                    "v-flex",
                     [
                       _c(
-                        "v-dialog",
+                        "h1",
                         {
-                          attrs: { persistent: "", "max-width": "600px" },
-                          scopedSlots: _vm._u([
-                            {
-                              key: "activator",
-                              fn: function(ref) {
-                                var on = ref.on
-                                return [
-                                  _c(
-                                    "v-btn",
-                                    _vm._g(
-                                      {
-                                        staticClass: "btn-get-offer-desk",
-                                        attrs: { large: "" }
-                                      },
-                                      on
-                                    ),
-                                    [
-                                      _vm._v(
-                                        "\n                                    Получить персональное предложение\n                                "
-                                      )
-                                    ]
-                                  )
-                                ]
-                              }
-                            }
-                          ]),
-                          model: {
-                            value: _vm.dialog,
-                            callback: function($$v) {
-                              _vm.dialog = $$v
-                            },
-                            expression: "dialog"
+                          staticClass: "header-main-screen-desk text-xs-center"
+                        },
+                        [_vm._v(_vm._s(_vm.headerMainScreen))]
+                      ),
+                      _vm._v(" "),
+                      _c("h4", { staticClass: "text-xs-center" }, [
+                        _vm._v(
+                          "Приобретение недвижимости и управление ей с минимальным участием инвестора"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("h4", { staticClass: "text-xs-center pb-5" }, [
+                        _vm._v(
+                          "Получайте стабильный пассивный доход до 9% годовых в евро!"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-layout",
+                        {
+                          staticClass: "pb-5",
+                          attrs: {
+                            row: "",
+                            "justify-center": "",
+                            "align-center": ""
                           }
                         },
                         [
-                          _vm._v(" "),
                           _c(
-                            "v-card",
-                            [
-                              _c("v-card-title", [
-                                _c("span", { staticClass: "headline" }, [
-                                  _vm._v("User Profile")
-                                ])
+                            "v-dialog",
+                            {
+                              attrs: { persistent: "", "max-width": "600px" },
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var on = ref.on
+                                    return [
+                                      _c(
+                                        "v-btn",
+                                        _vm._g(
+                                          {
+                                            staticClass: "btn-get-offer-desk",
+                                            attrs: { large: "" }
+                                          },
+                                          on
+                                        ),
+                                        [
+                                          _vm._v(
+                                            "\n                                        Получить персональное предложение\n                                    "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  }
+                                }
                               ]),
+                              model: {
+                                value: _vm.dialog,
+                                callback: function($$v) {
+                                  _vm.dialog = $$v
+                                },
+                                expression: "dialog"
+                              }
+                            },
+                            [
                               _vm._v(" "),
                               _c(
-                                "v-card-text",
+                                "v-card",
                                 [
+                                  _c("v-card-title", [
+                                    _c("span", { staticClass: "headline" }, [
+                                      _vm._v("User Profile")
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
                                   _c(
-                                    "v-container",
-                                    { attrs: { "grid-list-md": "" } },
+                                    "v-card-text",
                                     [
                                       _c(
-                                        "v-layout",
-                                        { attrs: { wrap: "" } },
+                                        "v-container",
+                                        { attrs: { "grid-list-md": "" } },
                                         [
                                           _c(
-                                            "v-flex",
-                                            {
-                                              attrs: {
-                                                xs12: "",
-                                                sm6: "",
-                                                md4: ""
-                                              }
-                                            },
+                                            "v-layout",
+                                            { attrs: { wrap: "" } },
                                             [
-                                              _c("v-text-field", {
-                                                attrs: {
-                                                  label: "Legal first name*",
-                                                  required: ""
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            {
-                                              attrs: {
-                                                xs12: "",
-                                                sm6: "",
-                                                md4: ""
-                                              }
-                                            },
-                                            [
-                                              _c("v-text-field", {
-                                                attrs: {
-                                                  label: "Legal middle name",
-                                                  hint:
-                                                    "example of helper text only on focus"
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            {
-                                              attrs: {
-                                                xs12: "",
-                                                sm6: "",
-                                                md4: ""
-                                              }
-                                            },
-                                            [
-                                              _c("v-text-field", {
-                                                attrs: {
-                                                  label: "Legal last name*",
-                                                  hint:
-                                                    "example of persistent helper text",
-                                                  "persistent-hint": "",
-                                                  required: ""
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs12: "" } },
-                                            [
-                                              _c("v-text-field", {
-                                                attrs: {
-                                                  label: "Email*",
-                                                  required: ""
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs12: "" } },
-                                            [
-                                              _c("v-text-field", {
-                                                attrs: {
-                                                  label: "Password*",
-                                                  type: "password",
-                                                  required: ""
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs12: "", sm6: "" } },
-                                            [
-                                              _c("v-select", {
-                                                attrs: {
-                                                  items: [
-                                                    "0-17",
-                                                    "18-29",
-                                                    "30-54",
-                                                    "54+"
-                                                  ],
-                                                  label: "Age*",
-                                                  required: ""
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs12: "", sm6: "" } },
-                                            [
-                                              _c("v-autocomplete", {
-                                                attrs: {
-                                                  items: [
-                                                    "Skiing",
-                                                    "Ice hockey",
-                                                    "Soccer",
-                                                    "Basketball",
-                                                    "Hockey",
-                                                    "Reading",
-                                                    "Writing",
-                                                    "Coding",
-                                                    "Basejump"
-                                                  ],
-                                                  label: "Interests",
-                                                  multiple: ""
-                                                }
-                                              })
+                                              _c(
+                                                "v-flex",
+                                                {
+                                                  attrs: {
+                                                    xs12: "",
+                                                    sm6: "",
+                                                    md4: ""
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label:
+                                                        "Legal first name*",
+                                                      required: ""
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                {
+                                                  attrs: {
+                                                    xs12: "",
+                                                    sm6: "",
+                                                    md4: ""
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label:
+                                                        "Legal middle name",
+                                                      hint:
+                                                        "example of helper text only on focus"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                {
+                                                  attrs: {
+                                                    xs12: "",
+                                                    sm6: "",
+                                                    md4: ""
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label: "Legal last name*",
+                                                      hint:
+                                                        "example of persistent helper text",
+                                                      "persistent-hint": "",
+                                                      required: ""
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                { attrs: { xs12: "" } },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label: "Email*",
+                                                      required: ""
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                { attrs: { xs12: "" } },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label: "Password*",
+                                                      type: "password",
+                                                      required: ""
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                {
+                                                  attrs: { xs12: "", sm6: "" }
+                                                },
+                                                [
+                                                  _c("v-select", {
+                                                    attrs: {
+                                                      items: [
+                                                        "0-17",
+                                                        "18-29",
+                                                        "30-54",
+                                                        "54+"
+                                                      ],
+                                                      label: "Age*",
+                                                      required: ""
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                {
+                                                  attrs: { xs12: "", sm6: "" }
+                                                },
+                                                [
+                                                  _c("v-autocomplete", {
+                                                    attrs: {
+                                                      items: [
+                                                        "Skiing",
+                                                        "Ice hockey",
+                                                        "Soccer",
+                                                        "Basketball",
+                                                        "Hockey",
+                                                        "Reading",
+                                                        "Writing",
+                                                        "Coding",
+                                                        "Basejump"
+                                                      ],
+                                                      label: "Interests",
+                                                      multiple: ""
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
                                             ],
                                             1
                                           )
                                         ],
                                         1
-                                      )
+                                      ),
+                                      _vm._v(" "),
+                                      _c("small", [
+                                        _vm._v("*indicates required field")
+                                      ])
                                     ],
                                     1
                                   ),
                                   _vm._v(" "),
-                                  _c("small", [
-                                    _vm._v("*indicates required field")
-                                  ])
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-card-actions",
-                                [
-                                  _c("v-spacer"),
-                                  _vm._v(" "),
                                   _c(
-                                    "v-btn",
-                                    {
-                                      attrs: {
-                                        color: "blue darken-1",
-                                        flat: ""
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.dialog = false
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Close")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: {
-                                        color: "blue darken-1",
-                                        flat: ""
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.dialog = false
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Save")]
+                                    "v-card-actions",
+                                    [
+                                      _c("v-spacer"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color: "blue darken-1",
+                                            flat: ""
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.dialog = false
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Close")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color: "blue darken-1",
+                                            flat: ""
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.dialog = false
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Save")]
+                                      )
+                                    ],
+                                    1
                                   )
                                 ],
                                 1
@@ -35035,23 +35171,347 @@ var render = function() {
               )
             ],
             1
-          ),
-          _vm._v(" "),
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-img",
+        {
+          staticClass: "hidden-md-and-up",
+          attrs: { src: "/images/main.jpg", id: "main-img-mob" }
+        },
+        [
           _c(
-            "v-layout",
-            {
-              staticClass: "hidden-md-and-up",
-              attrs: { row: "", "align-center": "" }
-            },
+            "v-container",
+            { attrs: { fluid: "", "grid-list-xl": "" } },
             [
               _c(
-                "v-flex",
+                "v-layout",
+                {
+                  staticClass: "hidden-md-and-up",
+                  attrs: { row: "", "align-center": "" }
+                },
                 [
-                  _c("connect-mob", { attrs: { "phone-main": _vm.phoneMain } }),
-                  _vm._v(" "),
-                  _c("h1", { staticClass: "display-1 text-xs-center pb-5" }, [
-                    _vm._v(_vm._s(_vm.headerMainScreen))
-                  ])
+                  _c(
+                    "v-flex",
+                    [
+                      _c("connect-mob", {
+                        attrs: { "phone-main": _vm.phoneMain }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "h1",
+                        {
+                          staticClass:
+                            "header-main-screen-mob text-xs-center mb-5"
+                        },
+                        [_vm._v(_vm._s(_vm.headerMainScreen))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-layout",
+                        {
+                          staticClass: "mb-5",
+                          attrs: {
+                            row: "",
+                            "justify-center": "",
+                            "align-center": ""
+                          }
+                        },
+                        [
+                          _c(
+                            "v-dialog",
+                            {
+                              attrs: { persistent: "", "max-width": "600px" },
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var on = ref.on
+                                    return [
+                                      _c(
+                                        "v-btn",
+                                        _vm._g(
+                                          {
+                                            staticClass: "btn-get-offer-desk",
+                                            style: {
+                                              marginTop: 0,
+                                              marginBottom: 0
+                                            },
+                                            attrs: { large: "" }
+                                          },
+                                          on
+                                        ),
+                                        [
+                                          _vm._v(
+                                            "\n                                           Узнать больше1\n                                "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  }
+                                }
+                              ]),
+                              model: {
+                                value: _vm.dialog,
+                                callback: function($$v) {
+                                  _vm.dialog = $$v
+                                },
+                                expression: "dialog"
+                              }
+                            },
+                            [
+                              _vm._v(" "),
+                              _c(
+                                "v-card",
+                                [
+                                  _c("v-card-title", [
+                                    _c("span", { staticClass: "headline" }, [
+                                      _vm._v("User Profile")
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-card-text",
+                                    [
+                                      _c(
+                                        "v-container",
+                                        { attrs: { "grid-list-md": "" } },
+                                        [
+                                          _c(
+                                            "v-layout",
+                                            { attrs: { wrap: "" } },
+                                            [
+                                              _c(
+                                                "v-flex",
+                                                {
+                                                  attrs: {
+                                                    xs12: "",
+                                                    sm6: "",
+                                                    md4: ""
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label:
+                                                        "Legal first name*",
+                                                      required: ""
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                {
+                                                  attrs: {
+                                                    xs12: "",
+                                                    sm6: "",
+                                                    md4: ""
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label:
+                                                        "Legal middle name",
+                                                      hint:
+                                                        "example of helper text only on focus"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                {
+                                                  attrs: {
+                                                    xs12: "",
+                                                    sm6: "",
+                                                    md4: ""
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label: "Legal last name*",
+                                                      hint:
+                                                        "example of persistent helper text",
+                                                      "persistent-hint": "",
+                                                      required: ""
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                { attrs: { xs12: "" } },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label: "Email*",
+                                                      required: ""
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                { attrs: { xs12: "" } },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label: "Password*",
+                                                      type: "password",
+                                                      required: ""
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                {
+                                                  attrs: { xs12: "", sm6: "" }
+                                                },
+                                                [
+                                                  _c("v-select", {
+                                                    attrs: {
+                                                      items: [
+                                                        "0-17",
+                                                        "18-29",
+                                                        "30-54",
+                                                        "54+"
+                                                      ],
+                                                      label: "Age*",
+                                                      required: ""
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                {
+                                                  attrs: { xs12: "", sm6: "" }
+                                                },
+                                                [
+                                                  _c("v-autocomplete", {
+                                                    attrs: {
+                                                      items: [
+                                                        "Skiing",
+                                                        "Ice hockey",
+                                                        "Soccer",
+                                                        "Basketball",
+                                                        "Hockey",
+                                                        "Reading",
+                                                        "Writing",
+                                                        "Coding",
+                                                        "Basejump"
+                                                      ],
+                                                      label: "Interests",
+                                                      multiple: ""
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("small", [
+                                        _vm._v("*indicates required field")
+                                      ])
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-card-actions",
+                                    [
+                                      _c("v-spacer"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color: "blue darken-1",
+                                            flat: ""
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.dialog = false
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Close")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color: "blue darken-1",
+                                            flat: ""
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.dialog = false
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Save")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "h4",
+                        { staticClass: "text-xs-center subheader-mob mb-3" },
+                        [
+                          _vm._v(
+                            "Приобретение недвижимости и управление ей с минимальным участием инвестора"
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "h4",
+                        { staticClass: "text-xs-center subheader-mob" },
+                        [
+                          _vm._v(
+                            "Получайте стабильный пассивный доход до 9% годовых в евро!"
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
                 ],
                 1
               )
@@ -78547,11 +79007,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "vh", function() { return vh; });
 function vh() {
-  var el = document.getElementById('main-img');
-
-  if (screen.width >= 960 && el !== null) {
-    document.getElementById('main-img').style.height = '94vh';
-  }
+  var mainImgDesk = document.getElementById('main-img');
+  var mainImgMob = document.getElementById('main-img-mob');
+  mainImgDesk.style.height = '94vh';
+  mainImgMob.style.height = '100vh'; //    if (screen.width >= 960 && el !== null) {
+  //        el.style.height = '94vh';
+  //    } 
 }
 
 /***/ }),
