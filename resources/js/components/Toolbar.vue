@@ -8,7 +8,30 @@
         
         <v-toolbar-title>MyMonte</v-toolbar-title>
         
-        <connect-desk :phone-main="phoneMain"></connect-desk>
+        <connect-desk :phone-main="phoneMain"></connect-desk>       
+
+        <!-- Мессенджеры и иконки соцсетей-->
+        <v-list-tile class="messangers hidden-sm-and-down grow">
+            <v-list-tile-avatar size="25" color="grey darken-3">
+                <v-img
+                    class="elevation-6"
+                    src="/images/telegram.png"
+                    ></v-img>
+            </v-list-tile-avatar>
+            <v-list-tile-avatar size="25" color="grey darken-3">
+                <v-img
+                    class="elevation-6"
+                    src="/images/facebook.png"
+                    ></v-img>
+            </v-list-tile-avatar>
+            <v-list-tile-avatar size="25" color="grey darken-3">
+                <v-img
+                    class="elevation-6"
+                    src="/images/instagram.png"
+                    ></v-img>
+            </v-list-tile-avatar>
+        </v-list-tile>
+
         
         <v-spacer></v-spacer>            
 
@@ -139,6 +162,14 @@
     }    
     .v-list__tile__title {
         text-align: right;
+    }
+    
+    .messangers .v-list__tile__avatar {
+        min-width: 25px;
+    }
+
+    .messangers .v-list__tile__avatar .v-avatar {
+        margin-right: 8px;
     }
 </style>
 

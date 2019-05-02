@@ -2563,6 +2563,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
@@ -3129,7 +3152,7 @@ exports.push([module.i, "/*!\n* Vuetify v1.5.5\n* Forged by John Leider\n* Relea
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.connect-desk[data-v-0ad35808] {\n    padding-left: 24px;\n    margin-left: 25px;\n}\n.material-icons[data-v-0ad35808] {\n    font-size: 12px;\n}\n", ""]);
+exports.push([module.i, "\n.connect-desk[data-v-0ad35808] {\n    padding-left: 24px;\n    margin-left: 25px;\n}\n.material-icons[data-v-0ad35808] {\n    font-size: 12px;\n}\n\n\n", ""]);
 
 
 
@@ -3234,7 +3257,7 @@ exports.push([module.i, "\n.props-in-max-card-mob[data-v-53ef7bcc] {\n    list-s
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.v-btn.btn-menu-desktop[data-v-43b87f60] {\n    text-transform: none;\n    font-family: 'Open Sans Condensed', sans-serif;\n    font-size: 24px;\n}\n.v-btn--icon.logo[data-v-43b87f60] {\n    width: auto;\n    pointer-events: none;\n}\n.v-toolbar__content .v-btn--icon[data-v-43b87f60] {\n    margin: 0px;\n}\n.logo[data-v-43b87f60]:hover {\n    background-color: black;\n}\n.v-list__tile__title[data-v-43b87f60] {\n    text-align: right;\n}\n", ""]);
+exports.push([module.i, "\n.v-btn.btn-menu-desktop[data-v-43b87f60] {\n    text-transform: none;\n    font-family: 'Open Sans Condensed', sans-serif;\n    font-size: 24px;\n}\n.v-btn--icon.logo[data-v-43b87f60] {\n    width: auto;\n    pointer-events: none;\n}\n.v-toolbar__content .v-btn--icon[data-v-43b87f60] {\n    margin: 0px;\n}\n.logo[data-v-43b87f60]:hover {\n    background-color: black;\n}\n.v-list__tile__title[data-v-43b87f60] {\n    text-align: right;\n}\n.messangers .v-list__tile__avatar[data-v-43b87f60] {\n    min-width: 25px;\n}\n.messangers .v-list__tile__avatar .v-avatar[data-v-43b87f60] {\n    margin-right: 8px;\n}\n", ""]);
 
 
 
@@ -34305,7 +34328,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "connect-desk hidden-sm-and-down grow" }, [
+  return _c("div", { staticClass: "connect-desk hidden-sm-and-down" }, [
     _c("div", [
       _c("i", { staticClass: "material-icons" }, [_vm._v("phone")]),
       _vm._v("\n        " + _vm._s(_vm.phoneMain) + "  \n        "),
@@ -34708,15 +34731,17 @@ var render = function() {
     [
       _c(
         "v-container",
-        { attrs: { fluid: "", "grid-list-xl": "" } },
+        { attrs: { "fill-height": "", fluid: "", "grid-list-xl": "" } },
         [
           _c(
             "v-layout",
-            { staticClass: "hidden-sm-and-down mt-5", attrs: { column: "" } },
+            {
+              staticClass: "hidden-sm-and-down pb-3",
+              attrs: { row: "", "align-center": "" }
+            },
             [
               _c(
                 "v-flex",
-                { staticClass: "pb-5" },
                 [
                   _c(
                     "h1",
@@ -34768,7 +34793,7 @@ var render = function() {
                                     ),
                                     [
                                       _vm._v(
-                                        "\n                                Получить персональное предложение\n                            "
+                                        "\n                                    Получить персональное предложение\n                                "
                                       )
                                     ]
                                   )
@@ -34996,119 +35021,6 @@ var render = function() {
                                 ],
                                 1
                               )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-layout",
-                    {
-                      staticClass: "mt-5",
-                      attrs: { row: "", "justify-center": "" }
-                    },
-                    [
-                      _c(
-                        "v-flex",
-                        [
-                          _c(
-                            "v-list-tile",
-                            {
-                              staticClass: "messangers hidden-sm-and-down grow"
-                            },
-                            [
-                              _c("v-spacer"),
-                              _vm._v(" "),
-                              _c(
-                                "v-list-tile-avatar",
-                                {
-                                  attrs: { size: "25", color: "grey darken-3" }
-                                },
-                                [
-                                  _c("v-img", {
-                                    staticClass: "elevation-6",
-                                    attrs: { src: "/images/whatsapp.svg" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-list-tile-avatar",
-                                {
-                                  attrs: { size: "25", color: "grey darken-3" }
-                                },
-                                [
-                                  _c("v-img", {
-                                    staticClass: "elevation-6",
-                                    attrs: { src: "/images/viber.png" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-list-tile-avatar",
-                                {
-                                  attrs: { size: "25", color: "grey darken-3" }
-                                },
-                                [
-                                  _c("v-img", {
-                                    staticClass: "elevation-6",
-                                    attrs: { src: "/images/whatsapp.svg" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-list-tile-avatar",
-                                {
-                                  attrs: { size: "25", color: "grey darken-3" }
-                                },
-                                [
-                                  _c("v-img", {
-                                    staticClass: "elevation-6",
-                                    attrs: { src: "/images/viber.png" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-list-tile-avatar",
-                                {
-                                  attrs: { size: "25", color: "grey darken-3" }
-                                },
-                                [
-                                  _c("v-img", {
-                                    staticClass: "elevation-6",
-                                    attrs: { src: "/images/whatsapp.svg" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-list-tile-avatar",
-                                {
-                                  attrs: { size: "25", color: "grey darken-3" }
-                                },
-                                [
-                                  _c("v-img", {
-                                    staticClass: "elevation-6",
-                                    attrs: { src: "/images/viber.png" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("v-spacer")
                             ],
                             1
                           )
@@ -35741,6 +35653,49 @@ var render = function() {
       _c("v-toolbar-title", [_vm._v("MyMonte")]),
       _vm._v(" "),
       _c("connect-desk", { attrs: { "phone-main": _vm.phoneMain } }),
+      _vm._v(" "),
+      _c(
+        "v-list-tile",
+        { staticClass: "messangers hidden-sm-and-down grow" },
+        [
+          _c(
+            "v-list-tile-avatar",
+            { attrs: { size: "25", color: "grey darken-3" } },
+            [
+              _c("v-img", {
+                staticClass: "elevation-6",
+                attrs: { src: "/images/telegram.png" }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile-avatar",
+            { attrs: { size: "25", color: "grey darken-3" } },
+            [
+              _c("v-img", {
+                staticClass: "elevation-6",
+                attrs: { src: "/images/facebook.png" }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile-avatar",
+            { attrs: { size: "25", color: "grey darken-3" } },
+            [
+              _c("v-img", {
+                staticClass: "elevation-6",
+                attrs: { src: "/images/instagram.png" }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("v-spacer"),
       _vm._v(" "),

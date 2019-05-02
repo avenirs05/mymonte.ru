@@ -3,9 +3,9 @@
         src="/images/main.jpg"
         id="main-img"
         >
-        <v-container fluid grid-list-xl> 
-            <v-layout column class="hidden-sm-and-down mt-5">
-                <v-flex class="pb-5">                              
+        <v-container fill-height fluid grid-list-xl> 
+            <v-layout row align-center class="hidden-sm-and-down pb-3">
+                <v-flex>                              
                     <h1 class="header-main-screen text-xs-center">{{ headerMainScreen }}</h1>                                
                     <h4 class="text-xs-center">Приобретение недвижимости и управление ей с минимальным участием инвестора</h4>     
                     <h4 class="text-xs-center pb-5">Получайте стабильный пассивный доход до 9% годовых в евро!</h4>     
@@ -70,7 +70,7 @@
                         </v-dialog>
                     </v-layout> 
 
-                    <v-layout row justify-center class="mt-5">
+<!--                    <v-layout row justify-center class="mt-5">
                         <v-flex>
                             <v-list-tile class="messangers hidden-sm-and-down grow">
                                 <v-spacer></v-spacer>
@@ -113,7 +113,7 @@
                                 <v-spacer></v-spacer>
                             </v-list-tile>
                         </v-flex>
-                    </v-layout>
+                    </v-layout>-->
                 </v-flex>  
             </v-layout>           
             
@@ -161,8 +161,7 @@
         letter-spacing: 1px;  
         text-transform: none;
         font-weight: 400;
-    }
-    
+    }    
 
     .messangers .v-list__tile__avatar {
         min-width: 25px;

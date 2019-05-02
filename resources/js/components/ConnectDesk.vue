@@ -1,5 +1,5 @@
 <template>   
-    <div class="connect-desk hidden-sm-and-down grow">
+    <div class="connect-desk hidden-sm-and-down">
         <div>
             <i class="material-icons">phone</i>
             {{ phoneMain }}&nbsp;&nbsp;
@@ -9,7 +9,7 @@
             <i class="material-icons">phone</i>
             {{ phoneMain }}&nbsp;&nbsp;
             <small>Черногория</small>
-        </div>
+        </div>        
     </div>
 </template>
 
@@ -24,10 +24,12 @@
 
 <style scoped>
     .connect-desk {
-        padding-left: 24px;
+        //padding-left: 24px;
         margin-left: 25px;
     }    
     .material-icons {
         font-size: 12px;
     }
+    
+
 </style>
