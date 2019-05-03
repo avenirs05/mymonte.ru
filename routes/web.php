@@ -49,7 +49,13 @@ Auth::routes();
 Route::get('/', 'IndexController')->name('mainPage');
 Route::get('/villas', 'RealtiesController');
 Route::get('/apartments', 'RealtiesController');
+
+Route::get('/less-than-100', 'RealtiesController');
+Route::get('/from-100-to-150', 'RealtiesController');
+Route::get('/more-than-150', 'RealtiesController');
+
 Route::get('/contact', 'ContactController');
+
 Route::get('/realty/{id}', 'RealtyController')->name('realtyPage');
 Route::get('/realties-data', 'RealtiesDataController');
 

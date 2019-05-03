@@ -96,7 +96,7 @@ const app = new Vue({
 
 
 $(document).ready(function() { 
-    vh();
+    if (window.location.pathname === '/') vh();    
     
     $('#lightgallery').lightGallery({
         thumbnail: true,

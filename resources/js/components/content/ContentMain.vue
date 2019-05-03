@@ -33,7 +33,6 @@
     
     export default { 
         mounted() {
-            //console.log(JSON.parse(this.areas))
         },
         props: [
             'locale', 

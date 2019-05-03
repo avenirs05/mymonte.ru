@@ -61,9 +61,9 @@
         data: () => ({
                 drawer: false,
                 realties: [
-                    { title: trans('text.menu.objects.less_than_100'), href: '/' },
-                    { title: trans('text.menu.objects.from_100_to_150'), href: '/' },
-                    { title: trans('text.menu.objects.more_than_150'), href: '/' },
+                    { title: trans('text.menu.objects.less_than_100'), href: '/less-than-100' },
+                    { title: trans('text.menu.objects.from_100_to_150'), href: '/from-100-to-150' },
+                    { title: trans('text.menu.objects.more_than_150'), href: '/more-than-150' },
                 ],
                 toggle_exclusive: 2,
                 active_class_name: 'v-btn--active yellow--text',

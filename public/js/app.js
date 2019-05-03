@@ -1927,13 +1927,13 @@ __webpack_require__.r(__webpack_exports__);
       drawer: false,
       realties: [{
         title: trans('text.menu.objects.less_than_100'),
-        href: '/'
+        href: '/less-than-100'
       }, {
         title: trans('text.menu.objects.from_100_to_150'),
-        href: '/'
+        href: '/from-100-to-150'
       }, {
         title: trans('text.menu.objects.more_than_150'),
-        href: '/'
+        href: '/more-than-150'
       }],
       toggle_exclusive: 2,
       active_class_name: 'v-btn--active yellow--text',
@@ -2188,91 +2188,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
@@ -2282,7 +2197,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      dialog: false
+      dialog: false,
+      dialogMob: false
     };
   }
 });
@@ -2662,10 +2578,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    console.log(window.location.pathname);
+  },
   components: {
     ConnectDesk: _ConnectDesk_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -2675,13 +2592,13 @@ __webpack_require__.r(__webpack_exports__);
       drawer: false,
       realties: [{
         title: trans('text.menu.objects.less_than_100'),
-        href: '/'
+        href: '/less-than-100'
       }, {
         title: trans('text.menu.objects.from_100_to_150'),
-        href: '/'
+        href: '/from-100-to-150'
       }, {
         title: trans('text.menu.objects.more_than_150'),
-        href: '/'
+        href: '/more-than-150'
       }],
       toggle_exclusive: 2,
       active_class_name: 'v-btn--active yellow--text'
@@ -2695,15 +2612,21 @@ __webpack_require__.r(__webpack_exports__);
     activeClass: function activeClass(href) {
       var location = window.location.pathname;
 
-      if (href !== '/') {
-        if (location.match(href)) {
+      if (href !== '/' && href !== '/contact') {
+        if (location.match('/less-than-100') || location.match('/from-100-to-150') || location.match('/more-than-150')) {
           return this.active_class_name;
         } else return '';
       }
 
-      if (location === '/') {
+      if (location === '/contact' && href !== '/') {
         return this.active_class_name;
       }
+
+      if (location === '/' && href !== '/contact') {
+        return this.active_class_name;
+      }
+
+      return '';
     },
     changeDrawer: function changeDrawer() {
       this.$parent.$children[0].drawer = true;
@@ -2810,8 +2733,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {//console.log(JSON.parse(this.areas))
-  },
+  mounted: function mounted() {},
   props: ['locale', 'headerMainScreen', 'headerMainContent', 'phoneMain', 'headerAreas', 'areas', 'questions'],
   components: {
     MainScreen: _MainScreen_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -3289,7 +3211,7 @@ exports.push([module.i, "\n.flag-btn[data-v-436361d9]::before {\n    color: tran
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.header-main-screen-desk[data-v-d26db4a0] {\n        font-family: 'Open Sans Condensed', sans-serif; \n        font-size: 44px;\n        font-weight: 500;\n}\n.btn-get-offer-desk.v-btn.v-btn--large[data-v-d26db4a0] {\n        font-size: 20px;\n        border-radius: 3px;\n        background-color: rgb(51, 153, 51);\n        color: rgb(255, 255, 255);\n        border: medium none;\n        letter-spacing: 1px;  \n        text-transform: none;\n        font-weight: 400;\n}    \n\n/*    .messangers .v-list__tile__avatar {\n        min-width: 25px;\n    }\n\n    .messangers .v-list__tile__avatar .v-avatar {\n        margin-right: 8px;\n    }*/\n.header-main-screen-mob[data-v-d26db4a0] {\n        font-size: 24px;\n        font-weight: 500;\n}\n.subheader-mob[data-v-d26db4a0] {\n        font-size: 14px;\n}\n", ""]);
+exports.push([module.i, "\n.header-main-screen-desk[data-v-d26db4a0] {\n    font-family: 'Open Sans Condensed', sans-serif; \n    font-size: 44px;\n    font-weight: 500;\n}\n.btn-get-offer-desk.v-btn.v-btn--large[data-v-d26db4a0] {\n    font-size: 20px;\n    border-radius: 3px;\n    background-color: rgb(51, 153, 51);\n    color: rgb(255, 255, 255);\n    border: medium none;\n    letter-spacing: 1px;  \n    text-transform: none;\n    font-weight: 400;\n}\n.header-main-screen-mob[data-v-d26db4a0] {\n    font-size: 24px;\n    font-weight: 500;\n}\n.subheader-mob[data-v-d26db4a0] {\n    font-size: 14px;\n}\n", ""]);
 
 
 
@@ -3364,7 +3286,7 @@ exports.push([module.i, "\n.contacts-wrapper {\n    font-size: 18px;\n}\n", ""])
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* В файл app.js добавлена функция vh() */\n.v-content {\n        font-size: 18px;\n}\ntable {\n        font-size: 16px;\n        width: 100%;\n        max-width: 100%;\n        border: 1px solid #ddd;\n        border-collapse: collapse;\n}\ntable tr {\n        border: 1px solid #ddd;\n        text-align: left;\n}\ntable td {\n        padding: 10px;\n}\ntable th {\n        padding: 10px;\n        color: blue;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* В файл app.js добавлена функция vh() */\n.v-content {\n        font-size: 18px;\n}\ntable {\n        font-size: 16px;\n        width: 100%;\n        max-width: 100%;\n        border: 1px solid #ddd;\n        border-collapse: collapse;\n}\ntable tr {\n        border: 1px solid #ddd;\n        text-align: left;\n}\ntable td {\n        padding: 10px;\n}\ntable th {\n        padding: 10px;\n        color: blue;\n}\n\n", ""]);
 
 
 
@@ -34920,7 +34842,7 @@ var render = function() {
                                         ),
                                         [
                                           _vm._v(
-                                            "\n                                        Получить персональное предложение\n                                    "
+                                            "\n                                    Получить персональное предложение\n                                "
                                           )
                                         ]
                                       )
@@ -34941,12 +34863,6 @@ var render = function() {
                               _c(
                                 "v-card",
                                 [
-                                  _c("v-card-title", [
-                                    _c("span", { staticClass: "headline" }, [
-                                      _vm._v("User Profile")
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
                                   _c(
                                     "v-card-text",
                                     [
@@ -34960,63 +34876,11 @@ var render = function() {
                                             [
                                               _c(
                                                 "v-flex",
-                                                {
-                                                  attrs: {
-                                                    xs12: "",
-                                                    sm6: "",
-                                                    md4: ""
-                                                  }
-                                                },
+                                                { attrs: { xs12: "" } },
                                                 [
                                                   _c("v-text-field", {
                                                     attrs: {
-                                                      label:
-                                                        "Legal first name*",
-                                                      required: ""
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-flex",
-                                                {
-                                                  attrs: {
-                                                    xs12: "",
-                                                    sm6: "",
-                                                    md4: ""
-                                                  }
-                                                },
-                                                [
-                                                  _c("v-text-field", {
-                                                    attrs: {
-                                                      label:
-                                                        "Legal middle name",
-                                                      hint:
-                                                        "example of helper text only on focus"
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-flex",
-                                                {
-                                                  attrs: {
-                                                    xs12: "",
-                                                    sm6: "",
-                                                    md4: ""
-                                                  }
-                                                },
-                                                [
-                                                  _c("v-text-field", {
-                                                    attrs: {
-                                                      label: "Legal last name*",
-                                                      hint:
-                                                        "example of persistent helper text",
-                                                      "persistent-hint": "",
+                                                      label: "Имя*",
                                                       required: ""
                                                     }
                                                   })
@@ -35029,74 +34893,7 @@ var render = function() {
                                                 { attrs: { xs12: "" } },
                                                 [
                                                   _c("v-text-field", {
-                                                    attrs: {
-                                                      label: "Email*",
-                                                      required: ""
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-flex",
-                                                { attrs: { xs12: "" } },
-                                                [
-                                                  _c("v-text-field", {
-                                                    attrs: {
-                                                      label: "Password*",
-                                                      type: "password",
-                                                      required: ""
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-flex",
-                                                {
-                                                  attrs: { xs12: "", sm6: "" }
-                                                },
-                                                [
-                                                  _c("v-select", {
-                                                    attrs: {
-                                                      items: [
-                                                        "0-17",
-                                                        "18-29",
-                                                        "30-54",
-                                                        "54+"
-                                                      ],
-                                                      label: "Age*",
-                                                      required: ""
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-flex",
-                                                {
-                                                  attrs: { xs12: "", sm6: "" }
-                                                },
-                                                [
-                                                  _c("v-autocomplete", {
-                                                    attrs: {
-                                                      items: [
-                                                        "Skiing",
-                                                        "Ice hockey",
-                                                        "Soccer",
-                                                        "Basketball",
-                                                        "Hockey",
-                                                        "Reading",
-                                                        "Writing",
-                                                        "Coding",
-                                                        "Basejump"
-                                                      ],
-                                                      label: "Interests",
-                                                      multiple: ""
-                                                    }
+                                                    attrs: { label: "Email" }
                                                   })
                                                 ],
                                                 1
@@ -35109,7 +34906,7 @@ var render = function() {
                                       ),
                                       _vm._v(" "),
                                       _c("small", [
-                                        _vm._v("*indicates required field")
+                                        _vm._v("*Обязательные поля")
                                       ])
                                     ],
                                     1
@@ -35236,17 +35033,13 @@ var render = function() {
                                         _vm._g(
                                           {
                                             staticClass: "btn-get-offer-desk",
-                                            style: {
-                                              marginTop: 0,
-                                              marginBottom: 0
-                                            },
                                             attrs: { large: "" }
                                           },
                                           on
                                         ),
                                         [
                                           _vm._v(
-                                            "\n                                           Узнать больше1\n                                "
+                                            "\n                                    Узнать больше\n                                "
                                           )
                                         ]
                                       )
@@ -35255,11 +35048,11 @@ var render = function() {
                                 }
                               ]),
                               model: {
-                                value: _vm.dialog,
+                                value: _vm.dialogMob,
                                 callback: function($$v) {
-                                  _vm.dialog = $$v
+                                  _vm.dialogMob = $$v
                                 },
-                                expression: "dialog"
+                                expression: "dialogMob"
                               }
                             },
                             [
@@ -35267,12 +35060,6 @@ var render = function() {
                               _c(
                                 "v-card",
                                 [
-                                  _c("v-card-title", [
-                                    _c("span", { staticClass: "headline" }, [
-                                      _vm._v("User Profile")
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
                                   _c(
                                     "v-card-text",
                                     [
@@ -35286,63 +35073,11 @@ var render = function() {
                                             [
                                               _c(
                                                 "v-flex",
-                                                {
-                                                  attrs: {
-                                                    xs12: "",
-                                                    sm6: "",
-                                                    md4: ""
-                                                  }
-                                                },
+                                                { attrs: { xs12: "" } },
                                                 [
                                                   _c("v-text-field", {
                                                     attrs: {
-                                                      label:
-                                                        "Legal first name*",
-                                                      required: ""
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-flex",
-                                                {
-                                                  attrs: {
-                                                    xs12: "",
-                                                    sm6: "",
-                                                    md4: ""
-                                                  }
-                                                },
-                                                [
-                                                  _c("v-text-field", {
-                                                    attrs: {
-                                                      label:
-                                                        "Legal middle name",
-                                                      hint:
-                                                        "example of helper text only on focus"
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-flex",
-                                                {
-                                                  attrs: {
-                                                    xs12: "",
-                                                    sm6: "",
-                                                    md4: ""
-                                                  }
-                                                },
-                                                [
-                                                  _c("v-text-field", {
-                                                    attrs: {
-                                                      label: "Legal last name*",
-                                                      hint:
-                                                        "example of persistent helper text",
-                                                      "persistent-hint": "",
+                                                      label: "Имя*",
                                                       required: ""
                                                     }
                                                   })
@@ -35355,74 +35090,7 @@ var render = function() {
                                                 { attrs: { xs12: "" } },
                                                 [
                                                   _c("v-text-field", {
-                                                    attrs: {
-                                                      label: "Email*",
-                                                      required: ""
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-flex",
-                                                { attrs: { xs12: "" } },
-                                                [
-                                                  _c("v-text-field", {
-                                                    attrs: {
-                                                      label: "Password*",
-                                                      type: "password",
-                                                      required: ""
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-flex",
-                                                {
-                                                  attrs: { xs12: "", sm6: "" }
-                                                },
-                                                [
-                                                  _c("v-select", {
-                                                    attrs: {
-                                                      items: [
-                                                        "0-17",
-                                                        "18-29",
-                                                        "30-54",
-                                                        "54+"
-                                                      ],
-                                                      label: "Age*",
-                                                      required: ""
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-flex",
-                                                {
-                                                  attrs: { xs12: "", sm6: "" }
-                                                },
-                                                [
-                                                  _c("v-autocomplete", {
-                                                    attrs: {
-                                                      items: [
-                                                        "Skiing",
-                                                        "Ice hockey",
-                                                        "Soccer",
-                                                        "Basketball",
-                                                        "Hockey",
-                                                        "Reading",
-                                                        "Writing",
-                                                        "Coding",
-                                                        "Basejump"
-                                                      ],
-                                                      label: "Interests",
-                                                      multiple: ""
-                                                    }
+                                                    attrs: { label: "Email" }
                                                   })
                                                 ],
                                                 1
@@ -35435,7 +35103,7 @@ var render = function() {
                                       ),
                                       _vm._v(" "),
                                       _c("small", [
-                                        _vm._v("*indicates required field")
+                                        _vm._v("*Обязательные поля")
                                       ])
                                     ],
                                     1
@@ -35455,7 +35123,7 @@ var render = function() {
                                           },
                                           on: {
                                             click: function($event) {
-                                              _vm.dialog = false
+                                              _vm.dialogMob = false
                                             }
                                           }
                                         },
@@ -35471,7 +35139,7 @@ var render = function() {
                                           },
                                           on: {
                                             click: function($event) {
-                                              _vm.dialog = false
+                                              _vm.dialogMob = false
                                             }
                                           }
                                         },
@@ -36200,7 +35868,7 @@ var render = function() {
                 "v-btn",
                 {
                   staticClass: "hidden-sm-and-down btn-menu-desktop",
-                  class: _vm.activeClass("/villas"),
+                  class: _vm.activeClass("/objects"),
                   attrs: { slot: "activator", flat: "", flat: "" },
                   slot: "activator"
                 },
@@ -77831,7 +77499,7 @@ var app = new Vue({
   }
 }).$mount('#app');
 $(document).ready(function () {
-  Object(_script_js__WEBPACK_IMPORTED_MODULE_0__["vh"])();
+  if (window.location.pathname === '/') Object(_script_js__WEBPACK_IMPORTED_MODULE_0__["vh"])();
   $('#lightgallery').lightGallery({
     thumbnail: true,
     animateThumb: true,

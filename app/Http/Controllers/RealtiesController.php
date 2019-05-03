@@ -12,21 +12,19 @@ class RealtiesController extends Controller
 {
     public function __invoke(Request $request) 
 	{
-		
 		$per_page = 5;
 		$locale = app()->getLocale();
 		
 		$phone_main = Parameter::where('param', 'phone_main')->get()->toArray()[0]['value'];
 		
-		$realty_type = self::realtyType($request);
-		
-		$title = Lang::get("text.menu." . $request->path());		
+		$realty_category = self::realtyCategory($request);		
 	
-		$realties = Realty::with(array(
-						'images' => function($query) {
-							$query->where('type', 'primary');
+		$title = Lang::get("text.menu.objects." . str_replace('-', '_', $request->path()) );		
+	
+		$realties = Realty::with(array('images' => function($query) {
+			$query->where('type', 'primary');
 		}))
-			->where('type', $realty_type)
+			->where('category', $realty_category)
 			->where('visibility', 'опубликовано')
 			->paginate($per_page);	
 		
@@ -41,15 +39,18 @@ class RealtiesController extends Controller
 	}
 	
 	
-	protected static function realtyType(Request $request) 
+	protected static function realtyCategory(Request $request) 
 	{
 		switch ($request->path()) {
-			case 'villas':
-				return 'villa';
+			case 'less-than-100':
+				return 'less_than_100';
 				break;
-			case 'apartments':
-				return 'apartment';
+			case 'from-100-to-150':
+				return 'from_100_to_150';
 				break;
-		}			
+			case 'more-than-150':
+				return 'more_than_150';
+				break;
+		}
 	}
 }

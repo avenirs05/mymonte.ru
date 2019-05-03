@@ -31,7 +31,6 @@
                     ></v-img>
             </v-list-tile-avatar>
         </v-list-tile>
-
         
         <v-spacer></v-spacer>            
 
@@ -49,7 +48,7 @@
                 <v-btn 
                     flat slot="activator" 
                     class="hidden-sm-and-down btn-menu-desktop"    
-                    :class="activeClass('/villas')" 
+                    :class="activeClass('/objects')" 
                     flat
                     >
                     {{ trans('text.menu.objects.title') }}
@@ -89,7 +88,9 @@
     import ConnectDesk from './ConnectDesk.vue';
     
     export default {   
-        mounted () { }, 
+        mounted () { 
+            console.log(window.location.pathname); 
+        }, 
         components: {
             ConnectDesk
         },
@@ -97,9 +98,9 @@
         data: () => ({
             drawer: false,
             realties: [ 
-                { title: trans('text.menu.objects.less_than_100'), href: '/' },
-                { title: trans('text.menu.objects.from_100_to_150'), href: '/' },
-                { title: trans('text.menu.objects.more_than_150'), href: '/' },
+                { title: trans('text.menu.objects.less_than_100'), href: '/less-than-100' },
+                { title: trans('text.menu.objects.from_100_to_150'), href: '/from-100-to-150' },
+                { title: trans('text.menu.objects.more_than_150'), href: '/more-than-150' },
             ],
             toggle_exclusive: 2,
             active_class_name: 'v-btn--active yellow--text'
@@ -112,16 +113,26 @@
             activeClass(href) {
                 let location = window.location.pathname;               
 
-                if (href !== '/') {
-                    if (location.match(href)) {
+                if (href !== '/' && href !=='/contact') {
+                    if (location.match('/less-than-100') ||
+                        location.match('/from-100-to-150') ||
+                        location.match('/more-than-150')) 
+                    {
                         return this.active_class_name;
-                    } else return '';                   
+                    }  else return '';                   
                 }  
                 
-                if (location === '/') {
+                if (location === '/contact' && href !== '/') {
                     return this.active_class_name;
-                }
+                }             
+                
+                if (location === '/' && href !== '/contact') {
+                    return this.active_class_name;
+                } 
+                
+                return '';
             },
+            
             changeDrawer() {
                 this.$parent.$children[0].drawer = true;
             }            
