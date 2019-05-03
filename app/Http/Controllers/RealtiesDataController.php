@@ -22,7 +22,7 @@ class RealtiesDataController extends Controller
 		$realties = Realty::with(array('images' => function($query) {
 						$query->where('type', 'primary');
 		}))
-			->where('type', $request->type_of_realty)
+			->where('category', $request->category_of_realty)
 			->where('visibility', 'опубликовано')					
 			->paginate($request->per_page, ['*'], 'page', $request->page)->toJson();
 						

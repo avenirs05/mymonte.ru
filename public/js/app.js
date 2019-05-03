@@ -2909,8 +2909,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     //            console.log(JSON.parse(this.realtiesJson))
-    //            console.log(this.tit)
-    this.getTypeOfRealty();
+    console.log(this.title);
+    this.getCategoryOfRealty();
     this.getHeader();
     this.realties = JSON.parse(this.realtiesJson).data;
     this.total = JSON.parse(this.realtiesJson).total;
@@ -2923,7 +2923,7 @@ __webpack_require__.r(__webpack_exports__);
       total: 1,
       page: 1,
       perPage: 5,
-      typeOfRealty: '',
+      categoryOfRealty: '',
       realtyPage: ''
     };
   },
@@ -2933,19 +2933,23 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    getTypeOfRealty: function getTypeOfRealty() {
+    getCategoryOfRealty: function getCategoryOfRealty() {
       switch (window.location.pathname) {
-        case '/villas':
-          this.typeOfRealty = 'villa';
+        case '/less-than-100':
+          this.categoryOfRealty = 'less_than_100';
           break;
 
-        case '/apartments':
-          this.typeOfRealty = 'apartment';
+        case '/from-100-to-150':
+          this.categoryOfRealty = 'from_100_to_150';
+          break;
+
+        case '/more-than-150':
+          this.categoryOfRealty = 'more_than_150';
           break;
       }
     },
     getHeader: function getHeader() {
-      switch (this.typeOfRealty) {
+      switch (this.categoryOfRealty) {
         case 'villa':
           this.header = trans('text.menu.villas');
           break;
@@ -2961,7 +2965,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/realties-data', {
         params: {
           page: this.page,
-          type_of_realty: this.typeOfRealty,
+          category_of_realty: this.categoryOfRealty,
           per_page: this.perPage
         }
       }).then(function (response) {
@@ -3302,7 +3306,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n/* Десктоп-версия*/\n.realties-desk-wrap #headline-wrap-desk[data-v-cd44f02e] {\n        text-decoration: none;\n}\n.realties-desk-wrap #headline-wrap-desk[data-v-cd44f02e]:hover {\n        color: rgb(51, 122, 183);\n        text-decoration: underline;\n}\n.realties-desk-wrap .v-card[data-v-cd44f02e] {\n        background-color: transparent;\n        font-size: 18px;\n}\n.realties-desk-wrap .v-card.card-mini-right-text-desk[data-v-cd44f02e] {\n        margin-top: -5px;\n}\n.realties-desk-wrap h4[data-v-cd44f02e] {\n        font-weight: normal;\n}\n.realties-desk-wrap .price-text-desk[data-v-cd44f02e] {\n        font-size: 24px;\n}\n.realties-desk-wrap .price-text-through-desk[data-v-cd44f02e] {\n        text-decoration: line-through;\n        -webkit-text-decoration-color: red;\n                text-decoration-color: red;\n        font-size: 24px;\n}\n.realties-desk-wrap .btn-more-desk.v-btn.v-btn--large[data-v-cd44f02e] {\n        margin-right: 0;  \n        padding: 10px 20px;\n        font-size: 20px;\n        border-radius: 3px;\n        background-color: rgb(51, 153, 51);\n        color: rgb(255, 255, 255);\n        border: medium none;\n        width: 100%;\n        letter-spacing: 1px;  \n        text-transform: none;\n        font-weight: 400;\n}\n.realties-desk-wrap .booking-mark[data-v-cd44f02e] {\n        position: absolute;\n        color: #fff;\n        left: 13px;\n        top: 11px;\n        font-size: 18px;\n        color: white;\n}\n/* End Десктоп-версия*/    \n\n\n/*Мобильная версия*/\n.realties-mob-wrap.container[data-v-cd44f02e] {\n        border-top: 1px solid #CCCCCC;\n}\n.realties-mob-wrap .v-card.card-mini-right-text-mob[data-v-cd44f02e] {\n        background-color: transparent;\n        font-size: 16px;\n        margin-top: -5px;\n}\n.realties-mob-wrap .card-mini-right-text-mob ul[data-v-cd44f02e] {\n        list-style-type: none;\n        -webkit-padding-start: 0;\n                padding-inline-start: 0;\n}\n.realties-mob-wrap.bg-color-card-mini-mob[data-v-cd44f02e] {\n        /*        background: lavender;*/\n        margin-bottom: 0px;\n}\n.realties-mob-wrap .price-text-through-mob[data-v-cd44f02e] {\n        text-decoration: line-through;\n        -webkit-text-decoration-color: red;\n                text-decoration-color: red;\n        font-size: 18px;\n}\n.realties-mob-wrap .price-text-mob[data-v-cd44f02e] {\n        font-size: 18px;\n        color: green;\n}\n.realties-mob-wrap .btn-more-mob.v-btn.theme--light[data-v-cd44f02e] {\n        letter-spacing: 1px;  \n        text-transform: none;\n        color: rgb(255, 255, 255);\n        background-color: rgb(51, 153, 51);\n        margin-left: 0; \n        marfin-bottom: 0;\n}\n/*End Мобильная версия*/\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n/* Десктоп-версия*/\n.realties-desk-wrap #headline-wrap-desk[data-v-cd44f02e] {\n        text-decoration: none;\n}\n.realties-desk-wrap #headline-wrap-desk[data-v-cd44f02e]:hover {\n        color: rgb(51, 122, 183);\n        text-decoration: underline;\n}\n.realties-desk-wrap .v-card[data-v-cd44f02e] {\n        background-color: transparent;\n        font-size: 18px;\n}\n.realties-desk-wrap .v-card.card-mini-right-text-desk[data-v-cd44f02e] {\n        margin-top: -5px;\n}\n.realties-desk-wrap h4[data-v-cd44f02e] {\n        font-weight: normal;\n}\n.realties-desk-wrap .price-text-desk[data-v-cd44f02e] {\n        font-size: 24px;\n}\n.realties-desk-wrap .price-text-through-desk[data-v-cd44f02e] {\n        text-decoration: line-through;\n        -webkit-text-decoration-color: red;\n                text-decoration-color: red;\n        font-size: 24px;\n}\n.realties-desk-wrap .btn-more-desk.v-btn.v-btn--large[data-v-cd44f02e] {\n        margin-right: 0;  \n        padding: 10px 20px;\n        font-size: 20px;\n        border-radius: 3px;\n        background-color: rgb(51, 153, 51);\n        color: rgb(255, 255, 255);\n        border: medium none;\n        width: 100%;\n        letter-spacing: 1px;  \n        text-transform: none;\n        font-weight: 400;\n}\n.realties-desk-wrap .booking-mark[data-v-cd44f02e] {\n        position: absolute;\n        color: #fff;\n        left: 13px;\n        top: 11px;\n        font-size: 18px;\n        color: white;\n}\n/* End Десктоп-версия*/    \n\n\n/*Мобильная версия*/\n.realties-mob-wrap.container[data-v-cd44f02e] {\n        border-top: 1px solid #CCCCCC;\n}\n.realties-mob-wrap .v-card.card-mini-right-text-mob[data-v-cd44f02e] {\n        background-color: transparent;\n        font-size: 16px;\n        margin-top: -5px;\n}\n.realties-mob-wrap .card-mini-right-text-mob ul[data-v-cd44f02e] {\n        list-style-type: none;\n        -webkit-padding-start: 0;\n                padding-inline-start: 0;\n}\n.realties-mob-wrap.bg-color-card-mini-mob[data-v-cd44f02e] {\n        /*        background: lavender;*/\n        margin-bottom: 0px;\n}\n.realties-mob-wrap .price-text-through-mob[data-v-cd44f02e] {\n        text-decoration: line-through;\n        -webkit-text-decoration-color: red;\n                text-decoration-color: red;\n        font-size: 18px;\n}\n.realties-mob-wrap .price-text-mob[data-v-cd44f02e] {\n        font-size: 18px;\n        color: green;\n}\n.realties-mob-wrap .btn-more-mob.v-btn.theme--light[data-v-cd44f02e] {\n        letter-spacing: 1px;  \n        text-transform: none;\n        color: rgb(255, 255, 255);\n        background-color: rgb(51, 153, 51);\n        margin-left: 0; \n        marfin-bottom: 0;\n}\n/*End Мобильная версия*/\n", ""]);
 
 
 

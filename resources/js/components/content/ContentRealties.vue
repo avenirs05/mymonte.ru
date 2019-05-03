@@ -143,8 +143,8 @@
     export default {  
         mounted() {   
 //            console.log(JSON.parse(this.realtiesJson))
-//            console.log(this.tit)
-            this.getTypeOfRealty();            
+            console.log(this.title)
+            this.getCategoryOfRealty();            
             this.getHeader();
             this.realties = JSON.parse(this.realtiesJson).data;
             this.total = JSON.parse(this.realtiesJson).total;
@@ -158,7 +158,7 @@
             total: 1, 
             page: 1,
             perPage: 5,
-            typeOfRealty: '',
+            categoryOfRealty: '',
             realtyPage: ''
         }),
         
@@ -169,18 +169,21 @@
         },
         
         methods: {
-            getTypeOfRealty() {
+            getCategoryOfRealty() {
                 switch(window.location.pathname) {
-                    case '/villas':
-                        this.typeOfRealty = 'villa';                          
+                    case '/less-than-100':
+                        this.categoryOfRealty = 'less_than_100';                          
                         break;
-                    case '/apartments':
-                        this.typeOfRealty = 'apartment'; 
-                        break;   
+                    case '/from-100-to-150':
+                        this.categoryOfRealty = 'from_100_to_150'; 
+                        break;  
+                    case '/more-than-150':
+                        this.categoryOfRealty = 'more_than_150'; 
+                        break; 
                 }
             },
             getHeader() {
-                switch(this.typeOfRealty) {
+                switch(this.categoryOfRealty) {
                     case 'villa':
                         this.header = trans('text.menu.villas');                        
                         break;
@@ -193,7 +196,7 @@
                 axios.get('/realties-data', { 
                             params: {
                                 page: this.page,
-                                type_of_realty: this.typeOfRealty,
+                                category_of_realty: this.categoryOfRealty,
                                 per_page: this.perPage
                             }                             
                 }).then(response => {
@@ -218,7 +221,7 @@
                 
                 return mark;
              }
-        },
+        }
     }
 </script>
 
