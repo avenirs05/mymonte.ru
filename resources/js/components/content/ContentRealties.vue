@@ -3,7 +3,7 @@
         <v-container>
             <v-layout row align-center>
                 <v-flex>                              
-                    <h1 class="display-1 text-xs-center">{{ header }}</h1>                     
+                    <h1 class="display-1 text-xs-center">{{ title }}</h1>                     
                 </v-flex>
             </v-layout>
             <hr class="grey lighten-5 mt-4 hidden-sm-and-down">
@@ -142,14 +142,15 @@
 <script> 
     export default {  
         mounted() {   
-            console.log(JSON.parse(this.realtiesJson))
+//            console.log(JSON.parse(this.realtiesJson))
+//            console.log(this.tit)
             this.getTypeOfRealty();            
             this.getHeader();
             this.realties = JSON.parse(this.realtiesJson).data;
             this.total = JSON.parse(this.realtiesJson).total;
         },  
         
-        props: ['locale', 'realtiesJson'],        
+        props: ['locale', 'realtiesJson', 'title'],        
        
         data: () => ({ 
             header: '',
