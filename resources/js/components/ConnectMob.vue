@@ -3,12 +3,12 @@
         <div>
             <i class="material-icons">phone</i>
             {{ phoneMain }}&nbsp;
-            <small>Украина</small>
+            <small>Черногория</small>
         </div>
         <div class="">
             <i class="material-icons">phone</i>
             {{ phoneMain }}&nbsp;
-            <small>Черногория</small>
+            <small>Украина</small>
         </div> 
         <v-list-tile class="messangers mb-5" :style="{ marginLeft: '-16px' }">
             <v-list-tile-avatar size="25" color="grey darken-3">

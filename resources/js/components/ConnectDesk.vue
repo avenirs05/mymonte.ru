@@ -3,12 +3,12 @@
         <div>
             <i class="material-icons">phone</i>
             {{ phoneMain }}&nbsp;&nbsp;
-            <small>Украина</small>
+            <small>Черногория</small>
         </div>
         <div>
             <i class="material-icons">phone</i>
             {{ phoneMain }}&nbsp;&nbsp;
-            <small>Черногория</small>
+            <small>Украина</small>
         </div>        
     </div>
 </template>
@@ -25,6 +25,7 @@
 <style scoped>
     .connect-desk {
         margin-left: 25px;
+        margin-right: 9px;
     }    
     .material-icons {
         font-size: 12px;

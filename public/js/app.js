@@ -2188,6 +2188,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
@@ -2578,10 +2593,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log(window.location.pathname);
+  mounted: function mounted() {//console.log(window.location.pathname); 
   },
   components: {
     ConnectDesk: _ConnectDesk_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -3156,7 +3188,7 @@ exports.push([module.i, "/*!\n* Vuetify v1.5.5\n* Forged by John Leider\n* Relea
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.connect-desk[data-v-0ad35808] {\n    margin-left: 25px;\n}\n.material-icons[data-v-0ad35808] {\n    font-size: 12px;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.connect-desk[data-v-0ad35808] {\n    margin-left: 25px;\n    margin-right: 9px;\n}\n.material-icons[data-v-0ad35808] {\n    font-size: 12px;\n}\n\n\n", ""]);
 
 
 
@@ -3216,7 +3248,7 @@ exports.push([module.i, "\n.flag-btn[data-v-436361d9]::before {\n    color: tran
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.header-main-screen-desk[data-v-d26db4a0] {\n    font-family: 'Open Sans Condensed', sans-serif; \n    font-size: 44px;\n    font-weight: 500;\n}\n.btn-get-offer-desk.v-btn.v-btn--large[data-v-d26db4a0] {\n    font-size: 20px;\n    border-radius: 3px;\n    background-color: rgb(51, 153, 51);\n    color: rgb(255, 255, 255);\n    border: medium none;\n    letter-spacing: 1px;  \n    text-transform: none;\n    font-weight: 400;\n}\n.header-main-screen-mob[data-v-d26db4a0] {\n    font-size: 24px;\n    font-weight: 500;\n}\n.subheader-mob[data-v-d26db4a0] {\n    font-size: 14px;\n}\n", ""]);
+exports.push([module.i, "\n.header-main-screen-desk[data-v-d26db4a0] {\n    font-family: 'Open Sans Condensed', sans-serif; \n    font-size: 56px;\n    font-weight: 500;\n}\n.subheader-main-screen-desk[data-v-d26db4a0] {\n    font-size: 24px;\n}\n.btn-main.v-btn.v-btn--large[data-v-d26db4a0] {\n    font-size: 20px;\n    border-radius: 3px;\n    background-color: rgb(51, 153, 51);\n    color: rgb(255, 255, 255);\n    border: medium none;\n    letter-spacing: 1px;  \n    text-transform: none;\n    font-weight: 400;\n}\n.header-main-screen-mob[data-v-d26db4a0] {\n    font-size: 24px;\n    font-weight: 500;\n}\n.subheader-mob[data-v-d26db4a0] {\n    font-size: 14px;\n}\n.v-card__actions[data-v-d26db4a0] {\n    padding: 0;\n}\n.close-icon[data-v-d26db4a0]:hover {\n    color: red;\n}\n", ""]);
 
 
 
@@ -3261,7 +3293,7 @@ exports.push([module.i, "\n.props-in-max-card-mob[data-v-53ef7bcc] {\n    list-s
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.v-btn.btn-menu-desktop[data-v-43b87f60] {\n    text-transform: none;\n    font-family: 'Open Sans Condensed', sans-serif;\n    font-size: 24px;\n}\n.v-btn--icon.logo[data-v-43b87f60] {\n    width: auto;\n    pointer-events: none;\n}\n.v-toolbar__content .v-btn--icon[data-v-43b87f60] {\n    margin: 0px;\n}\n.logo[data-v-43b87f60]:hover {\n    background-color: black;\n}\n.v-list__tile__title[data-v-43b87f60] {\n    text-align: right;\n}\n.messangers .v-list__tile__avatar[data-v-43b87f60] {\n    min-width: 25px;\n}\n.messangers .v-list__tile__avatar .v-avatar[data-v-43b87f60] {\n    margin-right: 8px;\n}\n", ""]);
+exports.push([module.i, "\n.logo-desk[data-v-43b87f60] {\n    color: rgb(255, 235, 59);\n    border: 2px dashed rgb(255, 235, 59);\n    padding-left: 10px;\n    padding-right: 10px;\n}\n.v-toolbar__title:not(:first-child).logo-desk[data-v-43b87f60] {\n    margin-left: 0;\n}\n.logo-mob[data-v-43b87f60] {\n    color: rgb(255, 235, 59);\n}\n.v-toolbar__title:not(:first-child).logo-mob[data-v-43b87f60] {\n    margin-left: 0;\n}\n.v-btn.btn-menu-desktop[data-v-43b87f60] {\n    text-transform: none;\n    font-family: 'Open Sans Condensed', sans-serif;\n    font-size: 24px;\n}\n.v-btn--icon.logo[data-v-43b87f60] {\n    width: auto;\n    pointer-events: none;\n}\n.v-toolbar__content .v-btn--icon[data-v-43b87f60] {\n    margin: 0px;\n}\n.v-list__tile__title[data-v-43b87f60] {\n    text-align: right;\n}\n.messangers .v-list__tile__avatar[data-v-43b87f60] {\n    min-width: 25px;\n}\n.messangers .v-list__tile__avatar .v-avatar[data-v-43b87f60] {\n    margin-right: 8px;\n}\n", ""]);
 
 
 
@@ -34336,13 +34368,13 @@ var render = function() {
     _c("div", [
       _c("i", { staticClass: "material-icons" }, [_vm._v("phone")]),
       _vm._v("\n        " + _vm._s(_vm.phoneMain) + "  \n        "),
-      _c("small", [_vm._v("Украина")])
+      _c("small", [_vm._v("Черногория")])
     ]),
     _vm._v(" "),
     _c("div", [
       _c("i", { staticClass: "material-icons" }, [_vm._v("phone")]),
       _vm._v("\n        " + _vm._s(_vm.phoneMain) + "  \n        "),
-      _c("small", [_vm._v("Черногория")])
+      _c("small", [_vm._v("Украина")])
     ])
   ])
 }
@@ -34375,13 +34407,13 @@ var render = function() {
       _c("div", [
         _c("i", { staticClass: "material-icons" }, [_vm._v("phone")]),
         _vm._v("\n        " + _vm._s(_vm.phoneMain) + " \n        "),
-        _c("small", [_vm._v("Украина")])
+        _c("small", [_vm._v("Черногория")])
       ]),
       _vm._v(" "),
       _c("div", {}, [
         _c("i", { staticClass: "material-icons" }, [_vm._v("phone")]),
         _vm._v("\n        " + _vm._s(_vm.phoneMain) + " \n        "),
-        _c("small", [_vm._v("Черногория")])
+        _c("small", [_vm._v("Украина")])
       ]),
       _vm._v(" "),
       _c(
@@ -34803,17 +34835,31 @@ var render = function() {
                         [_vm._v(_vm._s(_vm.headerMainScreen))]
                       ),
                       _vm._v(" "),
-                      _c("h4", { staticClass: "text-xs-center" }, [
-                        _vm._v(
-                          "Приобретение недвижимости и управление ей с минимальным участием инвестора"
-                        )
-                      ]),
+                      _c(
+                        "h4",
+                        {
+                          staticClass:
+                            "subheader-main-screen-desk text-xs-center"
+                        },
+                        [
+                          _vm._v(
+                            "Приобретение недвижимости и управление ей с минимальным участием инвестора"
+                          )
+                        ]
+                      ),
                       _vm._v(" "),
-                      _c("h4", { staticClass: "text-xs-center pb-5" }, [
-                        _vm._v(
-                          "Получайте стабильный пассивный доход до 9% годовых в евро!"
-                        )
-                      ]),
+                      _c(
+                        "h4",
+                        {
+                          staticClass:
+                            "subheader-main-screen-desk text-xs-center pb-5"
+                        },
+                        [
+                          _vm._v(
+                            "Получайте стабильный пассивный доход до 9% годовых в евро!"
+                          )
+                        ]
+                      ),
                       _vm._v(" "),
                       _c(
                         "v-layout",
@@ -34840,7 +34886,7 @@ var render = function() {
                                         "v-btn",
                                         _vm._g(
                                           {
-                                            staticClass: "btn-get-offer-desk",
+                                            staticClass: "btn-main",
                                             attrs: { large: "" }
                                           },
                                           on
@@ -34868,6 +34914,32 @@ var render = function() {
                               _c(
                                 "v-card",
                                 [
+                                  _c(
+                                    "v-card-actions",
+                                    [
+                                      _c("v-spacer"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-icon",
+                                        {
+                                          staticClass: "close-icon",
+                                          style: { padding: "10px" },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.dialog = false
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            close\n                                    "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
                                   _c(
                                     "v-card-text",
                                     [
@@ -34898,8 +34970,87 @@ var render = function() {
                                                 { attrs: { xs12: "" } },
                                                 [
                                                   _c("v-text-field", {
-                                                    attrs: { label: "Email" }
+                                                    attrs: {
+                                                      label: "Телефон*",
+                                                      type: "number",
+                                                      required: ""
+                                                    }
                                                   })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                { attrs: { xs12: "" } },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label: "Email",
+                                                      type: "email"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                { attrs: { xs12: "" } },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label:
+                                                        "Приблизительный бюджет, €",
+                                                      type: "number"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                {
+                                                  staticClass: "mt-5",
+                                                  attrs: { xs12: "" }
+                                                },
+                                                [
+                                                  _c(
+                                                    "v-card-actions",
+                                                    [
+                                                      _c("v-spacer"),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "v-btn",
+                                                        {
+                                                          staticClass:
+                                                            "btn-main",
+                                                          attrs: {
+                                                            large: "",
+                                                            flat: ""
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.dialog = false
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm.trans(
+                                                                "text.send"
+                                                              )
+                                                            )
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
                                                 ],
                                                 1
                                               )
@@ -34908,50 +35059,6 @@ var render = function() {
                                           )
                                         ],
                                         1
-                                      ),
-                                      _vm._v(" "),
-                                      _c("small", [
-                                        _vm._v("*Обязательные поля")
-                                      ])
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-card-actions",
-                                    [
-                                      _c("v-spacer"),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            color: "blue darken-1",
-                                            flat: ""
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.dialog = false
-                                            }
-                                          }
-                                        },
-                                        [_vm._v("Close")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            color: "blue darken-1",
-                                            flat: ""
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.dialog = false
-                                            }
-                                          }
-                                        },
-                                        [_vm._v("Save")]
                                       )
                                     ],
                                     1
@@ -35037,7 +35144,7 @@ var render = function() {
                                         "v-btn",
                                         _vm._g(
                                           {
-                                            staticClass: "btn-get-offer-desk",
+                                            staticClass: "btn-main",
                                             attrs: { large: "" }
                                           },
                                           on
@@ -35777,19 +35884,19 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("v-toolbar-side-icon", { staticClass: "logo", attrs: { href: "/" } }, [
-        _c("img", {
-          attrs: { src: "/images/logo.png", height: _vm.logoHeight }
-        })
+      _c("v-toolbar-title", { staticClass: "logo-desk hidden-sm-and-down" }, [
+        _vm._v("MyMonte")
       ]),
       _vm._v(" "),
-      _c("v-toolbar-title", [_vm._v("MyMonte")]),
+      _c("v-toolbar-title", { staticClass: "logo-mob hidden-md-and-up" }, [
+        _vm._v("MyMonte")
+      ]),
       _vm._v(" "),
       _c("connect-desk", { attrs: { "phone-main": _vm.phoneMain } }),
       _vm._v(" "),
       _c(
         "v-list-tile",
-        { staticClass: "messangers hidden-sm-and-down grow" },
+        { staticClass: "messangers hidden-sm-and-down" },
         [
           _c(
             "v-list-tile-avatar",
@@ -35798,6 +35905,30 @@ var render = function() {
               _c("v-img", {
                 staticClass: "elevation-6",
                 attrs: { src: "/images/telegram.png" }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile-avatar",
+            { attrs: { size: "25", color: "grey darken-3" } },
+            [
+              _c("v-img", {
+                staticClass: "elevation-6",
+                attrs: { src: "/images/whatsapp.svg" }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile-avatar",
+            { attrs: { size: "25", color: "grey darken-3" } },
+            [
+              _c("v-img", {
+                staticClass: "elevation-6",
+                attrs: { src: "/images/viber.png" }
               })
             ],
             1
@@ -35830,11 +35961,21 @@ var render = function() {
         1
       ),
       _vm._v(" "),
+      _c(
+        "v-btn",
+        {
+          staticClass: "hidden-md-and-down",
+          style: { marginLeft: "1px" },
+          attrs: { small: "", outline: "", color: "white" }
+        },
+        [_vm._v("Обратный звонок")]
+      ),
+      _vm._v(" "),
       _c("v-spacer"),
       _vm._v(" "),
       _c(
         "v-toolbar-items",
-        { style: { marginRight: "-30px" } },
+        { style: { marginRight: "-40px" } },
         [
           _c(
             "v-btn",
@@ -78680,12 +78821,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "vh", function() { return vh; });
 function vh() {
-  var mainImgDesk = document.getElementById('main-img');
-  var mainImgMob = document.getElementById('main-img-mob');
-  mainImgDesk.style.height = '94vh';
-  mainImgMob.style.height = '100vh'; //    if (screen.width >= 960 && el !== null) {
-  //        el.style.height = '94vh';
-  //    } 
+  var mainImgDesk = document.getElementById('main-img'); //    let mainImgMob = document.getElementById('main-img-mob'); 
+  //    mainImgMob.style.height = '100vh';  
+
+  if (screen.width >= 960) {
+    mainImgDesk.style.height = '94vh';
+  }
 }
 
 /***/ }),

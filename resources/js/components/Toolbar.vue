@@ -1,21 +1,34 @@
 <template>
     <v-toolbar app fixed dark fixed clipped-left id="toolbar">
+        
+        <!-- Меню-гамбургер (mobile) -->
         <v-toolbar-side-icon class="hidden-md-and-up mr-3" @click.stop="changeDrawer"></v-toolbar-side-icon>
         
-        <v-toolbar-side-icon class="logo" href="/">
-            <img src="/images/logo.png" :height="logoHeight">
-        </v-toolbar-side-icon> 
+        <!-- Лого (текстом) -->
+        <v-toolbar-title class="logo-desk hidden-sm-and-down">MyMonte</v-toolbar-title>
+        <v-toolbar-title class="logo-mob hidden-md-and-up">MyMonte</v-toolbar-title>
         
-        <v-toolbar-title>MyMonte</v-toolbar-title>
+        <!-- Телефоны (desktop) -->
+        <connect-desk :phone-main="phoneMain"></connect-desk> 
         
-        <connect-desk :phone-main="phoneMain"></connect-desk>       
-
-        <!-- Мессенджеры и иконки соцсетей-->
-        <v-list-tile class="messangers hidden-sm-and-down grow">
+        <!-- Мессенджеры и иконки соцсетей (desktop)-->
+        <v-list-tile class="messangers hidden-sm-and-down">
             <v-list-tile-avatar size="25" color="grey darken-3">
                 <v-img
                     class="elevation-6"
                     src="/images/telegram.png"
+                    ></v-img>
+            </v-list-tile-avatar>
+            <v-list-tile-avatar size="25" color="grey darken-3">
+                <v-img
+                    class="elevation-6"
+                    src="/images/whatsapp.svg"
+                    ></v-img>
+            </v-list-tile-avatar>
+            <v-list-tile-avatar size="25" color="grey darken-3">
+                <v-img
+                    class="elevation-6"
+                    src="/images/viber.png"
                     ></v-img>
             </v-list-tile-avatar>
             <v-list-tile-avatar size="25" color="grey darken-3">
@@ -32,9 +45,13 @@
             </v-list-tile-avatar>
         </v-list-tile>
         
+        <!-- Кнопка "Обратный звонок" (десктоп) -->
+        <v-btn small outline color="white" class="hidden-md-and-down" :style="{ marginLeft: '1px' }">Обратный звонок</v-btn>
+        
         <v-spacer></v-spacer>            
-
-        <v-toolbar-items :style="{ marginRight: '-30px' }">
+        
+        <!-- Меню (десктоп) -->
+        <v-toolbar-items :style="{ marginRight: '-40px' }">
             <v-btn   
                 class="hidden-sm-and-down btn-menu-desktop"    
                 :class="activeClass('/')" 
@@ -76,6 +93,7 @@
             </v-btn>           
         </v-toolbar-items>
         
+        <!-- Выбор языка -->
         <v-toolbar-items>
             <lang :locale="locale"></lang>
         </v-toolbar-items>
@@ -89,7 +107,7 @@
     
     export default {   
         mounted () { 
-            console.log(window.location.pathname); 
+            //console.log(window.location.pathname); 
         }, 
         components: {
             ConnectDesk
@@ -153,6 +171,25 @@
 
 
 <style scoped>
+    .logo-desk {
+        color: rgb(255, 235, 59);
+        border: 2px dashed rgb(255, 235, 59);
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .v-toolbar__title:not(:first-child).logo-desk {
+        margin-left: 0;
+    }
+    
+    .logo-mob {
+        color: rgb(255, 235, 59);
+    }
+
+    .v-toolbar__title:not(:first-child).logo-mob {
+        margin-left: 0;
+    }
+    
     .v-btn.btn-menu-desktop {
         text-transform: none;
         font-family: 'Open Sans Condensed', sans-serif;
@@ -166,11 +203,8 @@
     
     .v-toolbar__content .v-btn--icon {
         margin: 0px;
-    }   
-    
-    .logo:hover {
-        background-color: black;
-    }    
+    }       
+
     .v-list__tile__title {
         text-align: right;
     }

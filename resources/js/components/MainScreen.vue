@@ -10,35 +10,50 @@
                 <v-layout row align-center class="pb-3">
                     <v-flex>
                         <h1 class="header-main-screen-desk text-xs-center">{{ headerMainScreen }}</h1>
-                        <h4 class="text-xs-center">Приобретение недвижимости и управление ей с минимальным участием инвестора</h4>
-                        <h4 class="text-xs-center pb-5">Получайте стабильный пассивный доход до 9% годовых в евро!</h4>
+                        <h4 class="subheader-main-screen-desk text-xs-center">Приобретение недвижимости и управление ей с минимальным участием инвестора</h4>
+                        <h4 class="subheader-main-screen-desk text-xs-center pb-5">Получайте стабильный пассивный доход до 9% годовых в евро!</h4>
                         <v-layout row justify-center align-center class="pb-5">
                             <v-dialog v-model="dialog" persistent max-width="600px">
                                 <template v-slot:activator="{ on }">
-                                    <v-btn v-on="on" large class="btn-get-offer-desk">
+                                    <v-btn v-on="on" large class="btn-main">
                                         Получить персональное предложение
                                     </v-btn>
                                 </template>
                                 <v-card>
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+                                        <v-icon 
+                                            @click="dialog = false" 
+                                            :style="{ padding: '10px' }" 
+                                            class="close-icon">
+                                                close
+                                        </v-icon>
+                                    </v-card-actions>
                                     <v-card-text>
-                                        <v-container grid-list-md>
-                                            <v-layout wrap>
+                                        <v-container grid-list-md>                                            
+                                            <v-layout wrap>                                                
                                                 <v-flex xs12>
                                                     <v-text-field label="Имя*" required></v-text-field>
                                                 </v-flex>
                                                 <v-flex xs12>
-                                                    <v-text-field label="Email"></v-text-field>
+                                                    <v-text-field label="Телефон*" type="number" required></v-text-field>
+                                                </v-flex>
+                                                <v-flex xs12>
+                                                    <v-text-field label="Email" type="email"></v-text-field>
+                                                </v-flex>
+                                                <v-flex xs12>
+                                                    <v-text-field label="Приблизительный бюджет, €" type="number"></v-text-field>
+                                                </v-flex>
+                                                <v-flex xs12 class="mt-5">
+                                                    <v-card-actions>
+                                                        <v-spacer></v-spacer>                                                      
+                                                        <v-btn large flat @click="dialog = false" class="btn-main">{{ trans('text.send') }}</v-btn>
+                                                    </v-card-actions>
                                                 </v-flex>
                                             </v-layout>
                                         </v-container>
-                                        <small>*Обязательные поля</small>
-                                    </v-card-text>
-                                    <v-card-actions>
-                                        <v-spacer></v-spacer>
-                                        <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-                                        <v-btn color="blue darken-1" flat @click="dialog = false">Save</v-btn>
-                                    </v-card-actions>
-                                </v-card>
+                                    </v-card-text>                                  
+                                  </v-card>
                             </v-dialog>
                         </v-layout>
                     </v-flex>
@@ -60,7 +75,7 @@
                         <v-layout row justify-center align-center class="mb-5">
                             <v-dialog v-model="dialogMob" persistent max-width="600px">
                                 <template v-slot:activator="{ on }">
-                                    <v-btn v-on="on" large class="btn-get-offer-desk">
+                                    <v-btn v-on="on" large class="btn-main">
                                         Узнать больше
                                     </v-btn>
                                 </template>
@@ -115,11 +130,15 @@
 <style scoped>
     .header-main-screen-desk {
         font-family: 'Open Sans Condensed', sans-serif; 
-        font-size: 44px;
+        font-size: 56px;
         font-weight: 500;
     }
+    
+    .subheader-main-screen-desk {
+        font-size: 24px;
+    }
 
-    .btn-get-offer-desk.v-btn.v-btn--large {
+    .btn-main.v-btn.v-btn--large {
         font-size: 20px;
         border-radius: 3px;
         background-color: rgb(51, 153, 51);
@@ -136,5 +155,13 @@
     }
     .subheader-mob {
         font-size: 14px;
+    }
+    
+    .v-card__actions {
+        padding: 0;
+    }
+    
+    .close-icon:hover {
+        color: red;
     }
 </style>

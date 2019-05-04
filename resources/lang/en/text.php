@@ -53,5 +53,10 @@ return [
 	'oct-apr'  => 'October-April',
 	
 	'btn_more' => 'Learn More',
-	'from'	   => 'from'
+	'from'	   => 'from',
+	
+	'close'  => 'Close',
+	'save'   => 'Save',
+	'send'   => 'Send',
+	'cancel' => 'Cancel',
 ];
