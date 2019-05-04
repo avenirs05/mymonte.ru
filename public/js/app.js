@@ -1845,6 +1845,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['phoneMain'],
   data: function data() {
@@ -3203,7 +3216,7 @@ exports.push([module.i, "\n.connect-desk[data-v-0ad35808] {\n    margin-left: 25
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.material-icons[data-v-0d7ff761] {\n        font-size: 14px;\n}\n.messangers .v-list__tile[data-v-0d7ff761] {\n        padding: 0;\n}\n.messangers .v-list__tile__avatar[data-v-0d7ff761] {\n        min-width: 25px;\n}\n.messangers .v-list__tile__avatar .v-avatar[data-v-0d7ff761] {\n        margin-right: 8px;\n}\n/*    .connect-mob {\n        display: flex;\n        justify-content: center;\n    }*/\n\n/*    .connect-mob .v-list__tile__title.tel-text {\n        font-family: 'Open Sans Condensed', sans-serif;\n        font-size: 28px;\n    }*/\n\n/*    .connect-mob .v-list__tile__avatar {\n        min-width: 25px;\n    }\n\n    .connect-mob .v-list__tile__avatar .v-avatar {\n        margin-right: 8px;\n    }*/\n", ""]);
+exports.push([module.i, "\n.material-icons[data-v-0d7ff761] {\n        font-size: 14px;\n}\n.messangers .v-list__tile.theme--light[data-v-0d7ff761] {\n        padding: 0;\n}\n.messangers .v-list__tile__avatar[data-v-0d7ff761] {\n        min-width: 25px;\n        margin-right: 3px;\n}\n.messangers .v-list__tile__avatar .v-avatar[data-v-0d7ff761] {\n        margin-right: 8px;\n}\n    \n\n\n/*    .messangers .v-list__tile.theme--light {\n        height: 10px;\n    }*/\n", ""]);
 
 
 
@@ -34417,65 +34430,100 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c(
-        "v-list-tile",
-        { staticClass: "messangers mb-5", style: { marginLeft: "-16px" } },
+        "v-layout",
+        { attrs: { row: "" } },
         [
           _c(
-            "v-list-tile-avatar",
-            { attrs: { size: "25", color: "grey darken-3" } },
+            "v-flex",
+            { style: { paddingTop: 0, paddingRight: 0 }, attrs: { xs6: "" } },
             [
-              _c("v-img", {
-                staticClass: "elevation-6",
-                attrs: { src: "/images/telegram.png" }
-              })
+              _c(
+                "v-list-tile",
+                {
+                  staticClass: "messangers mb-5",
+                  style: { marginLeft: "-16px" }
+                },
+                [
+                  _c(
+                    "v-list-tile-avatar",
+                    { attrs: { size: "25", color: "grey darken-3" } },
+                    [
+                      _c("v-img", {
+                        staticClass: "elevation-6",
+                        attrs: { src: "/images/telegram.png" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-tile-avatar",
+                    { attrs: { size: "25", color: "grey darken-3" } },
+                    [
+                      _c("v-img", {
+                        staticClass: "elevation-6",
+                        attrs: { src: "/images/whatsapp.svg" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-tile-avatar",
+                    { attrs: { size: "25", color: "grey darken-3" } },
+                    [
+                      _c("v-img", {
+                        staticClass: "elevation-6",
+                        attrs: { src: "/images/viber.png" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-tile-avatar",
+                    { attrs: { size: "25", color: "grey darken-3" } },
+                    [
+                      _c("v-img", {
+                        staticClass: "elevation-6",
+                        attrs: { src: "/images/facebook.png" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-tile-avatar",
+                    { attrs: { size: "25", color: "grey darken-3" } },
+                    [
+                      _c("v-img", {
+                        staticClass: "elevation-6",
+                        attrs: { src: "/images/instagram.png" }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
             ],
             1
           ),
           _vm._v(" "),
           _c(
-            "v-list-tile-avatar",
-            { attrs: { size: "25", color: "grey darken-3" } },
+            "v-flex",
+            { attrs: { "d-flex": "", "justify-end": "", xs6: "" } },
             [
-              _c("v-img", {
-                staticClass: "elevation-6",
-                attrs: { src: "/images/whatsapp.svg" }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-tile-avatar",
-            { attrs: { size: "25", color: "grey darken-3" } },
-            [
-              _c("v-img", {
-                staticClass: "elevation-6",
-                attrs: { src: "/images/viber.png" }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-tile-avatar",
-            { attrs: { size: "25", color: "grey darken-3" } },
-            [
-              _c("v-img", {
-                staticClass: "elevation-6",
-                attrs: { src: "/images/facebook.png" }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-tile-avatar",
-            { attrs: { size: "25", color: "grey darken-3" } },
-            [
-              _c("v-img", {
-                staticClass: "elevation-6",
-                attrs: { src: "/images/instagram.png" }
-              })
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  style: { margin: 0, fontSize: "12px", padding: 0 },
+                  attrs: { small: "", color: "primary" }
+                },
+                [_vm._v("\n                   Обратный звонок\n            ")]
+              )
             ],
             1
           )
