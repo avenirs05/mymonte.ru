@@ -177,7 +177,7 @@
                     </v-dialog>
                 </v-layout>
                 <h4 class="text-xs-center subheader-mob mb-3">Приобретение недвижимости и управление ей с минимальным участием инвестора</h4>
-                <h4 class="text-xs-center subheader-mob">Получайте стабильный пассивный доход до 9% годовых в евро!</h4>
+                <h4 class="text-xs-center subheader-mob pb-5">Получайте стабильный пассивный доход до 9% годовых в евро!</h4>
             </v-flex>
         </v-layout>
     </v-container>

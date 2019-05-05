@@ -35757,7 +35757,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "h4",
-                        { staticClass: "text-xs-center subheader-mob" },
+                        { staticClass: "text-xs-center subheader-mob pb-5" },
                         [
                           _vm._v(
                             "Получайте стабильный пассивный доход до 9% годовых в евро!"
