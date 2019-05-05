@@ -2247,6 +2247,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2270,7 +2319,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      dialog: false,
+      dialogDesk: false,
       dialogMob: false,
       name: '',
       phone: '',
@@ -35100,7 +35149,7 @@ var render = function() {
                                         ),
                                         [
                                           _vm._v(
-                                            "\n                                    Получить персональное предложение\n                                "
+                                            "\n                                Получить персональное предложение\n                            "
                                           )
                                         ]
                                       )
@@ -35109,11 +35158,11 @@ var render = function() {
                                 }
                               ]),
                               model: {
-                                value: _vm.dialog,
+                                value: _vm.dialogDesk,
                                 callback: function($$v) {
-                                  _vm.dialog = $$v
+                                  _vm.dialogDesk = $$v
                                 },
-                                expression: "dialog"
+                                expression: "dialogDesk"
                               }
                             },
                             [
@@ -35133,13 +35182,13 @@ var render = function() {
                                           style: { padding: "10px" },
                                           on: {
                                             click: function($event) {
-                                              _vm.dialog = false
+                                              _vm.dialogDesk = false
                                             }
                                           }
                                         },
                                         [
                                           _vm._v(
-                                            "\n                                            close\n                                    "
+                                            "\n                                    close\n                                "
                                           )
                                         ]
                                       )
@@ -35419,7 +35468,7 @@ var render = function() {
                           _c(
                             "v-dialog",
                             {
-                              attrs: { persistent: "", "max-width": "600px" },
+                              attrs: { persistent: "", fullscreen: "" },
                               scopedSlots: _vm._u([
                                 {
                                   key: "activator",
@@ -35437,7 +35486,7 @@ var render = function() {
                                         ),
                                         [
                                           _vm._v(
-                                            "\n                                    Узнать больше\n                                "
+                                            "\n                                Узнать больше\n                            "
                                           )
                                         ]
                                       )
@@ -35459,6 +35508,32 @@ var render = function() {
                                 "v-card",
                                 [
                                   _c(
+                                    "v-card-actions",
+                                    [
+                                      _c("v-spacer"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-icon",
+                                        {
+                                          staticClass: "close-icon",
+                                          style: { padding: "10px" },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.dialogMob = false
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                    close\n                                "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
                                     "v-card-text",
                                     [
                                       _c(
@@ -35470,78 +35545,192 @@ var render = function() {
                                             { attrs: { wrap: "" } },
                                             [
                                               _c(
-                                                "v-flex",
-                                                { attrs: { xs12: "" } },
+                                                "form",
+                                                {
+                                                  style: { width: "100%" },
+                                                  attrs: {
+                                                    action: "/thank-you",
+                                                    method: "get"
+                                                  }
+                                                },
                                                 [
-                                                  _c("v-text-field", {
-                                                    attrs: {
-                                                      label: "Имя*",
-                                                      required: ""
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-flex",
-                                                { attrs: { xs12: "" } },
-                                                [
-                                                  _c("v-text-field", {
-                                                    attrs: { label: "Email" }
-                                                  })
+                                                  _c(
+                                                    "v-flex",
+                                                    { attrs: { xs12: "" } },
+                                                    [
+                                                      _c("v-text-field", {
+                                                        attrs: {
+                                                          label: "Имя*",
+                                                          name: "name",
+                                                          "error-messages":
+                                                            _vm.nameErrors,
+                                                          required: ""
+                                                        },
+                                                        on: {
+                                                          input: function(
+                                                            $event
+                                                          ) {
+                                                            return _vm.$v.name.$touch()
+                                                          },
+                                                          blur: function(
+                                                            $event
+                                                          ) {
+                                                            return _vm.$v.name.$touch()
+                                                          }
+                                                        },
+                                                        model: {
+                                                          value: _vm.name,
+                                                          callback: function(
+                                                            $$v
+                                                          ) {
+                                                            _vm.name = $$v
+                                                          },
+                                                          expression: "name"
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-flex",
+                                                    { attrs: { xs12: "" } },
+                                                    [
+                                                      _c("v-text-field", {
+                                                        attrs: {
+                                                          label: "Телефон*",
+                                                          name: "phone",
+                                                          type: "number",
+                                                          required: "",
+                                                          "error-messages":
+                                                            _vm.phoneErrors
+                                                        },
+                                                        on: {
+                                                          input: function(
+                                                            $event
+                                                          ) {
+                                                            return _vm.$v.phone.$touch()
+                                                          },
+                                                          blur: function(
+                                                            $event
+                                                          ) {
+                                                            return _vm.$v.phone.$touch()
+                                                          }
+                                                        },
+                                                        model: {
+                                                          value: _vm.phone,
+                                                          callback: function(
+                                                            $$v
+                                                          ) {
+                                                            _vm.phone = $$v
+                                                          },
+                                                          expression: "phone"
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-flex",
+                                                    { attrs: { xs12: "" } },
+                                                    [
+                                                      _c("v-text-field", {
+                                                        attrs: {
+                                                          label: "Email",
+                                                          name: "email",
+                                                          type: "email",
+                                                          "error-messages":
+                                                            _vm.emailErrors
+                                                        },
+                                                        on: {
+                                                          input: function(
+                                                            $event
+                                                          ) {
+                                                            return _vm.$v.email.$touch()
+                                                          },
+                                                          blur: function(
+                                                            $event
+                                                          ) {
+                                                            return _vm.$v.email.$touch()
+                                                          }
+                                                        },
+                                                        model: {
+                                                          value: _vm.email,
+                                                          callback: function(
+                                                            $$v
+                                                          ) {
+                                                            _vm.email = $$v
+                                                          },
+                                                          expression: "email"
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-flex",
+                                                    { attrs: { xs12: "" } },
+                                                    [
+                                                      _c("v-text-field", {
+                                                        attrs: {
+                                                          name: "budget",
+                                                          label:
+                                                            "Приблизительный бюджет, €",
+                                                          type: "number"
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-flex",
+                                                    {
+                                                      staticClass: "mt-5",
+                                                      attrs: { xs12: "" }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "v-card-actions",
+                                                        [
+                                                          _c("v-spacer"),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "v-btn",
+                                                            {
+                                                              staticClass:
+                                                                "btn-main",
+                                                              attrs: {
+                                                                type: "submit",
+                                                                large: "",
+                                                                flat: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.trans(
+                                                                    "text.send"
+                                                                  )
+                                                                )
+                                                              )
+                                                            ]
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
                                                 ],
                                                 1
                                               )
-                                            ],
-                                            1
+                                            ]
                                           )
                                         ],
                                         1
-                                      ),
-                                      _vm._v(" "),
-                                      _c("small", [
-                                        _vm._v("*Обязательные поля")
-                                      ])
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-card-actions",
-                                    [
-                                      _c("v-spacer"),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            color: "blue darken-1",
-                                            flat: ""
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.dialogMob = false
-                                            }
-                                          }
-                                        },
-                                        [_vm._v("Close")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            color: "blue darken-1",
-                                            flat: ""
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.dialogMob = false
-                                            }
-                                          }
-                                        },
-                                        [_vm._v("Save")]
                                       )
                                     ],
                                     1
