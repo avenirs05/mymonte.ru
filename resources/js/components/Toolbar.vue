@@ -43,16 +43,69 @@
                     src="/images/instagram.png"
                     ></v-img>
             </v-list-tile-avatar>
-        </v-list-tile>
+        </v-list-tile>     
         
         <!-- Кнопка "Обратный звонок" (десктоп) -->
-        <v-btn class="hidden-md-and-down"
-               small 
-               outline 
-               color="white"                
-               :style="{ marginLeft: '1px' }">
-               Обратный звонок
-        </v-btn>
+        <v-dialog v-model="dialogCallbackDesk" persistent max-width="600px">
+            <template v-slot:activator="{ on }">
+                <v-btn class="hidden-md-and-down"
+                       v-on="on"
+                       small 
+                       outline 
+                       color="white"                
+                       :style="{ marginLeft: '1px' }">
+                       Обратный звонок
+                </v-btn>
+            </template>
+            <v-card>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-icon 
+                        @click="dialogCallbackDesk = false" 
+                        :style="{ padding: '10px' }" 
+                        class="close-icon">
+                        close
+                    </v-icon>
+                </v-card-actions>
+                <v-card-text>
+                    <v-container grid-list-md>
+                        <v-layout wrap>
+                            <form action="/thank-you" method="get" :style="{ width: '100%' }">
+                                <v-flex xs12>
+                                    <v-text-field 
+                                        label="Имя*"
+                                        name="name"
+                                        v-model="name"
+                                        :error-messages="nameErrors"
+                                        required
+                                        @input="$v.name.$touch()"
+                                        @blur="$v.name.$touch()"
+                                        ></v-text-field>
+                                </v-flex>
+                                <v-flex xs12>
+                                    <v-text-field 
+                                        label="Телефон*" 
+                                        name="phone"
+                                        type="number" 
+                                        required
+                                        v-model="phone"
+                                        :error-messages="phoneErrors"
+                                        @input="$v.phone.$touch()"
+                                        @blur="$v.phone.$touch()"
+                                        ></v-text-field>
+                                </v-flex>
+                                <v-flex xs12 class="mt-5">
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+                                        <v-btn type="submit" large flat class="btn-main">{{ trans('text.send') }}</v-btn>
+                                    </v-card-actions>
+                                </v-flex>
+                            </form>
+                        </v-layout>
+                    </v-container>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
         
         <v-spacer></v-spacer>            
         
@@ -110,8 +163,15 @@
 
 <script>
     import ConnectDesk from './ConnectDesk.vue';
+    import { validationMixin } from 'vuelidate'
+    import { required } from 'vuelidate/lib/validators'    
     
-    export default {   
+    export default {  
+        mixins: [validationMixin],
+        validations: {
+            name: { required },
+            phone: { required },            
+        },
         mounted () { 
             //console.log(window.location.pathname); 
         }, 
@@ -119,7 +179,10 @@
             ConnectDesk
         },
         props: ['locale', 'phoneMain'],    
-        data: () => ({
+        data: () => ({            
+            dialogCallbackDesk: false,
+            name: '',
+            phone: '',
             drawer: false,
             realties: [ 
                 { title: trans('text.menu.objects.less_than_100'), href: '/less-than-100' },
@@ -159,7 +222,11 @@
             
             changeDrawer() {
                 this.$parent.$children[0].drawer = true;
-            }            
+            },
+            
+            submit () {
+              this.$v.$touch()
+            }
         },
         computed: {
             logoHeight () {
@@ -170,6 +237,18 @@
                     case 'lg': return '41'
                     case 'xl': return '41'
                 }
+            },
+            nameErrors () {
+                const errors = []
+                if (!this.$v.name.$dirty) return errors
+                !this.$v.name.required && errors.push('Name is required.')
+                return errors
+            },
+            phoneErrors () {
+                const errors = []
+                if (!this.$v.phone.$dirty) return errors
+                !this.$v.phone.required && errors.push('Phone is required.')
+                return errors
             }
         }     
     }
@@ -221,6 +300,25 @@
 
     .messangers .v-list__tile__avatar .v-avatar {
         margin-right: 8px;
+    }
+    
+    .btn-main.v-btn.v-btn--large {
+        font-size: 20px;
+        border-radius: 3px;
+        background-color: rgb(51, 153, 51);
+        color: rgb(255, 255, 255);
+        border: medium none;
+        letter-spacing: 1px;  
+        text-transform: none;
+        font-weight: 400;
+    } 
+    
+    .v-card__actions {
+        padding: 0;
+    }
+
+    .close-icon:hover {
+        color: red;
     }
 </style>
 

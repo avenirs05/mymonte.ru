@@ -1797,6 +1797,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
+/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuelidate__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -1858,10 +1862,105 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [vuelidate__WEBPACK_IMPORTED_MODULE_0__["validationMixin"]],
+  validations: {
+    name: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["required"]
+    },
+    phone: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["required"]
+    }
+  },
   props: ['phoneMain'],
   data: function data() {
-    return {};
+    return {
+      dialogCallbackMob: false,
+      name: '',
+      phone: ''
+    };
+  },
+  computed: {
+    nameErrors: function nameErrors() {
+      var errors = [];
+      if (!this.$v.name.$dirty) return errors;
+      !this.$v.name.required && errors.push('Name is required.');
+      return errors;
+    },
+    phoneErrors: function phoneErrors() {
+      var errors = [];
+      if (!this.$v.phone.$dirty) return errors;
+      !this.$v.phone.required && errors.push('Phone is required.');
+      return errors;
+    }
+  },
+  methods: {
+    submit: function submit() {
+      this.$v.$touch();
+    }
   }
 });
 
@@ -2642,6 +2741,63 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ConnectDesk_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ConnectDesk.vue */ "./resources/js/components/ConnectDesk.vue");
+/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
+/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuelidate__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2753,7 +2909,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [vuelidate__WEBPACK_IMPORTED_MODULE_1__["validationMixin"]],
+  validations: {
+    name: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__["required"]
+    },
+    phone: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__["required"]
+    }
+  },
   mounted: function mounted() {//console.log(window.location.pathname); 
   },
   components: {
@@ -2762,6 +2929,9 @@ __webpack_require__.r(__webpack_exports__);
   props: ['locale', 'phoneMain'],
   data: function data() {
     return {
+      dialogCallbackDesk: false,
+      name: '',
+      phone: '',
       drawer: false,
       realties: [{
         title: trans('text.menu.objects.less_than_100'),
@@ -2803,6 +2973,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeDrawer: function changeDrawer() {
       this.$parent.$children[0].drawer = true;
+    },
+    submit: function submit() {
+      this.$v.$touch();
     }
   },
   computed: {
@@ -2823,6 +2996,18 @@ __webpack_require__.r(__webpack_exports__);
         case 'xl':
           return '41';
       }
+    },
+    nameErrors: function nameErrors() {
+      var errors = [];
+      if (!this.$v.name.$dirty) return errors;
+      !this.$v.name.required && errors.push('Name is required.');
+      return errors;
+    },
+    phoneErrors: function phoneErrors() {
+      var errors = [];
+      if (!this.$v.phone.$dirty) return errors;
+      !this.$v.phone.required && errors.push('Phone is required.');
+      return errors;
     }
   }
 });
@@ -3377,7 +3562,7 @@ exports.push([module.i, "\n.connect-desk[data-v-0ad35808] {\n    margin-left: 25
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.material-icons[data-v-0d7ff761] {\n        font-size: 14px;\n}\n.messangers .v-list__tile.theme--light[data-v-0d7ff761] {\n        padding: 0;\n}\n.messangers .v-list__tile__avatar[data-v-0d7ff761] {\n        min-width: 25px;\n        margin-right: 3px;\n}\n.messangers .v-list__tile__avatar .v-avatar[data-v-0d7ff761] {\n        margin-right: 8px;\n}\n    \n\n\n/*    .messangers .v-list__tile.theme--light {\n        height: 10px;\n    }*/\n", ""]);
+exports.push([module.i, "\n.material-icons[data-v-0d7ff761] {\n    font-size: 14px;\n}\n.messangers .v-list__tile.theme--light[data-v-0d7ff761] {\n    padding: 0;\n}\n.messangers .v-list__tile__avatar[data-v-0d7ff761] {\n    min-width: 25px;\n    margin-right: 3px;\n}\n.messangers .v-list__tile__avatar .v-avatar[data-v-0d7ff761] {\n    margin-right: 8px;\n}\n.btn-main.v-btn.v-btn--large[data-v-0d7ff761] {\n    font-size: 20px;\n    border-radius: 3px;\n    background-color: rgb(51, 153, 51);\n    color: rgb(255, 255, 255);\n    border: medium none;\n    letter-spacing: 1px;  \n    text-transform: none;\n    font-weight: 400;\n}\n.close-icon[data-v-0d7ff761]:hover {\n    color: red;\n}\n\n", ""]);
 
 
 
@@ -3467,7 +3652,7 @@ exports.push([module.i, "\n.props-in-max-card-mob[data-v-53ef7bcc] {\n    list-s
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.logo-desk[data-v-43b87f60] {\n    color: rgb(255, 235, 59);\n    border: 2px dashed rgb(255, 235, 59);\n    padding-left: 10px;\n    padding-right: 10px;\n}\n.v-toolbar__title:not(:first-child).logo-desk[data-v-43b87f60] {\n    margin-left: 0;\n}\n.logo-mob[data-v-43b87f60] {\n    color: rgb(255, 235, 59);\n}\n.v-toolbar__title:not(:first-child).logo-mob[data-v-43b87f60] {\n    margin-left: 0;\n}\n.v-btn.btn-menu-desktop[data-v-43b87f60] {\n    text-transform: none;\n    font-family: 'Open Sans Condensed', sans-serif;\n    font-size: 24px;\n}\n.v-btn--icon.logo[data-v-43b87f60] {\n    width: auto;\n    pointer-events: none;\n}\n.v-toolbar__content .v-btn--icon[data-v-43b87f60] {\n    margin: 0px;\n}\n.v-list__tile__title[data-v-43b87f60] {\n    text-align: right;\n}\n.messangers .v-list__tile__avatar[data-v-43b87f60] {\n    min-width: 25px;\n}\n.messangers .v-list__tile__avatar .v-avatar[data-v-43b87f60] {\n    margin-right: 8px;\n}\n", ""]);
+exports.push([module.i, "\n.logo-desk[data-v-43b87f60] {\n    color: rgb(255, 235, 59);\n    border: 2px dashed rgb(255, 235, 59);\n    padding-left: 10px;\n    padding-right: 10px;\n}\n.v-toolbar__title:not(:first-child).logo-desk[data-v-43b87f60] {\n    margin-left: 0;\n}\n.logo-mob[data-v-43b87f60] {\n    color: rgb(255, 235, 59);\n}\n.v-toolbar__title:not(:first-child).logo-mob[data-v-43b87f60] {\n    margin-left: 0;\n}\n.v-btn.btn-menu-desktop[data-v-43b87f60] {\n    text-transform: none;\n    font-family: 'Open Sans Condensed', sans-serif;\n    font-size: 24px;\n}\n.v-btn--icon.logo[data-v-43b87f60] {\n    width: auto;\n    pointer-events: none;\n}\n.v-toolbar__content .v-btn--icon[data-v-43b87f60] {\n    margin: 0px;\n}\n.v-list__tile__title[data-v-43b87f60] {\n    text-align: right;\n}\n.messangers .v-list__tile__avatar[data-v-43b87f60] {\n    min-width: 25px;\n}\n.messangers .v-list__tile__avatar .v-avatar[data-v-43b87f60] {\n    margin-right: 8px;\n}\n.btn-main.v-btn.v-btn--large[data-v-43b87f60] {\n    font-size: 20px;\n    border-radius: 3px;\n    background-color: rgb(51, 153, 51);\n    color: rgb(255, 255, 255);\n    border: medium none;\n    letter-spacing: 1px;  \n    text-transform: none;\n    font-weight: 400;\n}\n.v-card__actions[data-v-43b87f60] {\n    padding: 0;\n}\n.close-icon[data-v-43b87f60]:hover {\n    color: red;\n}\n", ""]);
 
 
 
@@ -34723,12 +34908,207 @@ var render = function() {
               _c("v-spacer"),
               _vm._v(" "),
               _c(
-                "v-btn",
+                "v-dialog",
                 {
-                  style: { margin: 0, fontSize: "12px", padding: 0 },
-                  attrs: { small: "", color: "primary" }
+                  attrs: { persistent: "", fullscreen: "" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function(ref) {
+                        var on = ref.on
+                        return [
+                          _c(
+                            "v-btn",
+                            _vm._g(
+                              {
+                                style: {
+                                  margin: 0,
+                                  fontSize: "12px",
+                                  padding: 0
+                                },
+                                attrs: { small: "", color: "primary" }
+                              },
+                              on
+                            ),
+                            [
+                              _vm._v(
+                                "\n                           Обратный звонок\n                    "
+                              )
+                            ]
+                          )
+                        ]
+                      }
+                    }
+                  ]),
+                  model: {
+                    value: _vm.dialogCallbackMob,
+                    callback: function($$v) {
+                      _vm.dialogCallbackMob = $$v
+                    },
+                    expression: "dialogCallbackMob"
+                  }
                 },
-                [_vm._v("\n                   Обратный звонок\n            ")]
+                [
+                  _vm._v(" "),
+                  _c(
+                    "v-card",
+                    [
+                      _c(
+                        "v-card-actions",
+                        [
+                          _c("v-spacer"),
+                          _vm._v(" "),
+                          _c(
+                            "v-icon",
+                            {
+                              staticClass: "close-icon",
+                              style: { padding: "10px" },
+                              on: {
+                                click: function($event) {
+                                  _vm.dialogCallbackMob = false
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            close\n                        "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-card-text",
+                        [
+                          _c(
+                            "v-container",
+                            { attrs: { "grid-list-md": "" } },
+                            [
+                              _c("v-layout", { attrs: { wrap: "" } }, [
+                                _c(
+                                  "form",
+                                  {
+                                    style: { width: "100%" },
+                                    attrs: {
+                                      action: "/thank-you",
+                                      method: "get"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "v-flex",
+                                      { attrs: { xs12: "" } },
+                                      [
+                                        _c("v-text-field", {
+                                          attrs: {
+                                            label: "Имя*",
+                                            name: "name",
+                                            "error-messages": _vm.nameErrors,
+                                            required: ""
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              return _vm.$v.name.$touch()
+                                            },
+                                            blur: function($event) {
+                                              return _vm.$v.name.$touch()
+                                            }
+                                          },
+                                          model: {
+                                            value: _vm.name,
+                                            callback: function($$v) {
+                                              _vm.name = $$v
+                                            },
+                                            expression: "name"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-flex",
+                                      { attrs: { xs12: "" } },
+                                      [
+                                        _c("v-text-field", {
+                                          attrs: {
+                                            label: "Телефон*",
+                                            name: "phone",
+                                            type: "number",
+                                            required: "",
+                                            "error-messages": _vm.phoneErrors
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              return _vm.$v.phone.$touch()
+                                            },
+                                            blur: function($event) {
+                                              return _vm.$v.phone.$touch()
+                                            }
+                                          },
+                                          model: {
+                                            value: _vm.phone,
+                                            callback: function($$v) {
+                                              _vm.phone = $$v
+                                            },
+                                            expression: "phone"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-flex",
+                                      {
+                                        staticClass: "mt-5",
+                                        attrs: { xs12: "" }
+                                      },
+                                      [
+                                        _c(
+                                          "v-card-actions",
+                                          [
+                                            _c("v-spacer"),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-btn",
+                                              {
+                                                staticClass: "btn-main",
+                                                attrs: {
+                                                  type: "submit",
+                                                  large: "",
+                                                  flat: ""
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(_vm.trans("text.send"))
+                                                )
+                                              ]
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
               )
             ],
             1
@@ -36437,13 +36817,190 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "v-btn",
+        "v-dialog",
         {
-          staticClass: "hidden-md-and-down",
-          style: { marginLeft: "1px" },
-          attrs: { small: "", outline: "", color: "white" }
+          attrs: { persistent: "", "max-width": "600px" },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._g(
+                      {
+                        staticClass: "hidden-md-and-down",
+                        style: { marginLeft: "1px" },
+                        attrs: { small: "", outline: "", color: "white" }
+                      },
+                      on
+                    ),
+                    [
+                      _vm._v(
+                        "\n                   Обратный звонок\n            "
+                      )
+                    ]
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.dialogCallbackDesk,
+            callback: function($$v) {
+              _vm.dialogCallbackDesk = $$v
+            },
+            expression: "dialogCallbackDesk"
+          }
         },
-        [_vm._v("\n           Обратный звонок\n    ")]
+        [
+          _vm._v(" "),
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-icon",
+                    {
+                      staticClass: "close-icon",
+                      style: { padding: "10px" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialogCallbackDesk = false
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    close\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-container",
+                    { attrs: { "grid-list-md": "" } },
+                    [
+                      _c("v-layout", { attrs: { wrap: "" } }, [
+                        _c(
+                          "form",
+                          {
+                            style: { width: "100%" },
+                            attrs: { action: "/thank-you", method: "get" }
+                          },
+                          [
+                            _c(
+                              "v-flex",
+                              { attrs: { xs12: "" } },
+                              [
+                                _c("v-text-field", {
+                                  attrs: {
+                                    label: "Имя*",
+                                    name: "name",
+                                    "error-messages": _vm.nameErrors,
+                                    required: ""
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      return _vm.$v.name.$touch()
+                                    },
+                                    blur: function($event) {
+                                      return _vm.$v.name.$touch()
+                                    }
+                                  },
+                                  model: {
+                                    value: _vm.name,
+                                    callback: function($$v) {
+                                      _vm.name = $$v
+                                    },
+                                    expression: "name"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-flex",
+                              { attrs: { xs12: "" } },
+                              [
+                                _c("v-text-field", {
+                                  attrs: {
+                                    label: "Телефон*",
+                                    name: "phone",
+                                    type: "number",
+                                    required: "",
+                                    "error-messages": _vm.phoneErrors
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      return _vm.$v.phone.$touch()
+                                    },
+                                    blur: function($event) {
+                                      return _vm.$v.phone.$touch()
+                                    }
+                                  },
+                                  model: {
+                                    value: _vm.phone,
+                                    callback: function($$v) {
+                                      _vm.phone = $$v
+                                    },
+                                    expression: "phone"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-flex",
+                              { staticClass: "mt-5", attrs: { xs12: "" } },
+                              [
+                                _c(
+                                  "v-card-actions",
+                                  [
+                                    _c("v-spacer"),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        staticClass: "btn-main",
+                                        attrs: {
+                                          type: "submit",
+                                          large: "",
+                                          flat: ""
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(_vm.trans("text.send")))]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
       ),
       _vm._v(" "),
       _c("v-spacer"),
@@ -80266,14 +80823,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************!*\
   !*** ./resources/js/components/ConnectMob.vue ***!
   \************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ConnectMob_vue_vue_type_template_id_0d7ff761_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ConnectMob.vue?vue&type=template&id=0d7ff761&scoped=true& */ "./resources/js/components/ConnectMob.vue?vue&type=template&id=0d7ff761&scoped=true&");
 /* harmony import */ var _ConnectMob_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ConnectMob.vue?vue&type=script&lang=js& */ "./resources/js/components/ConnectMob.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _ConnectMob_vue_vue_type_style_index_0_id_0d7ff761_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ConnectMob.vue?vue&type=style&index=0&id=0d7ff761&scoped=true&lang=css& */ "./resources/js/components/ConnectMob.vue?vue&type=style&index=0&id=0d7ff761&scoped=true&lang=css&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ConnectMob_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ConnectMob_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _ConnectMob_vue_vue_type_style_index_0_id_0d7ff761_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ConnectMob.vue?vue&type=style&index=0&id=0d7ff761&scoped=true&lang=css& */ "./resources/js/components/ConnectMob.vue?vue&type=style&index=0&id=0d7ff761&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -80305,7 +80863,7 @@ component.options.__file = "resources/js/components/ConnectMob.vue"
 /*!*************************************************************************!*\
   !*** ./resources/js/components/ConnectMob.vue?vue&type=script&lang=js& ***!
   \*************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -15,7 +15,7 @@
                 <h4 class="subheader-main-screen-desk text-xs-center pb-5">Получайте стабильный пассивный доход до 9% годовых в евро!</h4>
                 <v-layout row justify-center align-center class="pb-5">
                     
-                    <!-- Модальное окно (desktop) -->
+                    <!-- Модальное окно "Получить персональное предложение" (desktop) -->
                     <v-dialog v-model="dialogDesk" persistent max-width="600px">
                         <template v-slot:activator="{ on }">
                             <v-btn v-on="on" large class="btn-main">
@@ -105,7 +105,7 @@
                 <h1 class="header-main-screen-mob text-xs-center mb-5">{{ headerMainScreen }}</h1>
                 <v-layout row justify-center align-center class="mb-5">
                     
-                    <!-- Модальное окно (mobile) -->
+                    <!-- Модальное окно "Узнать больше" (mobile) -->
                     <v-dialog v-model="dialogMob" persistent fullscreen>
                         <template v-slot:activator="{ on }">
                             <v-btn v-on="on" large class="btn-main">
@@ -189,7 +189,7 @@
 <script>
     import ConnectMob from './ConnectMob.vue'; 
     import { validationMixin } from 'vuelidate'
-    import { required, maxLength, email } from 'vuelidate/lib/validators'    
+    import { required, email } from 'vuelidate/lib/validators'    
     
     export default {
         mixins: [validationMixin],
