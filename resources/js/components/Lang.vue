@@ -1,7 +1,7 @@
 <template>
     <v-menu dark offset-y left bottom class="language-menu" attach="#toolbar">
-        <v-btn flat slot="activator" class="flag-btn">
-            <v-img position="center right" contain height="24px" :src="`/images/flags/${locale}.png`" ></v-img>
+        <v-btn flat slot="activator" class="flag-btn" :style="{ minWidth: '40px' }">
+            <v-img position="center right" contain height="24px" width="24px" :src="`/images/flags/${locale}.png`" ></v-img>
         </v-btn>
 
         <v-list>

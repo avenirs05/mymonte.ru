@@ -46,12 +46,18 @@
         </v-list-tile>
         
         <!-- Кнопка "Обратный звонок" (десктоп) -->
-        <v-btn small outline color="white" class="hidden-md-and-down" :style="{ marginLeft: '1px' }">Обратный звонок</v-btn>
+        <v-btn class="hidden-md-and-down"
+               small 
+               outline 
+               color="white"                
+               :style="{ marginLeft: '1px' }">
+               Обратный звонок
+        </v-btn>
         
         <v-spacer></v-spacer>            
         
         <!-- Меню (десктоп) -->
-        <v-toolbar-items :style="{ marginRight: '-40px' }">
+        <v-toolbar-items :style="{ marginRight: '10px' }">
             <v-btn   
                 class="hidden-sm-and-down btn-menu-desktop"    
                 :class="activeClass('/')" 

@@ -49,6 +49,7 @@
         "lg-zoom": "^1.1.0",
         "lightgallery": "^1.6.12",
         "vue-router": "^3.0.2",
+        "vuelidate": "^0.7.4",
         "vuetify": "^1.5.5"
     }
 }
