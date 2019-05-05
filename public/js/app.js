@@ -37177,7 +37177,7 @@ var render = function() {
                   { staticClass: "display-1 mt-1 mb-4 text-xs-center" },
                   [
                     _vm._v(
-                      "\n                    Спасибо за заявку!\n                "
+                      "\n                    Спасибо за обращение! С вами свяжутся в ближайшее время. \n                "
                     )
                   ]
                 )

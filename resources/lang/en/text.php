@@ -4,7 +4,8 @@ return [
 	'header_main' => 'Rent villas and apartments in Montenegro without intermediaries',
 	
 	'title_tag'	  => [
-	    'home' => 'Rent villas and apartments in Montenegro',
+	    'home' => 'Investment Property in Montenegro',
+		'thank_you' => 'Thank you for contacting'
 	],
 	
 	'menu' => [
