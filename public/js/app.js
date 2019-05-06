@@ -1780,7 +1780,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['phoneMain'],
+  props: ['phoneMain', 'phoneMain2'],
   data: function data() {
     return {};
   }
@@ -1935,7 +1935,7 @@ __webpack_require__.r(__webpack_exports__);
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["required"]
     }
   },
-  props: ['phoneMain'],
+  props: ['phoneMain', 'phoneMain2'],
   data: function data() {
     return {
       dialogCallbackMob: false,
@@ -2395,6 +2395,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -2412,7 +2417,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {},
-  props: ['headerMainScreen', 'phoneMain'],
+  props: ['headerMainScreen', 'phoneMain', 'phoneMain2'],
   components: {
     ConnectMob: _ConnectMob_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -2908,6 +2913,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2921,12 +2929,12 @@ __webpack_require__.r(__webpack_exports__);
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__["required"]
     }
   },
-  mounted: function mounted() {//console.log(window.location.pathname); 
+  mounted: function mounted() {//console.log(this.phoneMain2); 
   },
   components: {
     ConnectDesk: _ConnectDesk_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['locale', 'phoneMain'],
+  props: ['locale', 'phoneMain', 'phoneMain2'],
   data: function data() {
     return {
       dialogCallbackDesk: false,
@@ -3089,10 +3097,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {},
-  props: ['locale', 'headerMainScreen', 'headerMainContent', 'phoneMain', 'headerAreas', 'areas', 'questions'],
+  mounted: function mounted() {//console.log(this.phoneMain2);
+  },
+  props: ['locale', 'headerMainScreen', 'headerMainContent', 'phoneMain', 'phoneMain2', 'headerAreas', 'areas', 'questions'],
   components: {
     MainScreen: _MainScreen_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -3682,7 +3692,7 @@ exports.push([module.i, "\n.contacts-wrapper {\n    font-size: 18px;\n}\n", ""])
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* В файл app.js добавлена функция vh() */\n.v-content {\n        font-size: 18px;\n}\ntable {\n        font-size: 16px;\n        width: 100%;\n        max-width: 100%;\n        border: 1px solid #ddd;\n        border-collapse: collapse;\n}\ntable tr {\n        border: 1px solid #ddd;\n        text-align: left;\n}\ntable td {\n        padding: 10px;\n}\ntable th {\n        padding: 10px;\n        color: blue;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* В файл app.js добавлена функция vh() */\n.v-content {\n        font-size: 18px;\n}\ntable {\n        font-size: 16px;\n        width: 100%;\n        max-width: 100%;\n        border: 1px solid #ddd;\n        border-collapse: collapse;\n}\ntable tr {\n        border: 1px solid #ddd;\n        text-align: left;\n}\ntable td {\n        padding: 10px;\n}\ntable th {\n        padding: 10px;\n        color: blue;\n}\n\n", ""]);
 
 
 
@@ -34777,7 +34787,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", [
       _c("i", { staticClass: "material-icons" }, [_vm._v("phone")]),
-      _vm._v("\n        " + _vm._s(_vm.phoneMain) + "  \n        "),
+      _vm._v("\n        " + _vm._s(_vm.phoneMain2) + "  \n        "),
       _c("small", [_vm._v("Украина")])
     ])
   ])
@@ -34816,7 +34826,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", {}, [
         _c("i", { staticClass: "material-icons" }, [_vm._v("phone")]),
-        _vm._v("\n        " + _vm._s(_vm.phoneMain) + " \n        "),
+        _vm._v("\n        " + _vm._s(_vm.phoneMain2) + " \n        "),
         _c("small", [_vm._v("Украина")])
       ]),
       _vm._v(" "),
@@ -35822,7 +35832,10 @@ var render = function() {
                     "v-flex",
                     [
                       _c("connect-mob", {
-                        attrs: { "phone-main": _vm.phoneMain }
+                        attrs: {
+                          "phone-main": _vm.phoneMain,
+                          "phone-main2": _vm.phoneMain2
+                        }
                       }),
                       _vm._v(" "),
                       _c(
@@ -36747,7 +36760,9 @@ var render = function() {
         _vm._v("MyMonte")
       ]),
       _vm._v(" "),
-      _c("connect-desk", { attrs: { "phone-main": _vm.phoneMain } }),
+      _c("connect-desk", {
+        attrs: { "phone-main": _vm.phoneMain, "phone-main2": _vm.phoneMain2 }
+      }),
       _vm._v(" "),
       _c(
         "v-list-tile",
@@ -37203,7 +37218,8 @@ var render = function() {
       _c("main-screen", {
         attrs: {
           "header-main-screen": _vm.headerMainScreen,
-          "phone-main": _vm.phoneMain
+          "phone-main": _vm.phoneMain,
+          "phone-main2": _vm.phoneMain2
         }
       }),
       _vm._v(" "),
@@ -37923,7 +37939,9 @@ var render = function() {
                   { staticClass: "display-1 mt-1 mb-4 text-xs-center" },
                   [
                     _vm._v(
-                      "\n                    Спасибо за обращение! С вами свяжутся в ближайшее время. \n                "
+                      "\n                    " +
+                        _vm._s(_vm.trans("text.thank_you_page_content")) +
+                        " \n                "
                     )
                   ]
                 )

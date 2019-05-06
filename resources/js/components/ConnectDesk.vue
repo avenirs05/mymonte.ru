@@ -7,7 +7,7 @@
         </div>
         <div>
             <i class="material-icons">phone</i>
-            {{ phoneMain }}&nbsp;&nbsp;
+            {{ phoneMain2 }}&nbsp;&nbsp;
             <small>Украина</small>
         </div>        
     </div>
@@ -16,7 +16,7 @@
 
 <script>
     export default {
-        props: ['phoneMain'],
+        props: ['phoneMain', 'phoneMain2'],
         data: () => ({  })
     }
 </script>

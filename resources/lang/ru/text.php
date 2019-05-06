@@ -5,7 +5,7 @@ return [
     
 	'title_tag' => [
 		'home' => 'Инвестиции в недвижимость Черногории',
-		'thank_you' => 'Thank you for contacting'
+		'thank_you' => 'Спасибо за обращение'
 	],
 	
 	'menu' => [
@@ -60,4 +60,12 @@ return [
 	'save'   => 'Сохранить',
 	'send'   => 'Отправить',
 	'cancel' => 'Отмена',
+	
+	'thank_you_page_content' => 'Спасибо за обращение! С вами свяжутся в ближайшее время.',
+	
+	'countries' => [
+		'ukraine' => 'Украина',
+		'montenegro' => 'Черногория'
+	],
+	'callback' => 'Обратный звонок'
 ];

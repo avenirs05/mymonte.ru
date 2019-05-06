@@ -2250,6 +2250,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2261,7 +2267,8 @@ __webpack_require__.r(__webpack_exports__);
       editor: _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_0___default.a,
       editorConfig: {},
       editedAllLangs: {
-        phone_main: ''
+        phone_main: '',
+        phone_main_2: ''
       }
     };
   },
@@ -2273,6 +2280,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(route("admin-parameters-index")).then(function (response) {
         _this.editedAllLangs.phone_main = response.data.phone_main.value;
+        _this.editedAllLangs.phone_main_2 = response.data.phone_main_2.value;
       }).finally(function () {
         _this.loading = false;
       });
@@ -2281,8 +2289,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.post(route("admin-parameters-update"), this.editedAllLangs).then(function (response) {
-        console.log(response);
         _this2.editedAllLangs.phone_main = response.data.phone_main;
+        _this2.editedAllLangs.phone_main_2 = response.data.phone_main_2;
         alert('Данные обновлены');
       }).catch(function (error) {
         console.log(error);
@@ -32379,6 +32387,24 @@ var render = function() {
                   _vm.$set(_vm.editedAllLangs, "phone_main", $$v)
                 },
                 expression: "editedAllLangs.phone_main"
+              }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "v-flex",
+          { attrs: { xs12: "" } },
+          [
+            _c("v-text-field", {
+              attrs: { label: "Основной телефон_2" },
+              model: {
+                value: _vm.editedAllLangs.phone_main_2,
+                callback: function($$v) {
+                  _vm.$set(_vm.editedAllLangs, "phone_main_2", $$v)
+                },
+                expression: "editedAllLangs.phone_main_2"
               }
             })
           ],

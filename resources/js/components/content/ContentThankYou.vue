@@ -4,7 +4,7 @@
             <v-layout row wrap>  
                 <v-flex>
                     <h1 class="display-1 mt-1 mb-4 text-xs-center">
-                        Спасибо за обращение! С вами свяжутся в ближайшее время. 
+                        {{ trans('text.thank_you_page_content') }} 
                     </h1>  
                 </v-flex>
             </v-layout>

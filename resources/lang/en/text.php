@@ -60,4 +60,12 @@ return [
 	'save'   => 'Save',
 	'send'   => 'Send',
 	'cancel' => 'Cancel',
+	
+	'thank_you_page_content' => 'Thanks for contacting us! You will be contacted soon.',
+	
+	'countries' => [
+		'ukraine'	 => 'Ukraine',
+		'montenegro' => 'Montenegro'
+	],
+	'callback' => 'Callback'
 ];

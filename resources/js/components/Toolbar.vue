@@ -9,7 +9,10 @@
         <v-toolbar-title class="logo-mob hidden-md-and-up">MyMonte</v-toolbar-title>
         
         <!-- Телефоны (desktop) -->
-        <connect-desk :phone-main="phoneMain"></connect-desk> 
+        <connect-desk 
+            :phone-main="phoneMain"
+            :phone-main2="phoneMain2"
+        ></connect-desk> 
         
         <!-- Мессенджеры и иконки соцсетей (desktop)-->
         <v-list-tile class="messangers hidden-sm-and-down">
@@ -173,12 +176,12 @@
             phone: { required },            
         },
         mounted () { 
-            //console.log(window.location.pathname); 
+            //console.log(this.phoneMain2); 
         }, 
         components: {
             ConnectDesk
         },
-        props: ['locale', 'phoneMain'],    
+        props: ['locale', 'phoneMain', 'phoneMain2'],    
         data: () => ({            
             dialogCallbackDesk: false,
             name: '',

@@ -3,6 +3,7 @@
         <main-screen
             :header-main-screen="headerMainScreen"  
             :phone-main="phoneMain"
+            :phone-main2="phoneMain2"
         ></main-screen>
         
         <v-container>
@@ -33,12 +34,14 @@
     
     export default { 
         mounted() {
+            //console.log(this.phoneMain2);
         },
         props: [
             'locale', 
             'headerMainScreen',
             'headerMainContent',
             'phoneMain',
+            'phoneMain2',
             'headerAreas',
             'areas',
             'questions'

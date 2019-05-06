@@ -101,7 +101,12 @@
     <v-container fluid grid-list-xl>
         <v-layout row align-center class="hidden-md-and-up">
             <v-flex>
-                <connect-mob :phone-main="phoneMain"></connect-mob>
+                <!-- Телефоны и соцсети -->
+                <connect-mob 
+                    :phone-main="phoneMain"
+                    :phone-main2="phoneMain2"
+                ></connect-mob>
+                
                 <h1 class="header-main-screen-mob text-xs-center mb-5">{{ headerMainScreen }}</h1>
                 <v-layout row justify-center align-center class="mb-5">
                     
@@ -199,7 +204,7 @@
             email: { email }
         },
         mounted() { }, 
-        props: ['headerMainScreen', 'phoneMain'],
+        props: ['headerMainScreen', 'phoneMain', 'phoneMain2'],
         components: {
             ConnectMob
         },

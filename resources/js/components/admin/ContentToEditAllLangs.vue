@@ -2,11 +2,17 @@
 <v-content>
     <div style="padding-left: 24px;" class="mt-5">
         <h3 class="mb-4">Все языки</h3>        
-        <!-- Заголовок на Главной -->
+       
         <v-flex xs12>
             <v-text-field 
                 label="Основной телефон" 
                 v-model="editedAllLangs.phone_main"
+            ></v-text-field>
+        </v-flex>
+        <v-flex xs12>
+            <v-text-field 
+                label="Основной телефон_2" 
+                v-model="editedAllLangs.phone_main_2"
             ></v-text-field>
         </v-flex>
         <v-btn 
@@ -32,7 +38,8 @@
             editor: ClassicEditor,
             editorConfig: {},            
             editedAllLangs: {
-                phone_main: ''
+                phone_main: '',
+                phone_main_2: ''
             }
         }),
         computed: {
@@ -46,6 +53,7 @@
                 axios.get(route("admin-parameters-index"))
                         .then(response => {   
                             this.editedAllLangs.phone_main = response.data.phone_main.value                              
+                            this.editedAllLangs.phone_main_2 = response.data.phone_main_2.value                              
                         }).finally(() => {
                             this.loading = false;
                 })
@@ -53,9 +61,9 @@
            
             updateIfAllLang() {
                 axios.post(route("admin-parameters-update"), this.editedAllLangs)
-                    .then(response => {
-                        console.log(response)
+                    .then(response => {                        
                         this.editedAllLangs.phone_main = response.data.phone_main;
+                        this.editedAllLangs.phone_main_2 = response.data.phone_main_2;
                         alert('Данные обновлены')
                     })
                     .catch(function (error) {

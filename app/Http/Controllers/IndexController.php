@@ -16,7 +16,9 @@ class IndexController extends Controller
 	{
 		$title = Lang::get('text.title_tag.home');
 		$locale = app()->getLocale();		
+		
 		$phone_main = Parameter::where('param', 'phone_main')->get()->toArray()[0]['value'];		
+		$phone_main_2 = Parameter::where('param', 'phone_main_2')->get()->toArray()[0]['value'];		
 		
 		$language = Language::where('code', $locale)->first();	
 		
@@ -41,20 +43,17 @@ class IndexController extends Controller
 							->where('type', 'questions')
 							->first();
 
-		//dd($areas);
-
 		$data = [
 			'title'				   => $title,		
 			'locale'			   => $locale,	
 			'phone_main'		   => $phone_main,		
+			'phone_main_2'		   => $phone_main_2,		
 			'header_main_screen'   => $header_main_screen->text,	
 			'header_main_content'  => $header_main_content->text,
 			'header_areas'         => $header_areas->text,
 			'areas'				   => $areas,
 			'questions'			   => $questions->text,
 		];		
-		
-		//dd($data);
 	
 		return view('index', $data);
 	}

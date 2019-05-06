@@ -31,6 +31,10 @@ class CreateRealtiesTable extends Migration {
 			$table->enum('area_en',     ['Budva Riviera', 'Boka Kotorska Bay', 'Bar Riviera'])->default('Budva Riviera');
 			
 			$table->string('name')->unique();
+			
+
+			
+			
 			$table->string('subname_ru')->nullable();
 			$table->string('subname_en')->nullable();
 		    $table->string('city_ru')->default('Будва');
@@ -70,6 +74,11 @@ class CreateRealtiesTable extends Migration {
 			$table->integer('discount')->default(0);
 			
 			$table->timestamps();
+			
+			// Новые поля
+			$table->string('category')->default('less_than_100');
+			$table->string('category_ru')->default('До 100 000 €');
+			$table->string('category_en')->default('Less than 100 000 €');
 		});
 	}
 

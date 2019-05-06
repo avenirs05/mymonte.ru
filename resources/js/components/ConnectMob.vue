@@ -9,7 +9,7 @@
         </div>
         <div class="">
             <i class="material-icons">phone</i>
-            {{ phoneMain }}&nbsp;
+            {{ phoneMain2 }}&nbsp;
             <small>Украина</small>
         </div> 
         
@@ -130,7 +130,7 @@
             name: { required },
             phone: { required }            
         },
-        props: ['phoneMain'],    
+        props: ['phoneMain', 'phoneMain2'],    
         data: () => ({ 
             dialogCallbackMob: false,
             name: '',
