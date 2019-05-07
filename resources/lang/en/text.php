@@ -67,5 +67,11 @@ return [
 		'ukraine'	 => 'Ukraine',
 		'montenegro' => 'Montenegro'
 	],
-	'callback' => 'Callback'
+	
+	'callback' => 'Callback',
+	
+	'validation' => [
+		'required' => 'This field is required',
+		'email' => 'Must be valid e-mail'
+	]
 ];

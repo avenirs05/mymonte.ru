@@ -140,13 +140,13 @@
             nameErrors () {
                 const errors = []
                 if (!this.$v.name.$dirty) return errors
-                !this.$v.name.required && errors.push('Name is required.')
+                !this.$v.name.required && errors.push(trans('text.validation.required'))
                 return errors
             },
             phoneErrors () {
                 const errors = []
                 if (!this.$v.phone.$dirty) return errors
-                !this.$v.phone.required && errors.push('Phone is required.')
+                !this.$v.phone.required && errors.push(trans('text.validation.required'))
                 return errors
             }
         },
